@@ -1,4 +1,6 @@
-# Northbound: design notes
+# Northbound Together: design notes
+
+The game's title is **Northbound Together**. The project folder and GitHub repository are named `northbound`.
 
 ## The game
 - 2.5D: a 3D world seen from a fixed camera angled down. Players head north (-Z), like Crossy Road.
