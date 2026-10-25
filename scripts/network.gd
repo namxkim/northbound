@@ -17,6 +17,11 @@ signal round_begun
 signal player_state_received(peer_id: int, state: Array)
 ## Another player sent something that happened to them, like "died".
 signal player_event_received(peer_id: int, kind: String, data: Variant)
+## Host only: a player asks the host to decide something for the team,
+## like "I reached this checkpoint".
+signal team_request_received(peer_id: int, kind: String, data: Variant)
+## The host decided something for the whole team, like "round lost".
+signal team_event_received(kind: String, data: Variant)
 
 const PORT := 24680
 const MAX_PLAYERS := 8
@@ -59,6 +64,12 @@ func _ready() -> void:
 
 func is_host() -> bool:
 	return online and multiplayer.is_server()
+
+
+## True if this computer makes the team's decisions: the host, or anyone
+## playing solo.
+func decides_for_team() -> bool:
+	return not online or multiplayer.is_server()
 
 
 func character_path(index: int) -> String:
@@ -163,6 +174,19 @@ func send_player_event(kind: String, data: Variant = null) -> void:
 		_player_event.rpc(kind, data)
 
 
+## Asks the host to decide something for the team. Only used when online and
+## not hosting; the level handles its own requests otherwise.
+func send_team_request(kind: String, data: Variant = null) -> void:
+	if online and not multiplayer.is_server():
+		_team_request.rpc_id(1, kind, data)
+
+
+## Host only: tells everyone (including this computer) what was decided.
+func send_team_event(kind: String, data: Variant = null) -> void:
+	if is_host():
+		_team_event.rpc(kind, data)
+
+
 func _physics_process(delta: float) -> void:
 	# Players who joined ask the host for its clock once a second.
 	if online and round_active and not multiplayer.is_server():
@@ -221,6 +245,17 @@ func _player_state(state: Array) -> void:
 @rpc("any_peer", "reliable")
 func _player_event(kind: String, data: Variant) -> void:
 	player_event_received.emit(multiplayer.get_remote_sender_id(), kind, data)
+
+
+@rpc("any_peer", "reliable")
+func _team_request(kind: String, data: Variant) -> void:
+	if multiplayer.is_server():
+		team_request_received.emit(multiplayer.get_remote_sender_id(), kind, data)
+
+
+@rpc("authority", "call_local", "reliable")
+func _team_event(kind: String, data: Variant) -> void:
+	team_event_received.emit(kind, data)
 
 
 @rpc("any_peer", "unreliable")

@@ -13,15 +13,19 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 - Solo or online co-op, up to 8 players. Each player controls one character.
 - Online play is peer-to-peer: one player hosts and the others join. No separate server.
 
-## Death and checkpoints
-- **Solo:** dying sends you back to the last checkpoint you reached.
-- **Co-op:** a dead player stays dead and watches the others. When a living player reaches a checkpoint, the dead players respawn there.
-- **Co-op:** if everyone is dead, the round is lost and can be restarted from the start of the level.
+## Death, checkpoints and winning
+- **Solo** (one player in the round, including hosting alone): dying sends you back to the last checkpoint you reached.
+- **Co-op** (two or more players): a player who is hit stays down and watches a teammate who's still alive (A / D switches who).
+- **Co-op:** when a living player reaches a checkpoint the team hasn't reached yet, every dead player comes back there. Walking back to an old checkpoint does nothing.
+- **Co-op:** if everyone is down, the round is lost. The host restarts it from the start of the level.
+- **Co-op:** the first player across the finish wins the round for the whole team.
+- The host's game makes every team decision (checkpoints, win, loss) and tells everyone, so all the games agree even when two things happen at once.
+- Levels need checkpoints spread along the way, since they're the only way to bring teammates back. Level 1 has just one for now.
 
 ## Build plan
 1. Single-player core: movement, camera, terrain, enemy patterns, death, checkpoint, finish. **(done)**
-2. Networking: Host / Join menu, one character per player, synced positions, tested with several copies on one PC. **(done)** Until step 3, every player respawns at their own last checkpoint, and the round ends when everyone has reached the finish.
-3. Co-op round rules: watching teammates while dead, respawning at checkpoints, "round lost" when everyone is dead, host restarts.
+2. Networking: Host / Join menu, one character per player, synced positions, tested with several copies on one PC. **(done)**
+3. Co-op round rules: watching teammates while dead, respawning at checkpoints, "round lost" when everyone is dead, host restarts. **(done)**
 4. Content: 3-5 levels, more enemy patterns, level select.
 5. Real online play: Steam invites (GodotSteam) so friends can join over the internet.
 6. Polish and release.

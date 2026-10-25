@@ -1,10 +1,8 @@
 extends Camera3D
 
-## The node to follow. The level sets this to the player.
-var target: Node3D:
-	set(value):
-		target = value
-		snap_to_target()
+## The node to follow. Changing it makes the camera glide over to the new
+## target; call snap_to_target() to jump there instead.
+var target: Node3D
 
 ## Where the camera sits relative to the spot it looks at: above it and to the south.
 @export var offset := Vector3(0, 10, 9)
@@ -15,14 +13,14 @@ var target: Node3D:
 
 
 func _physics_process(delta: float) -> void:
-	if target == null:
+	if not is_instance_valid(target):
 		return
 	var goal := _focus() + offset
 	global_position = global_position.lerp(goal, 1.0 - exp(-smoothing * delta))
 
 
 func snap_to_target() -> void:
-	if target == null or not is_inside_tree():
+	if not is_instance_valid(target) or not is_inside_tree():
 		return
 	global_position = _focus() + offset
 	look_at(_focus())
