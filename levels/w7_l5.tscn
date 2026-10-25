@@ -1,0 +1,872 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://scenes/boulder.tscn" id="2_boulder"]
+[ext_resource type="Script" path="res://scripts/zone.gd" id="3_zone"]
+[ext_resource type="PackedScene" path="res://assets/holiday/gingerbread-man.glb" id="4_gingerbread_man"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" path="res://assets/holiday/rocks-medium.glb" id="6_rocks_medium"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="7_block"]
+[ext_resource type="PackedScene" path="res://assets/holiday/present-a-cube.glb" id="8_present_a_cube"]
+[ext_resource type="PackedScene" path="res://assets/holiday/reindeer.glb" id="9_reindeer"]
+[ext_resource type="PackedScene" path="res://scenes/chaser.tscn" id="10_chaser"]
+[ext_resource type="PackedScene" path="res://assets/holiday/sled-long.glb" id="11_sled_long"]
+[ext_resource type="PackedScene" path="res://scenes/car.tscn" id="12_car"]
+[ext_resource type="PackedScene" path="res://assets/holiday/sled.glb" id="13_sled"]
+[ext_resource type="PackedScene" path="res://assets/holiday/tree-snow-a.glb" id="14_tree_snow_a"]
+[ext_resource type="PackedScene" path="res://assets/holiday/tree-snow-b.glb" id="15_tree_snow_b"]
+[ext_resource type="PackedScene" path="res://assets/holiday/tree-snow-c.glb" id="16_tree_snow_c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_1"]
+sky_top_color = Color(0.55, 0.65, 0.85, 1.0)
+sky_horizon_color = Color(0.9, 0.93, 0.97, 1.0)
+ground_horizon_color = Color(0.9, 0.93, 0.97, 1.0)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("SkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_energy = 1.1
+tonemap_mode = 2
+
+[node name="W7L5" type="Node3D"]
+script = ExtResource("1_level")
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Hazards" type="Node3D" parent="."]
+
+[node name="Zones" type="Node3D" parent="."]
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 3.0)
+
+[node name="Roller" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -0.8)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.2944
+
+[node name="Rock" parent="Hazards/Roller/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller2" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -0.8)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.1472
+line_period = 2.2944
+
+[node name="Rock" parent="Hazards/Roller2/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller3" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -3.0)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 1.7373
+
+[node name="Rock" parent="Hazards/Roller3/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller4" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -3.0)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.8686
+line_period = 1.7373
+
+[node name="Rock" parent="Hazards/Roller4/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller5" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -5.2)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 1.9538
+
+[node name="Rock" parent="Hazards/Roller5/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller6" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -5.2)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.6513
+line_period = 1.9538
+
+[node name="Rock" parent="Hazards/Roller6/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller7" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -5.2)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.3025
+line_period = 1.9538
+
+[node name="Rock" parent="Hazards/Roller7/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller8" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -7.4)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.0432
+
+[node name="Rock" parent="Hazards/Roller8/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller9" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -7.4)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 1.0216
+line_period = 2.0432
+
+[node name="Rock" parent="Hazards/Roller9/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller10" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -9.6)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 1.9486
+
+[node name="Rock" parent="Hazards/Roller10/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller11" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -9.6)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.9743
+line_period = 1.9486
+
+[node name="Rock" parent="Hazards/Roller11/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller12" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -11.8)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.4357
+
+[node name="Rock" parent="Hazards/Roller12/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller13" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -11.8)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.8119
+line_period = 2.4357
+
+[node name="Rock" parent="Hazards/Roller13/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller14" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -11.8)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 1.6238
+line_period = 2.4357
+
+[node name="Rock" parent="Hazards/Roller14/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller15" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -14.0)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.2505
+
+[node name="Rock" parent="Hazards/Roller15/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller16" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -14.0)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.1252
+line_period = 2.2505
+
+[node name="Rock" parent="Hazards/Roller16/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller17" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -16.2)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.2983
+
+[node name="Rock" parent="Hazards/Roller17/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Roller18" parent="Hazards" instance=ExtResource("2_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -16.2)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 1.1492
+line_period = 2.2983
+
+[node name="Rock" parent="Hazards/Roller18/Model"]
+color = Color(0.95, 0.97, 1.0, 1.0)
+
+[node name="Checkpoint" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -20.0)
+script = ExtResource("3_zone")
+size = Vector3(14.0, 2.0, 3.0)
+
+[node name="Walker" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.0885, 0.0, -32.5108)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.6946
+wander_pause_chance = 0.2
+wander_seed = 75001
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker2" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.9039, 0.0, -31.982)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7836
+wander_pause_chance = 0.2
+wander_seed = 75002
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker3" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.7782, 0.0, -27.2054)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.9457
+wander_pause_chance = 0.2
+wander_seed = 75003
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker4" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.4539, 0.0, -30.9989)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.8754
+wander_pause_chance = 0.2
+wander_seed = 75004
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker5" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.1986, 0.0, -32.639)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7982
+wander_pause_chance = 0.2
+wander_seed = 75005
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker6" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.997, 0.0, -36.0109)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 1.062
+wander_pause_chance = 0.2
+wander_seed = 75006
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker7" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.5982, 0.0, -31.1828)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.9187
+wander_pause_chance = 0.2
+wander_seed = 75007
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker8" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.2303, 0.0, -26.5588)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7414
+wander_pause_chance = 0.2
+wander_seed = 75008
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker9" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.7542, 0.0, -29.84)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.9136
+wander_pause_chance = 0.2
+wander_seed = 75009
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker10" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.9596, 0.0, -29.3434)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.9847
+wander_pause_chance = 0.2
+wander_seed = 75010
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker11" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.9005, 0.0, -33.2508)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 1.0557
+wander_pause_chance = 0.2
+wander_seed = 75011
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker12" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.1679, 0.0, -26.4576)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7082
+wander_pause_chance = 0.2
+wander_seed = 75012
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker13" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.5728, 0.0, -31.993)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.8041
+wander_pause_chance = 0.2
+wander_seed = 75013
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker14" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.4826, 0.0, -26.6238)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7894
+wander_pause_chance = 0.2
+wander_seed = 75014
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker15" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.9911, 0.0, -28.9291)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7052
+wander_pause_chance = 0.2
+wander_seed = 75015
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker16" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.6472, 0.0, -34.1333)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.7382
+wander_pause_chance = 0.2
+wander_seed = 75016
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Cover" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.8795, 0.0, -27.446)
+script = ExtResource("7_block")
+size = Vector3(1.2, 0.6, 1.0)
+show_box = false
+decoration = ExtResource("6_rocks_medium")
+decoration_scale = 0.6
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Cover2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.9634, 0.0, -31.3253)
+script = ExtResource("7_block")
+size = Vector3(1.2, 0.6, 1.0)
+show_box = false
+decoration = ExtResource("6_rocks_medium")
+decoration_scale = 0.6
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Cover3" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.5779, 0.0, -37.9934)
+script = ExtResource("7_block")
+size = Vector3(0.8, 1.0, 0.8)
+show_box = false
+decoration = ExtResource("8_present_a_cube")
+decoration_scale = 1.8
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Checkpoint2" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -43.0)
+script = ExtResource("3_zone")
+size = Vector3(14.0, 2.0, 3.0)
+
+[node name="Chaser" parent="Hazards" instance=ExtResource("10_chaser")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.9205, 0.0, -57.8671)
+model_scene = ExtResource("9_reindeer")
+model_scale = 0.85
+speed = 4.0
+sight_radius = 6.3
+leash_radius = 5.0
+hit_radius = 0.4
+
+[node name="Chaser2" parent="Hazards" instance=ExtResource("10_chaser")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2335, 0.0, -53.188)
+model_scene = ExtResource("9_reindeer")
+model_scale = 0.85
+speed = 4.0
+sight_radius = 6.3
+leash_radius = 5.0
+hit_radius = 0.4
+
+[node name="Chaser3" parent="Hazards" instance=ExtResource("10_chaser")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.81, 0.0, -55.0036)
+model_scene = ExtResource("9_reindeer")
+model_scale = 0.85
+speed = 4.0
+sight_radius = 6.3
+leash_radius = 5.0
+hit_radius = 0.4
+
+[node name="Chaser4" parent="Hazards" instance=ExtResource("10_chaser")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.5115, 0.0, -56.7533)
+model_scene = ExtResource("9_reindeer")
+model_scale = 0.85
+speed = 4.0
+sight_radius = 6.3
+leash_radius = 5.0
+hit_radius = 0.4
+
+[node name="Chaser5" parent="Hazards" instance=ExtResource("10_chaser")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.843, 0.0, -56.1476)
+model_scene = ExtResource("9_reindeer")
+model_scale = 0.85
+speed = 4.0
+sight_radius = 6.3
+leash_radius = 5.0
+hit_radius = 0.4
+
+[node name="Walker17" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.534, 0.0, -57.18)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.9076
+wander_pause_chance = 0.2
+wander_seed = 75017
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker18" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 7.4672, 0.0, -52.084)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.8374
+wander_pause_chance = 0.2
+wander_seed = 75018
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker19" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.5022, 0.0, -57.4018)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.889
+wander_pause_chance = 0.2
+wander_seed = 75019
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker20" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.6346, 0.0, -53.9611)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 1.0756
+wander_pause_chance = 0.2
+wander_seed = 75020
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker21" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.3633, 0.0, -51.0678)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 1.0175
+wander_pause_chance = 0.2
+wander_seed = 75021
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Walker22" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.4799, 0.0, -53.9847)
+pattern = 4
+wander_area = Vector2(6.0, 5.0)
+wander_step = 0.8958
+wander_pause_chance = 0.2
+wander_seed = 75022
+model_scene = ExtResource("4_gingerbread_man")
+model_scale = 2.4
+
+[node name="Cover4" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.4749, 0.0, -49.4893)
+script = ExtResource("7_block")
+size = Vector3(1.2, 0.6, 1.0)
+show_box = false
+decoration = ExtResource("6_rocks_medium")
+decoration_scale = 0.6
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Cover5" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.0981, 0.0, -57.3321)
+script = ExtResource("7_block")
+size = Vector3(0.8, 1.0, 0.8)
+show_box = false
+decoration = ExtResource("8_present_a_cube")
+decoration_scale = 1.8
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Cover6" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.1522, 0.0, -61.4198)
+script = ExtResource("7_block")
+size = Vector3(1.2, 0.6, 1.0)
+show_box = false
+decoration = ExtResource("6_rocks_medium")
+decoration_scale = 0.6
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Cover7" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.7781, 0.0, -57.0775)
+script = ExtResource("7_block")
+size = Vector3(0.8, 1.0, 0.8)
+show_box = false
+decoration = ExtResource("8_present_a_cube")
+decoration_scale = 1.8
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Checkpoint3" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -68.0)
+script = ExtResource("3_zone")
+size = Vector3(14.0, 2.0, 3.0)
+
+[node name="Lane" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -72.0)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -72.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 0.4433
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+line_period = 2.7667
+
+[node name="Vehicle2" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -72.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 1.3655
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.7667
+
+[node name="Vehicle3" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -72.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 2.2877
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.7667
+
+[node name="Lane2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -74.5)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle4" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -74.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 0.9831
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+pattern = 3
+move_time = 0.7815
+pause_time = 0.6852
+
+[node name="Vehicle5" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -74.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 1.7325
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+pattern = 3
+move_time = 0.7815
+pause_time = 0.6852
+
+[node name="Vehicle6" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -74.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 2.4819
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+pattern = 3
+move_time = 0.7815
+pause_time = 0.6852
+
+[node name="Lane3" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -77.0)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle7" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -77.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 1.0584
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.5261
+
+[node name="Vehicle8" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -77.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 1.9005
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.5261
+
+[node name="Vehicle9" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -77.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 2.7425
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+line_period = 2.5261
+
+[node name="Lane4" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -79.5)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle10" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -79.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 0.1822
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.3146
+
+[node name="Vehicle11" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -79.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 0.9537
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+line_period = 2.3146
+
+[node name="Vehicle12" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -79.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 1.7253
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.3146
+
+[node name="Lane5" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -82.0)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle13" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -82.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 1.7126
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.7146
+
+[node name="Vehicle14" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -82.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 3.0699
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.7146
+
+[node name="Lane6" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -84.5)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle15" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -84.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 1.5569
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.7309
+
+[node name="Vehicle16" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -84.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 2.4672
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.7309
+
+[node name="Vehicle17" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -84.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 3.3775
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+line_period = 2.7309
+
+[node name="Lane7" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -87.0)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle18" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -87.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 0.9185
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+pattern = 3
+move_time = 0.7673
+pause_time = 0.7352
+
+[node name="Vehicle19" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -87.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 1.6751
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+pattern = 3
+move_time = 0.7673
+pause_time = 0.7352
+
+[node name="Vehicle20" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -87.0)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 2.4316
+model_scene = ExtResource("11_sled_long")
+model_scale = 1.6
+pattern = 3
+move_time = 0.7673
+pause_time = 0.7352
+
+[node name="Lane8" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.005, -89.5)
+script = ExtResource("7_block")
+size = Vector3(44.0, 0.02, 2.4)
+solid = false
+color = Color(0.7, 0.85, 0.95, 1.0)
+
+[node name="Vehicle21" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -89.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 2.6259
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.6996
+
+[node name="Vehicle22" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -89.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 3.5258
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.6996
+
+[node name="Vehicle23" parent="Hazards" instance=ExtResource("12_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -89.5)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 4.4256
+model_scene = ExtResource("13_sled")
+model_scale = 1.6
+line_period = 2.6996
+
+[node name="Finish" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -94.0)
+script = ExtResource("3_zone")
+kind = 1
+size = Vector3(20.0, 2.0, 4.0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 10, 0)
+light_color = Color(1.0, 0.97, 0.95, 1.0)
+light_energy = 0.9
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, -1.0, -45.75)
+script = ExtResource("7_block")
+size = Vector3(80.0, 1.0, 145.5)
+color = Color(0.92, 0.94, 0.97, 1.0)
+
+[node name="Trees" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -11.5, 0.0, -45.75)
+script = ExtResource("7_block")
+size = Vector3(1.0, 1.5, 105.5)
+show_box = false
+decoration = ExtResource("14_tree_snow_a")
+decoration_scale = 1.7
+decoration_spacing = 1.9
+random_turn = true
+
+[node name="Trees2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 11.5, 0.0, -45.75)
+script = ExtResource("7_block")
+size = Vector3(1.0, 1.5, 105.5)
+show_box = false
+decoration = ExtResource("15_tree_snow_b")
+decoration_scale = 1.7
+decoration_spacing = 1.9
+random_turn = true
+
+[node name="Trees3" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 7.5)
+script = ExtResource("7_block")
+size = Vector3(22.0, 1.5, 1.0)
+show_box = false
+decoration = ExtResource("16_tree_snow_c")
+decoration_scale = 1.7
+decoration_spacing = 1.9
+random_turn = true
+
+[node name="Trees4" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -99.0)
+script = ExtResource("7_block")
+size = Vector3(22.0, 1.5, 1.0)
+show_box = false
+decoration = ExtResource("14_tree_snow_a")
+decoration_scale = 1.7
+decoration_spacing = 1.9
+random_turn = true

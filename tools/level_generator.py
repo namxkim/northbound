@@ -1,9 +1,15 @@
-"""Writes the four level scenes (levels/level_01.tscn to level_04.tscn).
+"""Writes every level scene: levels/w1_l1.tscn (level 1-1) to w7_l5.tscn (7-5).
 
-Each level is described below as a list of sections from south (start) to
-north (finish). Running this script OVERWRITES those four files, so any
-changes made to them in the Godot editor are lost. Tweak the numbers here,
-or stop using the script and edit the levels in the editor instead.
+The game has 7 worlds of 5 levels. Each world has its own look and enemy
+models. Each level is a recipe: a list of section types (rolling hazards,
+traffic, circling walkers, wanderers, chasers...), with a checkpoint after
+each section. Levels get busier from x-1 to x-5 and from world to world.
+
+Running this script OVERWRITES all those level files, so any changes made to
+them in the Godot editor are lost. Tweak the recipes here instead.
+
+Hazard speeds come from tools/level_dials.json, which tools/tune_levels.py
+fills in so every section stays beatable.
 
 Run from the project folder:  uv run --no-project tools/level_generator.py
 """
@@ -16,8 +22,7 @@ import random
 PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIALS_FILE = os.path.join(PROJECT, "tools", "level_dials.json")
 
-# Speed dial for each section of each level (start, after checkpoint 1, 2, 3).
-# tools/tune_levels.py finds these; 1.0 is the base speed written below.
+# Speed dial for each section of each level, by level key ("w1_l1").
 DIALS = {}
 if os.path.exists(DIALS_FILE):
     with open(DIALS_FILE, encoding="utf-8") as dials_in:
@@ -40,6 +45,10 @@ def vec(x, y, z):
     return f"Vector3({num(float(x))}, {num(float(y))}, {num(float(z))})"
 
 
+def vec2(x, y):
+    return f"Vector2({num(float(x))}, {num(float(y))})"
+
+
 def color(r, g, b, a=1.0):
     return f"Color({num(float(r))}, {num(float(g))}, {num(float(b))}, {num(float(a))})"
 
@@ -51,10 +60,13 @@ def transform(x, y, z, yaw=0.0, scale=1.0):
     return "Transform3D(" + ", ".join(num(float(v)) for v in values) + ")"
 
 
+def fmt(value):
+    return num(value) if isinstance(value, (bool, int, float)) else value
+
+
 class Scene:
-    def __init__(self, root_name):
-        self.root_name = root_name
-        self.resources = []  # (type, path, id)
+    def __init__(self):
+        self.resources = []
         self.resource_ids = {}
         self.sub_resources = []
         self.nodes = []
@@ -72,14 +84,11 @@ class Scene:
     def sub(self, text):
         self.sub_resources.append(text)
 
-    def unique(self, parent, name):
+    def node(self, name, parent=".", node_type=None, instance=None, **props):
         key = (parent, name)
         self.names[key] = self.names.get(key, 0) + 1
-        count = self.names[key]
-        return name if count == 1 else f"{name}{count}"
-
-    def node(self, name, parent=".", node_type=None, instance=None, **props):
-        name = self.unique(parent, name)
+        if self.names[key] > 1:
+            name = f"{name}{self.names[key]}"
         header = f'[node name="{name}"'
         if node_type:
             header += f' type="{node_type}"'
@@ -87,23 +96,17 @@ class Scene:
             header += f' parent="{parent}"'
         if instance:
             header += f" instance={self.res(instance)}"
-        lines = [header + "]"]
-        for key, value in props.items():
-            lines.append(f"{key} = {value}")
+        lines = [header + "]"] + [f"{k} = {fmt(v)}" for k, v in props.items()]
         self.nodes.append("\n".join(lines))
-        return name
+        return name if parent in (None, ".") else f"{parent}/{name}"
 
     def text(self):
         parts = ["[gd_scene format=3]", ""]
         for kind, path, rid in self.resources:
             parts.append(f'[ext_resource type="{kind}" path="{path}" id="{rid}"]')
         parts.append("")
-        for block in self.sub_resources:
-            parts.append(block)
-            parts.append("")
-        for block in self.nodes:
-            parts.append(block)
-            parts.append("")
+        for block in self.sub_resources + self.nodes:
+            parts += [block, ""]
         return "\n".join(parts)
 
 
@@ -114,571 +117,745 @@ SPIKES = "res://scripts/spike_field.gd"
 WALKER = "res://scenes/enemy.tscn"
 BOULDER = "res://scenes/boulder.tscn"
 CAR = "res://scenes/car.tscn"
-ORC = "res://assets/dungeon/character-orc.glb"
-
-
-class Level:
-    """Shared building helpers. Subclasses add the setting's look."""
-
-    def __init__(self, root_name, finish_z, key=""):
-        self.key = key
-        self.s = Scene(root_name)
-        self.finish_z = finish_z
-        self.s.node(root_name, parent=None, node_type="Node3D", script=self.s.res("res://scripts/level.gd"))
-        for group in ["Terrain", "Hazards", "Zones", "Decor"]:
-            self.s.node(group, node_type="Node3D")
-        # Difficulty dials. speed > 1 makes every hazard faster (all timings
-        # are divided by it); extra_cars adds cars to every traffic lane.
-        self.speed = 1.0
-        self.extra_cars = 0
-
-    def section(self, index):
-        """Starts section index: its hazards use that section's speed dial."""
-        self.speed = DIALS.get(self.key, [1.0] * 4)[index]
-
-    def t(self, seconds):
-        """A timing in seconds, adjusted by the level's speed dial."""
-        return None if seconds is None else seconds / self.speed
-
-    # --- basics ---
-
-    def start(self, z=3.0):
-        self.s.node("Start", node_type="Marker3D", transform=transform(0, 0, z))
-
-    def block(self, name, x, y, z, size, parent="Terrain", **props):
-        props = {k: (num(v) if isinstance(v, (bool, int, float)) else v) for k, v in props.items()}
-        return self.s.node(name, parent, "StaticBody3D", transform=transform(x, y, z),
-                           script=self.s.res(BLOCK), size=vec(*size), **props)
-
-    def invisible_wall(self, x, z, size):
-        self.block("Edge", x, 0, z, size, show_box=False)
-
-    def checkpoint(self, z, width=20.0):
-        props = {}
-        if width != 20.0:
-            props["size"] = vec(width, 2, 3)
-        self.s.node("Checkpoint", "Zones", "Area3D", transform=transform(0, 0, z),
-                    script=self.s.res(ZONE), **props)
-
-    def finish(self, z, width=20.0):
-        self.s.node("Finish", "Zones", "Area3D", transform=transform(0, 0, z),
-                    script=self.s.res(ZONE), kind="1", size=vec(width, 2, 4))
-
-    # --- hazards ---
-
-    def boulder_row(self, z, period, count=2, from_left=True):
-        """Boulders rolling back and forth across the whole width."""
-        period = self.t(period)
-        reach = HALF_WIDTH - 0.5
-        x = -reach if from_left else reach
-        for i in range(count):
-            self.s.node("Boulder", "Hazards", instance=BOULDER, transform=transform(x, 0, z),
-                        time_offset=num(period * i / count),
-                        line_offset=vec(2 * reach if from_left else -2 * reach, 0, 0),
-                        line_period=num(period))
-
-    def walker_circle(self, cx, cz, radius, period, count, clockwise=True, model=None, offset=0.0):
-        period, offset = self.t(period), self.t(offset)
-        for i in range(count):
-            props = dict(transform=transform(cx, 0, cz), pattern="1",
-                         time_offset=num(offset + period * i / count),
-                         circle_radius=num(radius), circle_period=num(period),
-                         clockwise=num(clockwise))
-            if model:
-                props["model_scene"] = self.s.res(model)
-            self.s.node("Walker", "Hazards", instance=WALKER, **props)
-
-    def walker_line(self, x, z, dx, dz, period, count=1, model=None, offset=0.0,
-                    move_time=None, pause_time=None):
-        """Walks there and back. With move/pause times it stops at each end."""
-        period, offset = self.t(period), self.t(offset)
-        move_time, pause_time = self.t(move_time), self.t(pause_time)
-        for i in range(count):
-            props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, dz))
-            if move_time is not None:
-                cycle = 2 * (move_time + pause_time)
-                props.update(pattern="3", move_time=num(move_time), pause_time=num(pause_time),
-                             time_offset=num(offset + cycle * i / count))
-            else:
-                props.update(line_period=num(period), time_offset=num(offset + period * i / count))
-            if model:
-                props["model_scene"] = self.s.res(model)
-            self.s.node("Walker", "Hazards", instance=WALKER, **props)
-
-    def ram(self, z, move_time, pause_time, from_left=True, offset=0.0):
-        """A boulder that slides across, stops, and slides back."""
-        move_time, pause_time, offset = self.t(move_time), self.t(pause_time), self.t(offset)
-        reach = HALF_WIDTH - 0.5
-        self.s.node("Ram", "Hazards", instance=BOULDER,
-                    transform=transform(-reach if from_left else reach, 0, z), pattern="3",
-                    line_offset=vec(2 * reach if from_left else -2 * reach, 0, 0),
-                    move_time=num(move_time), pause_time=num(pause_time), time_offset=num(offset))
-
-    def spinner(self, x, z, arms, balls, period, clockwise=True, offset=0.0, ball_color=None, yaw=0.0):
-        period, offset = self.t(period), self.t(offset)
-        props = dict(transform=transform(x, 0, z, yaw), script=self.s.res(ARM), period=num(period),
-                     arms=num(arms), balls=num(balls), clockwise=num(clockwise), time_offset=num(offset))
-        if ball_color:
-            props["ball_color"] = color(*ball_color)
-        self.s.node("Spinner", "Hazards", "Node3D", **props)
-
-    def pendulum(self, x, z, pointing_east, balls, period, swing=60.0, offset=0.0,
-                 first_ball=0.8, ball_radius=None, ball_color=None, spacing=None):
-        period, offset = self.t(period), self.t(offset)
-        props = dict(transform=transform(x, 0, z, 90.0 if pointing_east else -90.0),
-                     script=self.s.res(ARM), mode="1", period=num(period), swing_angle=num(swing),
-                     balls=num(balls), first_ball=num(first_ball), time_offset=num(offset))
-        if spacing:
-            props["spacing"] = num(spacing)
-        if ball_radius:
-            props["ball_radius"] = num(ball_radius)
-        if ball_color:
-            props["ball_color"] = color(*ball_color)
-        self.s.node("Pendulum", "Hazards", "Node3D", **props)
-
-    def spikes(self, x, z, columns, rows, period, up_time, wave=0.0, offset=0.0):
-        period, up_time, wave, offset = self.t(period), self.t(up_time), self.t(wave), self.t(offset)
-        self.s.node("Spikes", "Hazards", "Node3D", transform=transform(x, 0, z),
-                    script=self.s.res(SPIKES), columns=num(columns), rows=num(rows),
-                    period=num(period), up_time=num(up_time), wave_delay=num(wave),
-                    time_offset=num(offset))
-
-    def full_width_spikes(self, z, period, up_time, wave=0.0, offset=0.0):
-        self.spikes(0, z, 18, 1, period, up_time, wave, offset)
-
-    def write(self, file_name):
-        path = os.path.join(PROJECT, "levels", file_name)
-        with open(path, "w", encoding="utf-8", newline="\n") as out:
-            out.write(self.s.text())
-        print("wrote", path)
-
-
-# --- Settings ---------------------------------------------------------------
-
-
-def sky_environment(level, top=None, horizon=None):
-    s = level.s
-    sky_props = ""
-    if top:
-        sky_props += f"\nsky_top_color = {color(*top)}"
-    if horizon:
-        sky_props += f"\nsky_horizon_color = {color(*horizon)}"
-    s.sub(f'[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_1"]{sky_props}')
-    s.sub('[sub_resource type="Sky" id="Sky_1"]\nsky_material = SubResource("SkyMaterial_1")')
-    s.sub('[sub_resource type="Environment" id="Environment_1"]\nbackground_mode = 2\n'
-          'sky = SubResource("Sky_1")\nambient_light_source = 3\ntonemap_mode = 2')
-    s.node("WorldEnvironment", node_type="WorldEnvironment", environment='SubResource("Environment_1")')
-
-
+CHASER = "res://scenes/chaser.tscn"
 SUN = "Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 10, 0)"
 
 
-class Forest(Level):
-    TREE_HIGH = "res://assets/forest/tree-high.glb"
-    TREE = "res://assets/forest/tree.glb"
-    FENCE = "res://assets/forest/fence.glb"
-    ROCKS = "res://assets/forest/rocks-low.glb"
-    TENT = "res://assets/forest/tent.glb"
-    FLAG = "res://assets/forest/flag.glb"
+def A(pack, name):
+    return f"res://assets/{pack}/{name}.glb"
 
-    def __init__(self, root_name, finish_z, key):
-        super().__init__(root_name, finish_z, key)
-        sky_environment(self)
-        self.s.node("Sun", node_type="DirectionalLight3D", transform=SUN, shadow_enabled="true")
-        length = 12 - finish_z
-        center = (8 + finish_z - 4) / 2
-        self.block("Ground", 0, -1, center, (80, 1, length + 40), color=color(0.35, 0.6, 0.3))
-        for x, tree in [(-11.5, self.TREE_HIGH), (11.5, self.TREE)]:
-            self.block("Trees", x, 0, center, (1, 1.5, length), show_box=False,
-                       decoration=self.s.res(tree), decoration_spacing=1.9)
-        self.block("Trees", 0, 0, 7.5, (22, 1.5, 1), show_box=False,
-                   decoration=self.s.res(self.TREE), decoration_spacing=1.9)
-        self.block("Trees", 0, 0, finish_z - 4.5, (22, 1.5, 1), show_box=False,
-                   decoration=self.s.res(self.TREE_HIGH), decoration_spacing=1.9)
 
-    def wall(self, z, gap, kind="fence"):
-        """A wall across the path with one gap (x_from, x_to)."""
-        for x0, x1 in [(-HALF_WIDTH, gap[0]), (gap[1], HALF_WIDTH)]:
-            if x1 - x0 < 0.5:
-                continue
-            if kind == "fence":
-                self.block("Fence", (x0 + x1) / 2, 0, z, (x1 - x0, 1.2, 0.8), show_box=False,
-                           decoration=self.s.res(self.FENCE), decoration_scale=1.6,
-                           decoration_spacing=1.75, random_turn=False)
+# --- The level being built ------------------------------------------------------
+
+
+class Level:
+    def __init__(self, world, number, recipe):
+        self.world = world
+        self.number = number
+        self.key = f"w{world.index}_l{number}"
+        self.rng = random.Random(world.index * 100 + number)
+        # How busy the level is: 0.5 for 1-1, up to 1.2 for 7-5.
+        self.intensity = 0.5 + 0.1 * (number - 1) + 0.05 * (world.index - 1)
+        self.recipe = recipe
+        self.speed = 1.0
+        self.s = Scene()
+        self.s.node(f"W{world.index}L{number}", parent=None, node_type="Node3D",
+                    script=self.s.res("res://scripts/level.gd"))
+        for group in ["Terrain", "Hazards", "Zones", "Decor"]:
+            self.s.node(group, node_type="Node3D")
+        self.walls = []  # (z_from, z_to) stretches with something built across them
+        self.lanes = []  # z of every traffic lane
+        self.seed_counter = 0
+
+    # --- timing ---
+
+    def section(self, index):
+        self.speed = DIALS.get(self.key, [1.0] * 4)[index]
+
+    def t(self, seconds):
+        return None if seconds is None else seconds / self.speed
+
+    def uniform(self, low, high):
+        return self.rng.uniform(low, high)
+
+    # --- basic pieces ---
+
+    def block(self, name, x, y, z, size, parent="Terrain", **props):
+        return self.s.node(name, parent, "StaticBody3D", transform=transform(x, y, z),
+                           script=self.s.res(BLOCK), size=vec(*size), **props)
+
+    def decorated(self, name, x, z, size, model, scale, spacing, solid=True, turn=0.0, random_turn=False,
+                  parent="Terrain", height=0.0):
+        props = dict(show_box=False, decoration=self.s.res(model), decoration_scale=scale,
+                     decoration_spacing=spacing, random_turn=random_turn)
+        if not solid:
+            props["solid"] = False
+        if turn:
+            props["decoration_turn"] = turn
+        if height:
+            props["decoration_height"] = height
+        return self.block(name, x, 0, z, size, parent=parent, **props)
+
+    def checkpoint(self, z):
+        self.s.node("Checkpoint", "Zones", "Area3D", transform=transform(0, 0, z),
+                    script=self.s.res(ZONE), size=vec(14, 2, 3))
+
+    def finish(self, z):
+        self.s.node("Finish", "Zones", "Area3D", transform=transform(0, 0, z),
+                    script=self.s.res(ZONE), kind=1, size=vec(20, 2, 4))
+
+    # --- hazards ---
+
+    def roller(self, x, z, dx, period, offset=0.0, pattern=None, move=None, pause=None, one_way=False):
+        skin = self.world.roller
+        props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, 0), time_offset=self.t(offset))
+        if pattern == "stop":
+            props.update(pattern=3, move_time=self.t(move), pause_time=self.t(pause))
+        else:
+            props["line_period"] = self.t(period)
+        if one_way:
+            props["one_way"] = True
+        if skin.get("model"):
+            props["model_scene"] = self.s.res(skin["model"])
+            props["model_scale"] = skin["scale"]
+        path = self.s.node("Roller", "Hazards", instance=BOULDER, **props)
+        if skin.get("model"):
+            self.s.node("Rock", f"{path}/Model", visible=False)
+        elif skin.get("color"):
+            self.s.node("Rock", f"{path}/Model", color=color(*skin["color"]))
+
+    def walker(self, x, z, model=None, scale=1.3, hit=None, **props):
+        props = {k: fmt(v) for k, v in props.items()}
+        if model:
+            props["model_scene"] = self.s.res(model)
+            props["model_scale"] = scale
+        if hit:
+            props["hit_radius"] = hit
+        self.s.node("Walker", "Hazards", instance=WALKER, transform=transform(x, 0, z), **props)
+
+    def walker_circle(self, cx, cz, radius, period, count, clockwise=True):
+        period = self.t(period)
+        skin = self.world.walker
+        for i in range(count):
+            self.walker(cx, cz, skin["model"], skin["scale"], skin.get("hit"), pattern=1,
+                        time_offset=period * i / count, circle_radius=radius,
+                        circle_period=period, clockwise=clockwise)
+
+    def walker_line(self, x, z, dx, dz, period, count, stop=None):
+        skin = self.world.walker
+        for i in range(count):
+            props = dict(line_offset=vec(dx, 0, dz))
+            if stop:
+                move, pause = self.t(stop[0]), self.t(stop[1])
+                props.update(pattern=3, move_time=move, pause_time=pause,
+                             time_offset=2 * (move + pause) * i / count)
             else:
-                self.block("Rocks", (x0 + x1) / 2, 0, z, (x1 - x0, 1.2, 1.0), show_box=False,
-                           decoration=self.s.res(self.ROCKS), decoration_scale=1.1,
-                           decoration_spacing=1.1)
+                p = self.t(period)
+                props.update(line_period=p, time_offset=p * i / count)
+            self.walker(x, z, skin["model"], skin["scale"], skin.get("hit"), **props)
 
-    def tent(self, x, z):
-        self.block("Tent", x, 0, z, (1.6, 1.2, 1.4), show_box=False,
-                   decoration=self.s.res(self.TENT), decoration_scale=1.3, random_turn=False)
+    def wanderer(self, x, z, area_x, area_z):
+        skin = self.world.wanderer
+        self.seed_counter += 1
+        self.walker(x, z, skin["model"], skin["scale"], skin.get("hit"), pattern=4,
+                    wander_area=vec2(area_x, area_z), wander_step=self.t(self.uniform(0.9, 1.5)),
+                    wander_pause_chance=0.2, wander_seed=self.world.index * 10000 + self.number * 1000 + self.seed_counter)
 
-    def flags(self, z):
-        for x in [-10, 10]:
-            self.s.node("Flag", "Decor", instance=self.FLAG, transform=transform(x, 0, z, scale=2.0))
+    def chaser(self, x, z):
+        skin = self.world.chaser
+        i = self.intensity
+        props = dict(transform=transform(x, 0, z), model_scene=self.s.res(skin["model"]),
+                     model_scale=skin["scale"], speed=round(min(4.2, 2.8 + 1.0 * i), 2),
+                     sight_radius=round(min(6.5, 4.5 + 1.5 * i), 2), leash_radius=5.0)
+        if skin.get("hit"):
+            props["hit_radius"] = skin["hit"]
+        self.s.node("Chaser", "Hazards", instance=CHASER, **props)
 
-    def checkpoint(self, z, width=20.0):
-        super().checkpoint(z, width)
-        self.flags(z)
+    def arm(self, x, z, yaw=0.0, **props):
+        props = {k: fmt(v) for k, v in props.items()}
+        self.s.node("Arm", "Hazards", "Node3D", transform=transform(x, 0, z, yaw), script=self.s.res(ARM),
+                    ball_color=color(*self.world.arm_color), **props)
 
-    def finish(self, z, width=20.0):
-        super().finish(z, width)
-        for x in [-9, -4.5, 0, 4.5, 9]:
-            self.s.node("Flag", "Decor", instance=self.FLAG, transform=transform(x, 0, z - 1.6, scale=2.0))
+    def spinner(self, x, z, arms, balls, period, clockwise=True, offset=0.0):
+        self.arm(x, z, period=self.t(period), arms=arms, balls=balls, clockwise=clockwise,
+                 time_offset=self.t(offset))
 
+    def pendulum(self, from_west, z, balls, period, swing=55.0, offset=0.0, first_ball=0.8, spacing=None,
+                 radius=None):
+        props = dict(mode=1, period=self.t(period), swing_angle=swing, balls=balls, first_ball=first_ball,
+                     time_offset=self.t(offset))
+        if spacing:
+            props["spacing"] = spacing
+        if radius:
+            props["ball_radius"] = radius
+        self.arm(-10.6 if from_west else 10.6, z, 90.0 if from_west else -90.0, **props)
 
-class City(Level):
-    ROAD = "res://assets/roads/road-straight.glb"
-    LIGHT = "res://assets/roads/light-square.glb"
-    TREE = "res://assets/suburban/tree-large.glb"
-    HOUSES = [f"res://assets/suburban/building-type-{c}.glb" for c in "abcfgkmp"]
-    CARS = [f"res://assets/cars/{c}.glb" for c in
-            ["sedan", "taxi", "van", "suv", "police", "truck", "delivery", "garbage-truck", "hatchback-sports"]]
-    LANE = 2.5
+    def spike_row(self, z, columns, rows, period, up_time, wave=0.0, offset=0.0, x=0.0):
+        self.s.node("Spikes", "Hazards", "Node3D", transform=transform(x, 0, z), script=self.s.res(SPIKES),
+                    columns=columns, rows=rows, period=self.t(period), up_time=self.t(up_time),
+                    wave_delay=self.t(wave), time_offset=self.t(offset))
 
-    def __init__(self, root_name, finish_z, key, seed, sky_top=None, sky_horizon=None):
-        super().__init__(root_name, finish_z, key)
-        self.rng = random.Random(seed)
-        sky_environment(self, sky_top, sky_horizon)
-        self.s.node("Sun", node_type="DirectionalLight3D", transform=SUN, shadow_enabled="true")
-        self.s.node("Roads", node_type="Node3D")
-        self.s.node("Buildings", node_type="Node3D")
-        self.s.node("Traffic", node_type="Node3D")
-        length = 12 - finish_z
-        center = (8 + finish_z - 4) / 2
-        self.block("Pavement", 0, -1, center, (80, 1, length + 40), color=color(0.7, 0.7, 0.68))
-        for x in [-11.5, 11.5]:
-            self.invisible_wall(x, center, (1, 3, length))
-        self.invisible_wall(0, 6.5, (24, 3, 1))
-        self.invisible_wall(0, finish_z - 3.5, (24, 3, 1))
-        self.houses_row(10, south=True)
-        self.houses_row(finish_z - 7, south=False)
-        self.house_index = 0
-
-    def houses_row(self, z, south):
-        self.block("Row", 0, 0, z, (24, 0.1, 4), parent="Buildings", show_box=False, solid=False,
-                   decoration=self.s.res(self.rng.choice(self.HOUSES)), decoration_scale=4.0,
-                   decoration_spacing=6.0, random_turn=False, decoration_turn=180.0 if south else 0.0)
-
-    def sidewalk(self, z_from, z_to, light=True):
-        """Houses on both sides of a stretch of sidewalk (z_from > z_to)."""
-        center = (z_from + z_to) / 2
-        length = z_from - z_to
-        for x, turn in [(-13.5, 0.0), (13.5, 180.0)]:
-            self.block("Houses", x, 0, center, (4, 0.1, length), parent="Buildings", show_box=False,
-                       solid=False, decoration=self.s.res(self.HOUSES[self.house_index % len(self.HOUSES)]),
-                       decoration_scale=4.0, decoration_spacing=6.0, random_turn=False,
-                       decoration_turn=turn)
-            self.house_index += 3
-        if light and length >= 4:
-            self.s.node("Light", "Decor", instance=self.LIGHT, transform=transform(-10.5, 0, center, scale=3.5))
-            self.s.node("Light", "Decor", instance=self.LIGHT, transform=transform(10.5, 0, center, 180, 3.5))
-
-    def lane(self, z, eastbound, cars, period=None, move_time=None, pause_time=None):
-        """One lane of one-way traffic. Cars drive across and loop back."""
-        self.block("Road", 0, 0.005, z, (44, 0.1, self.LANE), parent="Roads", show_box=False,
-                   solid=False, decoration=self.s.res(self.ROAD), decoration_scale=self.LANE,
-                   decoration_spacing=self.LANE, random_turn=False)
+    def vehicle_lane(self, z, eastbound, cars, period=None, move=None, pause=None):
+        """One lane of one-way traffic. Vehicles cross and loop back."""
+        self.lanes.append(z)
+        self.world.lane_surface(self, z)
         reach = 18.0
         x = -reach if eastbound else reach
         dx = 2 * reach if eastbound else -2 * reach
-        period, move_time, pause_time = self.t(period), self.t(move_time), self.t(pause_time)
-        cars = min(4, cars + self.extra_cars)
-        if move_time is not None:
-            cycle = 2 * move_time + pause_time
-        else:
-            cycle = period
+        period, move, pause = self.t(period), self.t(move), self.t(pause)
+        cycle = 2 * move + pause if move is not None else period
         start = self.rng.random() * cycle
         for i in range(cars):
-            props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, 0),
-                         time_offset=num(start + cycle * i / cars))
-            model = self.rng.choice(self.CARS)
-            if not model.endswith("sedan.glb"):
-                props["model_scene"] = self.s.res(model)
-            if move_time is not None:
-                props.update(pattern="3", move_time=num(move_time), pause_time=num(pause_time))
-            else:
-                props["line_period"] = num(period)
-            self.s.node("Car", "Traffic", instance=CAR, **props)
-
-    def lanes(self, z_first, count, specs):
-        """count lanes going north from z_first. specs: list of (cars, period) or
-        (cars, "stop", move, pause), used in turn."""
-        z = z_first
-        for i in range(count):
-            spec = specs[i % len(specs)]
-            eastbound = i % 2 == 0
-            if len(spec) == 2:
-                self.lane(z, eastbound, spec[0], period=spec[1])
-            else:
-                self.lane(z, eastbound, spec[0], move_time=spec[2], pause_time=spec[3])
-            z -= self.LANE
-        return z + self.LANE  # last lane's z
-
-    def tree(self, x, z):
-        self.block("Tree", x, 0, z, (0.6, 2, 0.6), show_box=False,
-                   decoration=self.s.res(self.TREE), decoration_scale=3.0)
-
-
-class Dungeon(Level):
-    FLOOR = "res://assets/dungeon/floor.glb"
-    WALL = "res://assets/dungeon/wall.glb"
-    BARREL = "res://assets/dungeon/barrel.glb"
-    CHEST = "res://assets/dungeon/chest.glb"
-
-    def __init__(self, root_name, finish_z, key):
-        super().__init__(root_name, finish_z, key)
-        s = self.s
-        s.sub('[sub_resource type="Environment" id="Environment_1"]\nbackground_mode = 1\n'
-              f'background_color = {color(0.04, 0.035, 0.045)}\nambient_light_source = 2\n'
-              f'ambient_light_color = {color(0.6, 0.55, 0.55)}\nambient_light_energy = 0.55\ntonemap_mode = 2')
-        s.node("WorldEnvironment", node_type="WorldEnvironment", environment='SubResource("Environment_1")')
-        s.node("Moonlight", node_type="DirectionalLight3D", transform=SUN,
-               light_color=color(0.85, 0.85, 1.0), light_energy="0.45", shadow_enabled="true")
-        s.node("Torches", node_type="Node3D")
-        length = 12 - finish_z
-        center = (8 + finish_z - 4) / 2
-        # Tiles are drawn 1% bigger than their spacing so no gaps show between them.
-        self.block("Floor", 0, -1, center, (26, 1, length + 4), color=color(0.16, 0.15, 0.16),
-                   decoration=s.res(self.FLOOR), decoration_scale=2.02, decoration_spacing=2.0,
-                   random_turn=False, decoration_height=1.005)
-        for x in [-12, 12]:
-            self.block("Wall", x, 0, center, (2, 2.2, length + 4), show_box=False,
-                       decoration=s.res(self.WALL), decoration_spacing=2.0, random_turn=False)
-        self.block("Wall", 0, 0, 7, (22, 2.2, 2), show_box=False, decoration=s.res(self.WALL),
-                   decoration_spacing=2.0, random_turn=False)
-        self.block("Wall", 0, 0, finish_z - 4.5, (22, 2.2, 2), show_box=False,
-                   decoration=s.res(self.WALL), decoration_spacing=2.0, random_turn=False)
-        z = 0.0
-        side = -1
-        while z > finish_z:
-            s.node("Torch", "Torches", "OmniLight3D", transform=transform(10.3 * side, 2.5, z),
-                   light_color=color(1, 0.6, 0.3), light_energy="2.5", omni_range="9.0")
-            z -= 10
-            side = -side
-
-    def gate(self, z, gaps):
-        """A wall across the hall with openings at the given (x_from, x_to) gaps."""
-        edges = [-HALF_WIDTH]
-        for g in sorted(gaps):
-            edges += [g[0], g[1]]
-        edges.append(HALF_WIDTH)
-        for i in range(0, len(edges), 2):
-            x0, x1 = edges[i], edges[i + 1]
-            if x1 - x0 < 0.5:
+            offset = start + cycle * i / cars
+            if self.world.vehicle_rolls:
+                self.roller(x, z, dx, None if move else period * self.speed, offset * self.speed,
+                            pattern="stop" if move else None,
+                            move=move * self.speed if move else None,
+                            pause=pause * self.speed if move else None, one_way=True)
                 continue
-            self.block("Gate", (x0 + x1) / 2, 0, z, (x1 - x0, 2.2, 2), show_box=False,
-                       decoration=self.s.res(self.WALL), decoration_spacing=2.0, random_turn=False)
+            props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, 0), time_offset=offset)
+            props["model_scene"] = self.s.res(self.rng.choice(self.world.vehicles))
+            props["model_scale"] = self.world.vehicle_scale
+            if move is not None:
+                props.update(pattern=3, move_time=move, pause_time=pause)
+            else:
+                props["line_period"] = period
+            self.s.node("Vehicle", "Hazards", instance=CAR, **props)
 
-    def prop(self, model, x, z):
-        self.s.node("Prop", "Decor", instance=model, transform=transform(x, 0, z, scale=1.4))
+    def obstacle(self, x, z):
+        model, scale, size = self.rng.choice(self.world.obstacles)
+        self.decorated("Cover", x, z, size, model, scale, 10.0, random_turn=True)
+
+    # --- sections: each fills the stretch going north from z_top and returns where it ends ---
+
+    def rollers(self, z_top):
+        i = self.intensity
+        rows = round(3 + 4 * i)
+        for r in range(rows):
+            z = z_top - 1.3 - 2.2 * r
+            count = 3 if (i > 0.8 and r % 3 == 2) else 2
+            period = self.uniform(2.4, 3.4)
+            from_left = r % 2 == 0
+            reach = HALF_WIDTH - 0.5
+            for c in range(count):
+                self.roller(-reach if from_left else reach, z, 2 * reach if from_left else -2 * reach,
+                            period, period * c / count)
+        return z_top - 1.3 - 2.2 * (rows - 1) - 1.3
+
+    def traffic(self, z_top):
+        i = self.intensity
+        lanes = round(3 + 4 * i)
+        for n in range(lanes):
+            z = z_top - 1.5 - 2.5 * n
+            if self.rng.random() < 0.25:
+                cars = 2 if i < 0.9 else 3
+                self.vehicle_lane(z, n % 2 == 0, cars, move=self.uniform(0.9, 1.3), pause=self.uniform(0.7, 1.1))
+            else:
+                cars = 3 if self.rng.random() < i - 0.45 else 2
+                self.vehicle_lane(z, n % 2 == 0, cars, period=self.uniform(2.6, 3.8))
+        return z_top - 1.5 - 2.5 * (lanes - 1) - 1.5
+
+    def circles(self, z_top):
+        i = self.intensity
+        length = 14 + 4 * i
+        z_bottom = z_top - length
+        clusters = round(2 + 3 * i)
+        spots = []
+        for c in range(clusters):
+            for _ in range(30):
+                radius = self.uniform(1.4, 2.4)
+                x = self.uniform(-8.0 + radius, 8.0 - radius)
+                z = self.uniform(z_bottom + radius + 0.8, z_top - radius - 0.8)
+                if all(math.hypot(x - sx, z - sz) > radius + sr + 0.6 for sx, sz, sr in spots):
+                    spots.append((x, z, radius))
+                    self.walker_circle(x, z, radius, self.uniform(2.4, 3.6), 2 if self.rng.random() < 0.5 else 3,
+                                       clockwise=self.rng.random() < 0.5)
+                    break
+        if i > 0.7:
+            self.walker_line(-9.8, z_top - 1.0, 0, -(length - 2), self.uniform(3.0, 3.8), 2)
+            self.walker_line(9.8, z_bottom + 1.0, 0, length - 2, self.uniform(3.0, 3.8), 2)
+        for _ in range(2):
+            self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2, z_top - 2))
+        return z_bottom
+
+    def patrols(self, z_top):
+        i = self.intensity
+        rows = round(3 + 3 * i)
+        for r in range(rows):
+            z = z_top - 1.5 - 2.6 * r
+            from_left = r % 2 == 0
+            x, dx = (-10.2, 20.4) if from_left else (10.2, -20.4)
+            count = 3 if i > 1.0 else 2
+            if self.rng.random() < 0.3:
+                self.walker_line(x, z, dx, 0, None, count, stop=(self.uniform(0.9, 1.3), self.uniform(0.4, 0.8)))
+            else:
+                self.walker_line(x, z, dx, 0, self.uniform(2.6, 3.6), count)
+        return z_top - 1.5 - 2.6 * (rows - 1) - 1.5
+
+    def zigzag(self, z_top):
+        i = self.intensity
+        walls = 3 + round(i * 2)
+        rows = 2 if i > 0.8 else 1
+        # Two rows need more room: 2.6 m apart leaves a safe strip to stand in between them.
+        spacing = 7.4 if rows == 2 else 5.5
+        for w in range(walls):
+            z = z_top - 2.0 - spacing * w
+            gap = (7.0, 11.0) if w % 2 == 0 else (-11.0, -7.0)
+            solid = (-HALF_WIDTH, gap[0]) if w % 2 == 0 else (gap[1], HALF_WIDTH)
+            self.world.wall(self, (solid[0] + solid[1]) / 2, z, solid[1] - solid[0])
+            self.walker_circle((gap[0] + gap[1]) / 2, z, 1.3, 2.0, 1)
+            if w < walls - 1:
+                for r in range(rows):
+                    zr = z - spacing / 2 + (r - (rows - 1) / 2) * 2.6
+                    period = self.uniform(2.0, 2.8)
+                    reach = HALF_WIDTH - 0.5
+                    for c in range(2):
+                        self.roller(-reach if r % 2 == 0 else reach, zr, 2 * reach if r % 2 == 0 else -2 * reach,
+                                    period, period * c / 2)
+        return z_top - 2.0 - spacing * (walls - 1) - 2.5
+
+    def wanderers(self, z_top):
+        i = self.intensity
+        length = 18.0
+        z_bottom = z_top - length
+        for _ in range(round(5 + 9 * i)):
+            self.wanderer(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 3.5, z_top - 3.5), 6.0, 5.0)
+        for _ in range(3):
+            self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2.5, z_top - 2.5))
+        return z_bottom
+
+    def chasers(self, z_top):
+        i = self.intensity
+        length = 20.0
+        z_bottom = z_top - length
+        count = round(1 + 3 * i)
+        for c in range(count):
+            # Posts stay at least the leash (5 m) plus a bit away from either checkpoint.
+            x = -7.0 + 14.0 * (c + 0.5) / count + self.uniform(-1.0, 1.0)
+            self.chaser(x, self.uniform(z_bottom + 7.5, z_top - 7.5))
+        for _ in range(round(2 + 3 * i)):
+            self.wanderer(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 3.5, z_top - 3.5), 6.0, 5.0)
+        for _ in range(4):
+            self.obstacle(self.uniform(-8.5, 8.5), self.uniform(z_bottom + 3.0, z_top - 3.0))
+        return z_bottom
+
+    def spinners(self, z_top):
+        i = self.intensity
+        rows = round(2 + 1.5 * i)
+        for r in range(rows):
+            z = z_top - 5.2 - 5.2 * r
+            self.spinner(-5.5, z, 2 + r % 2, 6, self.uniform(3.0, 4.2), clockwise=r % 2 == 0, offset=0.6 * r)
+            self.spinner(5.5, z - 1.2, 3 - r % 2, 6, self.uniform(3.0, 4.2), clockwise=r % 2 == 1, offset=0.3 + 0.5 * r)
+        return z_top - 5.2 - 5.2 * (rows - 1) - 1.2 - 5.2
+
+    def pendulums(self, z_top):
+        i = self.intensity
+        count = round(4 + 4 * i)
+        first = z_top - 7.4
+        for p in range(count):
+            self.pendulum(p % 2 == 0, first - 2.6 * p, 11, self.uniform(2.6, 3.2), offset=0.37 * p)
+        last = first - 2.6 * (count - 1)
+        middle = (first + last) / 2
+        if self.world.spike_traps:
+            self.spike_row(middle, 4, round((first - last) / 1.2) + 1, 2.2, 1.0, wave=0.25)
+        else:
+            for _ in range(2 + round(i)):
+                self.wanderer(self.uniform(-1.0, 1.0), self.uniform(last + 1, first - 1), 2.5, first - last - 2)
+        return last - 7.4
+
+    def spikes(self, z_top):
+        i = self.intensity
+        rows = round(3 + 3 * i)
+        for r in range(rows):
+            self.spike_row(z_top - 1.5 - 2.0 * r, 18, 1, self.uniform(2.0, 2.6), self.uniform(0.9, 1.2),
+                           wave=self.uniform(0.1, 0.25) * (1 if r % 2 == 0 else -1), offset=self.uniform(0, 2))
+        z = z_top - 1.5 - 2.0 * (rows - 1) - 2.6
+        self.walker_line(-10.2, z, 20.4, 0, self.uniform(2.6, 3.2), 2 if i < 1 else 3)
+        self.walker_line(10.2, z - 2.4, -20.4, 0, self.uniform(2.6, 3.2), 2 if i < 1 else 3)
+        return z - 2.4 - 1.5
+
+    def rams(self, z_top):
+        i = self.intensity
+        rows = round(3 + 3 * i)
+        reach = HALF_WIDTH - 0.5
+        for r in range(rows):
+            z = z_top - 1.5 - 2.6 * r
+            from_left = r % 2 == 0
+            self.roller(-reach if from_left else reach, z, 2 * reach if from_left else -2 * reach, None,
+                        self.uniform(0, 1.5), pattern="stop", move=self.uniform(0.7, 0.9), pause=self.uniform(0.8, 1.1))
+        if i > 0.8:
+            mid = z_top - 1.5 - 2.6 * (rows - 1) / 2
+            self.spinner(0, mid, 2, 3, 2.6)
+        return z_top - 1.5 - 2.6 * (rows - 1) - 1.5
+
+    def construction(self, z_top):
+        i = self.intensity
+        rows = round(2 + i)
+        for r in range(rows):
+            z = z_top - 5.0 - 4.4 * r
+            self.spinner(-5.0, z, 2 + r % 2, 6, self.uniform(2.9, 3.8), clockwise=r % 2 == 0, offset=0.5 * r)
+            self.spinner(5.0, z - 0.6, 3 - r % 2, 6, self.uniform(2.9, 3.8), clockwise=r % 2 == 1, offset=0.2 + 0.6 * r)
+        last = z_top - 5.0 - 4.4 * (rows - 1) - 0.6
+        middle = (z_top + last - 5.0) / 2
+        self.pendulum(True, middle + 1.4, 3, 2.6, swing=45, first_ball=3.5, spacing=3.25, radius=0.6)
+        self.pendulum(False, middle - 1.4, 3, 2.6, swing=45, first_ball=3.5, spacing=3.25, radius=0.6, offset=1.3)
+        return last - 5.0
+
+    # --- putting it together ---
+
+    def build(self):
+        self.s.node("Start", node_type="Marker3D", transform=transform(0, 0, 3))
+        z = 0.5
+        for n, section_name in enumerate(self.recipe):
+            self.section(n)
+            z_bottom = getattr(self, section_name)(z)
+            self.walls.append((z, z_bottom, section_name))
+            if n < len(self.recipe) - 1:
+                self.checkpoint(z_bottom - 2.5)
+                z = z_bottom - 5.0
+            else:
+                self.finish(z_bottom - 3.0)
+                self.finish_z = z_bottom - 3.0
+        self.world.dress(self, 7.0, self.finish_z - 4.5)
+
+    def write(self):
+        path = os.path.join(PROJECT, "levels", f"{self.key}.tscn")
+        with open(path, "w", encoding="utf-8", newline="\n") as out:
+            out.write(self.s.text())
+        return path
 
 
-# --- Level 1: Forest Path -----------------------------------------------------
+# --- Worlds ------------------------------------------------------------------------
 
 
-def forest_path():
-    L = Forest("Level01", finish_z=-111.5, key="level_01")
-    L.start(3)
-    L.section(0)
-
-    # A: eight rows of rolling boulders.
-    for i, period in enumerate([3.0, 2.7, 3.3, 2.5, 2.9, 2.6, 3.1, 2.4]):
-        L.boulder_row(-5.0 - 2.1 * i, period, count=3 if i % 3 == 2 else 2, from_left=i % 2 == 0)
-    L.wall(-22, gap=(-11.0, -7.5))
-
-    # B: archers circling, guards pacing along both edges and across, two tents for cover.
-    L.walker_circle(-5, -27, 2.2, 3.0, 3)
-    L.walker_circle(4, -29.5, 2.6, 3.6, 3, clockwise=False)
-    L.walker_circle(-2, -34, 2.2, 2.8, 3)
-    L.walker_circle(6, -35, 1.6, 2.4, 2)
-    L.walker_line(-9.5, -24, 0, -13, 3.4, count=2)
-    L.walker_line(9.5, -37, 0, 13, 3.0, count=2)
-    L.walker_line(-10.2, -37.6, 20.4, 0, 0, count=2, move_time=1.1, pause_time=0.5)
-    L.tent(1.5, -25)
-    L.tent(8, -31.5)
-    L.checkpoint(-40.5)
-    L.section(1)
-
-    # C: zigzag through rock walls, boulders between them, archers guarding gaps.
-    walls = [(-44, (7.5, 11.0)), (-50, (-11.0, -7.5)), (-56, (7.5, 11.0)), (-62, (-11.0, -7.5))]
-    for z, gap in walls:
-        L.wall(z, gap, kind="rocks")
-        L.walker_circle((gap[0] + gap[1]) / 2, z, 1.3, 2.0, 1)
-    for i, (z, period) in enumerate([(-46, 2.2), (-48.2, 2.6), (-52, 2.0), (-54.2, 2.4), (-58, 2.4), (-60.2, 2.1)]):
-        L.boulder_row(z, period, count=2, from_left=i % 2 == 0)
-    L.checkpoint(-66.5)
-    L.section(2)
-
-    # D: boulder rows with archers marching across between them.
-    for i, (z, period, count) in enumerate([(-70.5, 2.2, 2), (-76, 2.0, 3), (-81.5, 2.4, 2), (-87, 2.1, 3)]):
-        L.boulder_row(z, period, count, from_left=i % 2 == 1)
-    L.walker_line(-10.2, -73.2, 20.4, 0, 3.0, count=2)
-    L.walker_line(10.2, -78.7, -20.4, 0, 0, count=2, move_time=1.0, pause_time=0.6)
-    L.walker_line(-10.2, -84.2, 20.4, 0, 2.6, count=2)
-    L.checkpoint(-95)
-    L.section(3)
-
-    # E: a ring of archers between two fast boulder rows.
-    L.boulder_row(-99, 1.9, 2)
-    L.boulder_row(-101, 2.3, 2, from_left=False)
-    L.boulder_row(-105.4, 2.1, 2)
-    L.walker_circle(0, -103.2, 3.0, 2.6, 4)
-    L.walker_circle(-7, -103.2, 1.6, 2.0, 2, clockwise=False)
-    L.walker_circle(7, -103.2, 1.6, 2.0, 2, clockwise=False)
-    L.boulder_row(-107.3, 2.0, 2, from_left=False)
-    L.finish(-111.5)
-    L.write("level_01.tscn")
+def sky(level, top=None, horizon=None, ground=None, energy=1.0):
+    extra = ""
+    if top:
+        extra += f"\nsky_top_color = {color(*top)}"
+    if horizon:
+        extra += f"\nsky_horizon_color = {color(*horizon)}\nground_horizon_color = {color(*horizon)}"
+    if ground:
+        extra += f"\nground_bottom_color = {color(*ground)}"
+    level.s.sub(f'[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_1"]{extra}')
+    level.s.sub('[sub_resource type="Sky" id="Sky_1"]\nsky_material = SubResource("SkyMaterial_1")')
+    level.s.sub('[sub_resource type="Environment" id="Environment_1"]\nbackground_mode = 2\nsky = SubResource("Sky_1")\n'
+                f'ambient_light_source = 3\nambient_light_energy = {num(energy)}\ntonemap_mode = 2')
+    level.s.node("WorldEnvironment", node_type="WorldEnvironment", environment='SubResource("Environment_1")')
 
 
-# --- Level 2: City Crossing ----------------------------------------------------
+def dark(level, background, ambient, energy):
+    level.s.sub('[sub_resource type="Environment" id="Environment_1"]\nbackground_mode = 1\n'
+                f'background_color = {color(*background)}\nambient_light_source = 2\n'
+                f'ambient_light_color = {color(*ambient)}\nambient_light_energy = {num(energy)}\ntonemap_mode = 2')
+    level.s.node("WorldEnvironment", node_type="WorldEnvironment", environment='SubResource("Environment_1")')
 
 
-def city_crossing():
-    L = City("Level02", finish_z=-89, key="level_02", seed=2)
-    L.extra_cars = 1
-    L.start(3)
-    L.section(0)
-    L.sidewalk(7, -3)
-    normal = [(2, 3.4), (3, 3.6), (2, 3.0), (2, "stop", 1.3, 1.1), (3, 3.8), (2, 2.8)]
-    L.lanes(-4.25, 6, normal)
-    L.sidewalk(-18, -23)
-    L.checkpoint(-20.5)
-    L.section(1)
-    L.tree(-6, -20.5)
-    L.tree(6, -20.5)
-    harder = [(3, 3.2), (2, 2.6), (2, "stop", 1.1, 1.0), (3, 3.4), (2, 2.4), (3, 3.0), (2, "stop", 1.0, 0.9)]
-    L.lanes(-24.25, 7, harder)
-    L.sidewalk(-40.5, -45.5)
-    L.checkpoint(-43)
-    L.section(2)
-    hardest = [(3, 2.8), (2, 2.2), (3, 3.0), (2, "stop", 0.9, 0.8), (3, 2.6), (2, 2.0), (3, 2.9)]
-    L.lanes(-46.75, 7, hardest)
-    L.sidewalk(-63, -68)
-    L.checkpoint(-65.5)
-    L.section(3)
-    L.tree(-6, -65.5)
-    L.tree(6, -65.5)
-    final = [(3, 2.6), (3, "stop", 0.9, 0.7), (2, 2.0), (3, 2.7), (2, 1.9), (3, 2.5), (3, 2.8)]
-    L.lanes(-69.25, 7, final)
-    L.sidewalk(-85.5, -93, light=False)
-    L.finish(-89)
-    L.write("level_02.tscn")
+def sun(level, light=(1, 1, 1), energy=1.0):
+    level.s.node("Sun", node_type="DirectionalLight3D", transform=SUN, light_color=color(*light),
+                 light_energy=energy, shadow_enabled=True)
 
 
-# --- Level 3: Dungeon Halls ------------------------------------------------------
+def ground(level, z_from, z_to, rgb, width=80.0):
+    level.block("Ground", 0, -1, (z_from + z_to) / 2, (width, 1, z_from - z_to + 40), color=color(*rgb))
 
 
-def dungeon_halls():
-    L = Dungeon("Level03", finish_z=-104.5, key="level_03")
-    L.start(3)
-    L.section(0)
-
-    # A: four rows of spikes rising in waves, then orcs pacing across.
-    L.full_width_spikes(-5.0, 2.6, 1.2, wave=0.12)
-    L.full_width_spikes(-7.0, 2.6, 1.2, wave=-0.12, offset=1.3)
-    L.full_width_spikes(-9.0, 2.2, 1.0, wave=0.15, offset=0.6)
-    L.full_width_spikes(-11.0, 2.4, 1.1, wave=-0.1, offset=1.8)
-    L.full_width_spikes(-13.0, 2.0, 0.9, wave=0.2, offset=0.9)
-    L.walker_line(-10.2, -15.4, 20.4, 0, 3.0, count=3, model=ORC)
-    L.walker_line(10.2, -17.6, -20.4, 0, 2.6, count=3, model=ORC)
-    L.gate(-20, [(-1.5, 1.5)])
-    L.checkpoint(-23.5, width=12)
-    L.section(1)
-
-    # B: six spinners in two overlapping columns, orcs circling between them,
-    # then orcs guarding the next gate.
-    for row, z in enumerate([-30.2, -35.4, -40.6]):
-        L.spinner(-5.5, z, 2 + row % 2, 6, 3.2 + 0.4 * row, clockwise=row % 2 == 0, offset=0.6 * row)
-        L.spinner(5.5, z - 1.2, 3 - row % 2, 6, 3.6 - 0.3 * row, clockwise=row % 2 == 1, offset=0.3 + 0.5 * row)
-    L.walker_circle(0, -33, 1.4, 2.4, 2, model=ORC)
-    L.walker_circle(0, -38.4, 1.4, 2.2, 2, clockwise=False, model=ORC)
-    L.walker_line(-10.2, -43.4, 20.4, 0, 2.8, count=3, model=ORC)
-    L.gate(-46, [(-11.0, -8.0), (8.0, 11.0)])
-    L.checkpoint(-49.5, width=12)
-    L.section(2)
-
-    # C: eight pendulums swinging from both walls, spikes down the middle.
-    for i in range(8):
-        z = -54.5 - 2.6 * i
-        L.pendulum(-10.6 if i % 2 == 0 else 10.6, z, i % 2 == 0, 11, 2.8, swing=55, offset=0.37 * i)
-    L.spikes(0, -63.6, 4, 16, 2.2, 1.0, wave=0.25)
-    L.checkpoint(-79.5, width=12)
-    L.section(3)
-
-    # D: a four-armed spinner crossed by sliding boulders, small spinners and two last spike waves.
-    L.spinner(0, -90, 4, 8, 5.0, clockwise=False)
-    L.ram(-84, 0.8, 0.9)
-    L.ram(-87.5, 0.7, 1.0, from_left=False, offset=0.4)
-    L.ram(-92.5, 0.7, 1.0, offset=1.2)
-    L.ram(-95.5, 0.8, 0.9, from_left=False, offset=0.85)
-    L.spinner(-8.3, -97.8, 2, 3, 2.4)
-    L.spinner(8.3, -97.8, 2, 3, 2.4, clockwise=False)
-    L.spinner(-8.0, -86.5, 2, 4, 2.2, clockwise=False)
-    L.spinner(8.0, -86.5, 2, 4, 2.2)
-    L.full_width_spikes(-100.4, 2.4, 1.1, wave=0.1)
-    L.full_width_spikes(-101.8, 2.4, 1.1, wave=-0.1, offset=1.2)
-    L.finish(-104.5, width=12)
-
-    L.prop(Dungeon.BARREL, -10, -23)
-    L.prop(Dungeon.BARREL, 10, -50)
-    L.prop(Dungeon.CHEST, 0, -107)
-    L.write("level_03.tscn")
+def edges(level, z_from, z_to):
+    center, length = (z_from + z_to) / 2, z_from - z_to
+    for x in [-11.5, 11.5]:
+        level.block("Edge", x, 0, center, (1, 3, length), show_box=False)
+    level.block("Edge", 0, 0, z_from - 0.5, (24, 3, 1), show_box=False)
+    level.block("Edge", 0, 0, z_to + 0.5, (24, 3, 1), show_box=False)
 
 
-# --- Level 4: Rush Hour ------------------------------------------------------------
+def colored_strip(level, z, rgb, width=2.5):
+    level.block("Lane", 0, 0.005, z, (44, 0.02, width - 0.1), solid=False, color=color(*rgb))
 
 
-def rush_hour():
-    L = City("Level04", finish_z=-108, key="level_04", seed=4, sky_top=(0.45, 0.5, 0.75), sky_horizon=(0.85, 0.7, 0.6))
-    L.extra_cars = 1
-    L.start(3)
-    L.section(0)
-    L.sidewalk(7, -3)
-    fast = [(3, 2.6), (2, "stop", 0.9, 0.8), (3, 2.4), (2, 2.0), (3, 2.8), (2, "stop", 0.8, 0.7), (3, 2.5)]
-    L.lanes(-4.25, 7, fast)
-    L.sidewalk(-20.5, -47)
-    L.checkpoint(-23)
-    L.section(1)
+class World:
+    index = 0
+    spike_traps = False
+    vehicle_rolls = False
+    vehicles = []
+    vehicle_scale = 0.72
+    arm_color = (0.35, 0.3, 0.33)
+    obstacles = []
 
-    # Construction zone: six spinners in two columns that overlap in the middle,
-    # and two wrecking-ball chains that sweep from the walls to the middle.
-    orange = (0.95, 0.55, 0.1)
-    steel = (0.3, 0.3, 0.32)
-    for row, z in enumerate([-29.6, -34.0, -38.4]):
-        L.spinner(-5.0, z, 2 + row % 2, 6, 3.0 + 0.4 * row, clockwise=row % 2 == 0, offset=0.5 * row,
-                  ball_color=orange)
-        L.spinner(5.0, z - 0.6, 3 - row % 2, 6, 3.4 - 0.3 * row, clockwise=row % 2 == 1, offset=0.2 + 0.6 * row,
-                  ball_color=orange)
-    L.pendulum(-10.6, -33, True, 3, 2.6, swing=50, first_ball=3.5, spacing=3.25, ball_radius=0.6, ball_color=steel)
-    L.pendulum(10.6, -35.8, False, 3, 2.6, swing=50, first_ball=3.5, spacing=3.25, ball_radius=0.6,
-               ball_color=steel, offset=1.3)
-    L.checkpoint(-45.5)
-    L.section(2)
+    def wall(self, level, x, z, width):
+        model, scale, spacing = self.wall_model
+        level.decorated("Wall", x, z, (width, 1.2, 1.0), model, scale, spacing)
 
-    faster = [(3, 2.4), (2, 1.9), (3, "stop", 0.8, 0.6), (3, 2.6), (2, 2.0), (3, 2.3), (2, "stop", 0.8, 0.6),
-              (3, 2.5), (2, 1.8)]
-    L.lanes(-49.25, 9, faster)
-    L.sidewalk(-70.5, -75.5)
-    L.checkpoint(-73)
-    L.section(3)
 
-    final = [(3, 2.3), (2, 1.9), (3, 2.5), (2, "stop", 0.8, 0.6)]
-    L.lanes(-76.75, 4, final)
-    L.sidewalk(-85.5, -95, light=False)
-    L.pendulum(10.6, -88, False, 1, 2.4, swing=55, first_ball=7.0, ball_radius=0.6, ball_color=(0.3, 0.3, 0.32))
-    L.pendulum(-10.6, -92.5, True, 1, 2.4, swing=55, first_ball=7.0, ball_radius=0.6,
-               ball_color=(0.3, 0.3, 0.32), offset=1.2)
-    L.spinner(0, -90.2, 2, 4, 2.8, ball_color=orange)
-    L.lanes(-96.25, 4, [(2, 2.0), (3, 2.4), (2, "stop", 0.8, 0.6), (3, 2.2)])
-    L.sidewalk(-105.5, -112, light=False)
-    L.finish(-108)
-    L.write("level_04.tscn")
+class Forest(World):
+    index = 1
+    roller = {"color": None}
+    walker = {"model": A("forest", "character-archer"), "scale": 1.3}
+    wanderer = {"model": A("dungeon", "character-human"), "scale": 1.3}
+    chaser = {"model": A("dungeon", "character-orc"), "scale": 1.3}
+    wall_model = (A("forest", "rocks-low"), 1.1, 1.1)
+    obstacles = [(A("forest", "tent"), 1.3, (1.6, 1.2, 1.4)), (A("forest", "rocks-low"), 1.4, (1.2, 1.0, 1.2))]
+
+    def dress(self, level, z_from, z_to):
+        sky(level)
+        sun(level)
+        ground(level, z_from, z_to, (0.35, 0.6, 0.3))
+        center, length = (z_from + z_to) / 2, z_from - z_to
+        level.decorated("Trees", -11.5, center, (1, 1.5, length), A("forest", "tree-high"), 2.0, 1.9, random_turn=True)
+        level.decorated("Trees", 11.5, center, (1, 1.5, length), A("forest", "tree"), 2.0, 1.9, random_turn=True)
+        level.decorated("Trees", 0, z_from + 0.5, (22, 1.5, 1), A("forest", "tree"), 2.0, 1.9, random_turn=True)
+        level.decorated("Trees", 0, z_to - 0.5, (22, 1.5, 1), A("forest", "tree-high"), 2.0, 1.9, random_turn=True)
+
+
+class City(World):
+    index = 2
+    roller = {"color": (0.55, 0.55, 0.58)}
+    walker = {"model": A("characters", "character-male-e"), "scale": 1.3}
+    wanderer = {"model": A("cars", "kart-oobi"), "scale": 1.0, "hit": 0.45}
+    chaser = {"model": A("cars", "police"), "scale": 0.72, "hit": 0.55}
+    vehicles = [A("cars", c) for c in ["sedan", "taxi", "van", "suv", "police", "truck", "delivery", "hatchback-sports"]]
+    arm_color = (0.95, 0.55, 0.1)
+    wall_model = (A("roads", "construction-barrier"), 6.0, 1.0)
+    obstacles = [(A("suburban", "tree-large"), 3.0, (0.6, 2, 0.6)), (A("suburban", "planter"), 3.0, (1.2, 0.6, 0.9))]
+    HOUSES = [A("suburban", f"building-type-{c}") for c in "abcfgkmp"]
+
+    def lane_surface(self, level, z):
+        level.decorated("Road", 0, z, (44, 0.1, 2.5), A("roads", "road-straight"), 2.5, 2.5, solid=False,
+                        parent="Terrain")
+
+    def dress(self, level, z_from, z_to):
+        sky(level)
+        sun(level)
+        ground(level, z_from, z_to, (0.7, 0.7, 0.68))
+        edges(level, z_from, z_to)
+        # Houses along every stretch without a road through it.
+        busy = sorted(level.lanes, reverse=True)
+        stretches, top = [], z_from
+        for lane in busy:
+            if top - (lane + 1.25) >= 3.0:
+                stretches.append((top, lane + 1.25))
+            top = min(top, lane - 1.25)
+        if top - z_to >= 3.0:
+            stretches.append((top, z_to))
+        for n, (a, b) in enumerate(stretches):
+            for x, turn in [(-13.5, 0.0), (13.5, 180.0)]:
+                level.decorated("Houses", x, (a + b) / 2, (4, 0.1, a - b), self.HOUSES[(n * 3 + (x > 0)) % 8],
+                                4.0, 6.0, solid=False, turn=turn)
+        level.decorated("Houses", 0, z_from + 3.0, (24, 0.1, 4), self.HOUSES[0], 4.0, 6.0, solid=False, turn=180.0)
+        level.decorated("Houses", 0, z_to - 2.5, (24, 0.1, 4), self.HOUSES[5], 4.0, 6.0, solid=False)
+
+
+class Dungeon(World):
+    index = 3
+    spike_traps = True
+    roller = {"color": (0.45, 0.42, 0.42)}
+    walker = {"model": A("dungeon", "character-orc"), "scale": 1.3}
+    wanderer = {"model": A("dungeon", "character-orc"), "scale": 1.3}
+    chaser = {"model": A("graveyard", "character-skeleton"), "scale": 1.3}
+    wall_model = (A("dungeon", "wall"), 2.0, 2.0)
+    obstacles = [(A("dungeon", "barrel"), 1.4, (0.8, 1.0, 0.8)), (A("dungeon", "column"), 2.0, (1.0, 2.0, 1.0))]
+
+    def wall(self, level, x, z, width):
+        level.decorated("Wall", x, z, (width, 2.2, 2.0), A("dungeon", "wall"), 2.0, 2.0)
+
+    def dress(self, level, z_from, z_to):
+        dark(level, (0.04, 0.035, 0.045), (0.6, 0.55, 0.55), 0.55)
+        level.s.node("Moonlight", node_type="DirectionalLight3D", transform=SUN, light_color=color(0.85, 0.85, 1),
+                     light_energy=0.45, shadow_enabled=True)
+        center, length = (z_from + z_to) / 2, z_from - z_to + 4
+        level.block("Floor", 0, -1, center, (26, 1, length), color=color(0.16, 0.15, 0.16),
+                    decoration=level.s.res(A("dungeon", "floor")), decoration_scale=2.02, decoration_spacing=2.0,
+                    random_turn=False, decoration_height=1.005)
+        for x in [-12, 12]:
+            level.decorated("Wall", x, center, (2, 2.2, length), A("dungeon", "wall"), 2.0, 2.0)
+        level.decorated("Wall", 0, z_from + 0.5, (22, 2.2, 2), A("dungeon", "wall"), 2.0, 2.0)
+        level.decorated("Wall", 0, z_to - 0.5, (22, 2.2, 2), A("dungeon", "wall"), 2.0, 2.0)
+        torches(level, z_from, z_to, (1, 0.6, 0.3))
+
+
+def torches(level, z_from, z_to, rgb, x=10.3, height=2.5, energy=2.5):
+    level.s.node("Lights", node_type="Node3D")
+    z, side = z_from - 4, -1
+    while z > z_to:
+        level.s.node("Light", "Lights", "OmniLight3D", transform=transform(x * side, height, z),
+                     light_color=color(*rgb), light_energy=energy, omni_range=9.0)
+        z -= 10
+        side = -side
+
+
+class Graveyard(World):
+    index = 4
+    roller = {"model": A("graveyard", "pumpkin-carved"), "scale": 1.9}
+    walker = {"model": A("graveyard", "character-zombie"), "scale": 1.3}
+    wanderer = {"model": A("graveyard", "character-ghost"), "scale": 1.3}
+    chaser = {"model": A("graveyard", "character-vampire"), "scale": 1.3}
+    arm_color = (0.3, 0.3, 0.35)
+    obstacles = [(A("graveyard", "crypt"), 1.6, (1.2, 1.2, 1.8)), (A("graveyard", "gravestone-cross"), 1.6, (0.7, 1.4, 0.5)),
+                 (A("graveyard", "gravestone-round"), 1.8, (0.8, 1.0, 0.5))]
+
+    def wall(self, level, x, z, width):
+        level.decorated("Fence", x, z, (width, 1.4, 0.6), A("graveyard", "iron-fence"), 2.0, 2.0)
+
+    def dress(self, level, z_from, z_to):
+        dark(level, (0.05, 0.06, 0.12), (0.55, 0.6, 0.85), 0.7)
+        level.s.node("Moonlight", node_type="DirectionalLight3D", transform=SUN, light_color=color(0.7, 0.75, 1),
+                     light_energy=0.6, shadow_enabled=True)
+        ground(level, z_from, z_to, (0.24, 0.3, 0.25))
+        edges(level, z_from, z_to)
+        center, length = (z_from + z_to) / 2, z_from - z_to
+        for x in [-11.4, 11.4]:
+            level.decorated("Fence", x, center, (0.4, 0.1, length), A("graveyard", "iron-fence"), 2.0, 2.0, solid=False)
+            level.decorated("Pines", x * 1.22, center, (2, 0.1, length), A("graveyard", "pine"), 1.8, 3.0,
+                            solid=False, random_turn=True)
+            level.decorated("Graves", x * 1.12, center, (1, 0.1, length), A("graveyard", "gravestone-round"), 1.6,
+                            4.5, solid=False, random_turn=True)
+        level.decorated("Pines", 0, z_from + 1.5, (24, 0.1, 2), A("graveyard", "pine"), 1.8, 3.0, solid=False, random_turn=True)
+        level.decorated("Pines", 0, z_to - 1.5, (24, 0.1, 2), A("graveyard", "pine-crooked"), 1.8, 3.0, solid=False, random_turn=True)
+        torches(level, z_from, z_to, (1, 0.75, 0.45), x=10.6, height=2.0, energy=2.0)
+
+
+class SpaceStation(World):
+    index = 5
+    roller = {"model": A("space", "meteor"), "scale": 0.85}
+    walker = {"model": A("space", "alien"), "scale": 1.3}
+    wanderer = {"model": A("space", "alien"), "scale": 1.3}
+    chaser = {"model": A("space", "rover"), "scale": 2.5, "hit": 0.45}
+    vehicles = [A("space", "craft_cargoA"), A("space", "craft_cargoB"), A("space", "craft_miner")]
+    vehicle_scale = 0.75
+    arm_color = (0.3, 0.55, 0.95)
+    obstacles = [(A("spacestation", "container-tall"), 1.6, (1.0, 1.4, 1.0)), (A("spacestation", "container-wide"), 1.6, (1.4, 1.0, 1.0))]
+
+    def wall(self, level, x, z, width):
+        level.decorated("Barrier", x, z, (width, 1.6, 1.0), A("spacestation", "structure-barrier"), 1.0, 1.1)
+
+    def lane_surface(self, level, z):
+        colored_strip(level, z, (0.12, 0.22, 0.42))
+
+    def dress(self, level, z_from, z_to):
+        dark(level, (0.0, 0.0, 0.02), (0.6, 0.65, 0.85), 0.3)
+        level.s.node("Light", node_type="DirectionalLight3D", transform=SUN, light_color=color(0.85, 0.9, 1),
+                     light_energy=0.45, shadow_enabled=True)
+        center, length = (z_from + z_to) / 2, z_from - z_to + 4
+        level.block("Floor", 0, -1, center, (26, 1, length), color=color(0.3, 0.32, 0.36),
+                    decoration=level.s.res(A("spacestation", "floor")), decoration_scale=2.02, decoration_spacing=2.0,
+                    random_turn=False, decoration_height=0.4)
+        for x in [-12, 12]:
+            level.decorated("Wall", x, center, (2, 2.0, length), A("spacestation", "wall"), 2.0, 2.0,
+                            turn=0.0 if x < 0 else 180.0)
+        level.decorated("Wall", 0, z_from + 0.5, (22, 2.0, 2), A("spacestation", "wall"), 2.0, 2.0)
+        level.decorated("Wall", 0, z_to - 0.5, (22, 2.0, 2), A("spacestation", "wall"), 2.0, 2.0)
+        torches(level, z_from, z_to, (0.6, 0.8, 1.0), x=10.5, height=2.2, energy=2.0)
+
+
+class PirateBeach(World):
+    index = 6
+    roller = {"model": A("pirate", "cannon-ball"), "scale": 1.1}
+    walker = {"model": A("graveyard", "character-skeleton"), "scale": 1.3}
+    wanderer = {"model": A("graveyard", "character-skeleton"), "scale": 1.3}
+    chaser = {"model": A("pirate", "cannon-mobile"), "scale": 0.55, "hit": 0.45}
+    vehicle_rolls = True  # Barrels drifting down water channels.
+    arm_color = (0.25, 0.22, 0.2)
+    obstacles = [(A("pirate", "crate"), 1.0, (1.1, 0.8, 1.3)), (A("pirate", "barrel"), 0.7, (0.95, 0.9, 0.95))]
+
+    def __init__(self):
+        self.roller = dict(PirateBeach.roller)
+
+    def wall(self, level, x, z, width):
+        level.decorated("Crates", x, z, (width, 1.0, 1.2), A("pirate", "crate"), 1.0, 1.1)
+
+    def lane_surface(self, level, z):
+        colored_strip(level, z, (0.2, 0.5, 0.8))
+
+    def dress(self, level, z_from, z_to):
+        sky(level, top=(0.3, 0.55, 0.95), horizon=(0.75, 0.9, 1.0))
+        sun(level, (1, 0.97, 0.9), 1.1)
+        ground(level, z_from, z_to, (0.93, 0.85, 0.6), width=30)
+        level.block("Sea", 0, -1.05, (z_from + z_to) / 2, (300, 1, z_from - z_to + 300), color=color(0.15, 0.45, 0.75))
+        edges(level, z_from, z_to)
+        center, length = (z_from + z_to) / 2, z_from - z_to
+        for x in [-12.5, 12.5]:
+            level.decorated("Palms", x, center, (2, 0.1, length), A("pirate", "palm-straight"), 0.8, 4.0,
+                            solid=False, random_turn=True)
+        level.decorated("Rocks", 0, z_from + 1.5, (24, 0.1, 2), A("pirate", "rocks-sand-a"), 0.5, 3.0, solid=False, random_turn=True)
+        level.decorated("Rocks", 0, z_to - 1.5, (24, 0.1, 2), A("pirate", "rocks-sand-b"), 0.5, 3.0, solid=False, random_turn=True)
+
+
+class Snow(World):
+    index = 7
+    roller = {"color": (0.95, 0.97, 1.0)}
+    walker = {"model": A("holiday", "nutcracker"), "scale": 1.0}
+    wanderer = {"model": A("holiday", "gingerbread-man"), "scale": 2.4}
+    chaser = {"model": A("holiday", "reindeer"), "scale": 0.85, "hit": 0.4}
+    vehicles = [A("holiday", "sled"), A("holiday", "sled-long")]
+    vehicle_scale = 1.6
+    arm_color = (0.85, 0.15, 0.15)
+    obstacles = [(A("holiday", "present-a-cube"), 1.8, (0.8, 1.0, 0.8)), (A("holiday", "rocks-medium"), 0.6, (1.2, 0.6, 1.0))]
+
+    def wall(self, level, x, z, width):
+        level.decorated("Rocks", x, z, (width, 1.0, 1.2), A("holiday", "rocks-medium"), 0.65, 1.2, random_turn=True)
+
+    def lane_surface(self, level, z):
+        colored_strip(level, z, (0.7, 0.85, 0.95))
+
+    def dress(self, level, z_from, z_to):
+        sky(level, top=(0.55, 0.65, 0.85), horizon=(0.9, 0.93, 0.97), energy=1.1)
+        sun(level, (1, 0.97, 0.95), 0.9)
+        ground(level, z_from, z_to, (0.92, 0.94, 0.97))
+        center, length = (z_from + z_to) / 2, z_from - z_to
+        level.decorated("Trees", -11.5, center, (1, 1.5, length), A("holiday", "tree-snow-a"), 1.7, 1.9, random_turn=True)
+        level.decorated("Trees", 11.5, center, (1, 1.5, length), A("holiday", "tree-snow-b"), 1.7, 1.9, random_turn=True)
+        level.decorated("Trees", 0, z_from + 0.5, (22, 1.5, 1), A("holiday", "tree-snow-c"), 1.7, 1.9, random_turn=True)
+        level.decorated("Trees", 0, z_to - 0.5, (22, 1.5, 1), A("holiday", "tree-snow-a"), 1.7, 1.9, random_turn=True)
+
+
+# --- Recipes: the sections of every level, south to north -------------------------
+
+RECIPES = {
+    Forest: [
+        ["rollers", "circles", "rollers"],
+        ["patrols", "rollers", "circles"],
+        ["zigzag", "wanderers", "rollers"],
+        ["circles", "wanderers", "zigzag", "chasers"],
+        ["rollers", "chasers", "wanderers", "zigzag"],
+    ],
+    City: [
+        ["traffic", "traffic", "construction"],
+        ["traffic", "wanderers", "traffic"],
+        ["construction", "traffic", "chasers"],
+        ["traffic", "wanderers", "traffic", "construction"],
+        ["traffic", "chasers", "traffic", "traffic"],
+    ],
+    Dungeon: [
+        ["spikes", "patrols", "spinners"],
+        ["spinners", "pendulums", "rams"],
+        ["spikes", "wanderers", "pendulums"],
+        ["patrols", "spinners", "chasers", "rams"],
+        ["spikes", "pendulums", "wanderers", "spinners"],
+    ],
+    Graveyard: [
+        ["wanderers", "circles", "rollers"],
+        ["zigzag", "wanderers", "chasers"],
+        ["circles", "chasers", "rollers"],
+        ["wanderers", "zigzag", "chasers", "circles"],
+        ["chasers", "wanderers", "rollers", "zigzag"],
+    ],
+    SpaceStation: [
+        ["traffic", "wanderers", "spinners"],
+        ["rollers", "spinners", "chasers"],
+        ["traffic", "pendulums", "wanderers"],
+        ["spinners", "chasers", "traffic", "rollers"],
+        ["wanderers", "pendulums", "traffic", "chasers"],
+    ],
+    PirateBeach: [
+        ["rollers", "traffic", "patrols"],
+        ["zigzag", "wanderers", "rollers"],
+        ["traffic", "chasers", "rams"],
+        ["rollers", "wanderers", "traffic", "chasers"],
+        ["zigzag", "chasers", "traffic", "rollers"],
+    ],
+    Snow: [
+        ["rollers", "patrols", "wanderers"],
+        ["traffic", "circles", "chasers"],
+        ["spinners", "wanderers", "rollers"],
+        ["chasers", "traffic", "patrols", "spinners"],
+        ["rollers", "wanderers", "chasers", "traffic"],
+    ],
+}
+
+
+def all_levels():
+    for world_class, recipes in RECIPES.items():
+        for number, recipe in enumerate(recipes, 1):
+            yield world_class(), number, recipe
+
+
+def main():
+    count = 0
+    for world, number, recipe in all_levels():
+        level = Level(world, number, recipe)
+        level.build()
+        level.write()
+        count += 1
+    print(f"wrote {count} levels")
 
 
 if __name__ == "__main__":
-    forest_path()
-    city_crossing()
-    dungeon_halls()
-    rush_hour()
+    main()

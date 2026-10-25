@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/chaser.gd" id="1_chaser"]
+[ext_resource type="PackedScene" path="res://assets/graveyard/character-vampire.glb" id="2_vampire"]
+
+[sub_resource type="CapsuleShape3D" id="Shape_body"]
+radius = 0.25
+height = 0.96
+
+[sub_resource type="CapsuleShape3D" id="Shape_hit"]
+radius = 0.27
+height = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Material_ring"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.7, 0.05, 0.85, 0.78)
+
+[sub_resource type="CylinderMesh" id="Mesh_ring"]
+material = SubResource("Material_ring")
+top_radius = 0.5
+bottom_radius = 0.5
+height = 0.02
+
+[node name="Chaser" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_chaser")
+model_scene = ExtResource("2_vampire")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
+shape = SubResource("Shape_body")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
+shape = SubResource("Shape_hit")
+
+[node name="ChaseRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+cast_shadow = 0
+mesh = SubResource("Mesh_ring")
+
+[node name="Model" type="Node3D" parent="."]

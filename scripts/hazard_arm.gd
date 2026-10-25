@@ -151,7 +151,7 @@ func _make_ball(at: Vector3) -> Area3D:
 	var ring_material := StandardMaterial3D.new()
 	ring_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	ring_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	ring_material.albedo_color = Color(1, 0.15, 0.1, 0.45)
+	ring_material.albedo_color = Color(0.95, 0.1, 0.08, 0.72)
 	ring_mesh.material = ring_material
 	ring.mesh = ring_mesh
 	ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

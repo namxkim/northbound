@@ -5,7 +5,7 @@ extends Area3D
 ## The enemy works out its position from GameClock.time instead of moving a
 ## little each frame. That keeps it on the same schedule for every player.
 
-enum Pattern { LINE, CIRCLE, WAYPOINTS, STOP_AND_GO }
+enum Pattern { LINE, CIRCLE, WAYPOINTS, STOP_AND_GO, WANDER }
 
 @export var pattern := Pattern.LINE
 ## Seconds added to the clock, so enemies with the same pattern can be out of step.
@@ -19,6 +19,9 @@ enum Pattern { LINE, CIRCLE, WAYPOINTS, STOP_AND_GO }
 ## different car). It should face +Z, like the Kenney models.
 @export var model_scene: PackedScene
 @export var model_scale := 1.0
+## Optional: a different hitbox radius for round enemies (0 keeps the scene's).
+## The red ring on the ground grows to match.
+@export var hit_radius := 0.0
 
 @export_group("Line")
 ## Where the enemy travels to, relative to where it was placed.
@@ -49,6 +52,18 @@ enum Pattern { LINE, CIRCLE, WAYPOINTS, STOP_AND_GO }
 ## Seconds spent waiting at each stop. That's when players get through.
 @export var pause_time := 1.5
 
+@export_group("Wander")
+## Moves to a random spot in this area (width, depth) around where it was
+## placed, then another. The spots come from Wander Seed and the round clock,
+## so every player's game picks the same "random" spots.
+@export var wander_area := Vector2(8, 6)
+## Seconds to get from one spot to the next.
+@export var wander_step := 1.2
+## Chance (0 to 1) of staying put for a step instead of moving.
+@export_range(0.0, 0.9) var wander_pause_chance := 0.2
+## Different numbers give different paths.
+@export var wander_seed := 1
+
 var _origin: Vector3
 var _animations: AnimationPlayer
 var _facing_set := false
@@ -58,10 +73,13 @@ var _facing_set := false
 
 func _ready() -> void:
 	_origin = position
+	if hit_radius > 0.0:
+		HitSize.apply(self, $Shape, get_node_or_null("DangerRing"), hit_radius)
 	if model_scene:
 		for child in _model.get_children():
 			child.queue_free()
 		var look: Node3D = model_scene.instantiate()
+		ModelAnimations.center(look, not rolls)
 		look.scale = Vector3.ONE * model_scale
 		look.rotation.y = PI  # Face -Z, the way the enemy turns to move.
 		_model.add_child(look)
@@ -120,7 +138,26 @@ func offset_at(t: float) -> Vector3:
 			return _waypoint_offset(t)
 		Pattern.STOP_AND_GO:
 			return line_offset * _stop_and_go_progress(t)
+		Pattern.WANDER:
+			var step := maxf(wander_step, 0.05)
+			var index := floori(t / step)
+			var progress := smoothstep(0.0, 1.0, t / step - index)
+			return _wander_spot(index).lerp(_wander_spot(index + 1), progress)
 	return Vector3.ZERO
+
+
+## The wander spot for step number `index`. Same answer on every computer.
+func _wander_spot(index: int) -> Vector3:
+	# Sometimes stay put: reuse the previous step's spot.
+	while index > 0 and _random(index, 2) < wander_pause_chance:
+		index -= 1
+	return Vector3((_random(index, 0) - 0.5) * wander_area.x, 0.0, (_random(index, 1) - 0.5) * wander_area.y)
+
+
+## A number from 0 to 1 that looks random but is always the same for the same inputs.
+func _random(index: int, channel: int) -> float:
+	var h := hash(Vector3i(wander_seed, index, channel))
+	return float(posmod(h, 100003)) / 100003.0
 
 
 ## 0 to 1 along the line. There and back: move, wait, move back, wait.

@@ -36,17 +36,26 @@ func _ready() -> void:
 func _on_solo_pressed() -> void:
 	for child in _level_buttons.get_children():
 		child.queue_free()
-	for i in Levels.LIST.size():
-		var button := Button.new()
-		button.custom_minimum_size.y = 40
-		button.text = "%d. %s" % [i + 1, Levels.LIST[i]["name"]]
-		if Levels.is_unlocked(i):
-			button.pressed.connect(Network.start_solo.bind(_name_edit.text, Levels.LIST[i]["path"]))
-		else:
-			button.text += "   (locked)"
-			button.disabled = true
-		_level_buttons.add_child(button)
-	_status.text = "Win a level to unlock the next one."
+	# One row per world: its name, then a button for each of its levels.
+	for w in Levels.WORLDS.size():
+		var row := HBoxContainer.new()
+		var world_label := Label.new()
+		world_label.text = Levels.WORLDS[w]
+		world_label.custom_minimum_size.x = 130
+		row.add_child(world_label)
+		for l in Levels.LEVELS_PER_WORLD:
+			var i := w * Levels.LEVELS_PER_WORLD + l
+			var button := Button.new()
+			button.custom_minimum_size = Vector2(56, 36)
+			button.text = Levels.LIST[i]["name"]
+			if Levels.is_unlocked(i):
+				button.pressed.connect(Network.start_solo.bind(_name_edit.text, Levels.LIST[i]["path"]))
+			else:
+				button.disabled = true
+				button.tooltip_text = "Locked"
+			row.add_child(button)
+		_level_buttons.add_child(row)
+	_status.text = "Win a level to unlock the next one. Greyed-out levels are locked."
 	_show_screen(_level_picker)
 
 
@@ -123,7 +132,7 @@ func _fill_level_choices() -> void:
 	_lobby_level.clear()
 	for i in Levels.LIST.size():
 		if Levels.is_unlocked(i):
-			_lobby_level.add_item("%d. %s" % [i + 1, Levels.LIST[i]["name"]], i)
+			_lobby_level.add_item(Levels.label(i), i)
 	_lobby_level.select(_lobby_level.item_count - 1)
 
 

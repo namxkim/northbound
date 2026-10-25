@@ -36,6 +36,8 @@ var _message_id := 0
 # Only used by the computer that decides for the team (host or solo):
 var _reached := {}  # checkpoint paths the team has reached
 var _dead := {}  # peer ids that are down
+var _chasers: Array[Node] = []
+var _chaser_send_counter := 0
 
 const _FOLLOW_CAMERA := preload("res://scripts/follow_camera.gd")
 
@@ -63,6 +65,14 @@ func _ready() -> void:
 		if node is Zone:
 			node.player_entered.connect(_on_zone_entered.bind(node))
 
+	# Chasers react to players, so only one computer moves them (see chaser.gd).
+	# Same order on every computer, so the host's list lines up with everyone's.
+	for node in find_children("*", "CharacterBody3D"):
+		if node.has_method("apply_state") and not _players.values().has(node):
+			_chasers.append(node)
+			node.in_charge = Network.decides_for_team()
+	Network.chaser_states_received.connect(_on_chaser_states)
+
 	Network.round_begun.connect(_on_round_begun)
 	Network.players_changed.connect(_on_players_changed)
 	Network.player_state_received.connect(_on_player_state)
@@ -80,6 +90,25 @@ func _ready() -> void:
 	if Network.online:
 		_show("Waiting for everyone to load...")
 	Network.level_loaded()
+
+
+func _physics_process(_delta: float) -> void:
+	# The host sends chaser positions 20 times a second.
+	if _chasers.is_empty() or not Network.is_host():
+		return
+	_chaser_send_counter += 1
+	if _chaser_send_counter % 3 == 0:
+		var positions := PackedVector3Array()
+		for chaser in _chasers:
+			positions.append(chaser.get_state())
+		Network.send_chaser_states(positions)
+
+
+func _on_chaser_states(positions: PackedVector3Array) -> void:
+	if positions.size() != _chasers.size():
+		return
+	for i in positions.size():
+		_chasers[i].apply_state(positions[i])
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -132,6 +161,7 @@ func _spawn_players() -> void:
 		new_player.character = load(Network.character_path(info["character"]))
 		new_player.display_name = info["name"] if Network.online else ""
 		new_player.frozen = true
+		new_player.add_to_group("players")  # Chasers look for this group.
 		add_child(new_player)
 		new_player.global_position = _spot(_checkpoint, i, ids.size())
 		new_player.reset_physics_interpolation()
@@ -405,6 +435,12 @@ func _add_camera_and_screen_text() -> void:
 		_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		ui.add_child(_status)
+	var index := Levels.index_of(scene_file_path)
+	if index != -1:
+		var title := _make_label("LevelName", 22, 6)
+		title.text = Levels.label(index)
+		title.position = Vector2(16, 12)
+		ui.add_child(title)
 	_help = ui.get_node_or_null("Help")
 	if _help == null:
 		_help = _make_label("Help", 20, 6)

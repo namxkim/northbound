@@ -22,11 +22,13 @@ signal player_event_received(peer_id: int, kind: String, data: Variant)
 signal team_request_received(peer_id: int, kind: String, data: Variant)
 ## The host decided something for the whole team, like "round lost".
 signal team_event_received(kind: String, data: Variant)
+## The host sent where every chaser is.
+signal chaser_states_received(positions: PackedVector3Array)
 
 const PORT := 24680
 const MAX_PLAYERS := 8
 const MAIN_MENU := "res://scenes/main_menu.tscn"
-const FIRST_LEVEL := "res://levels/level_01.tscn"
+const FIRST_LEVEL := "res://levels/w1_l1.tscn"
 ## One look per player slot, so up to 8 players all look different.
 const CHARACTERS := [
 	"res://assets/characters/character-male-a.glb",
@@ -197,6 +199,12 @@ func send_team_event(kind: String, data: Variant = null) -> void:
 		_team_event.rpc(kind, data)
 
 
+## Host only: sends every chaser's position to everyone else.
+func send_chaser_states(positions: PackedVector3Array) -> void:
+	if is_host() and round_active:
+		_chaser_states.rpc(positions)
+
+
 func _physics_process(delta: float) -> void:
 	# Players who joined ask the host for its clock once a second.
 	if online and round_active and not multiplayer.is_server():
@@ -266,6 +274,11 @@ func _team_request(kind: String, data: Variant) -> void:
 @rpc("authority", "call_local", "reliable")
 func _team_event(kind: String, data: Variant) -> void:
 	team_event_received.emit(kind, data)
+
+
+@rpc("authority", "unreliable_ordered")
+func _chaser_states(positions: PackedVector3Array) -> void:
+	chaser_states_received.emit(positions)
 
 
 @rpc("any_peer", "unreliable")

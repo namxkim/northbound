@@ -1,0 +1,393 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="Script" path="res://scripts/spike_field.gd" id="2_spike_field"]
+[ext_resource type="PackedScene" path="res://assets/dungeon/character-orc.glb" id="3_character_orc"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="4_enemy"]
+[ext_resource type="Script" path="res://scripts/zone.gd" id="5_zone"]
+[ext_resource type="Script" path="res://scripts/hazard_arm.gd" id="6_hazard_arm"]
+[ext_resource type="PackedScene" path="res://assets/dungeon/floor.glb" id="7_floor"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="8_block"]
+[ext_resource type="PackedScene" path="res://assets/dungeon/wall.glb" id="9_wall"]
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.04, 0.035, 0.045, 1.0)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.55, 0.55, 1.0)
+ambient_light_energy = 0.55
+tonemap_mode = 2
+
+[node name="W3L1" type="Node3D"]
+script = ExtResource("1_level")
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Hazards" type="Node3D" parent="."]
+
+[node name="Zones" type="Node3D" parent="."]
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 3.0)
+
+[node name="Spikes" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -1.0)
+script = ExtResource("2_spike_field")
+columns = 18
+rows = 1
+period = 2.7142
+up_time = 1.3816
+wave_delay = 0.2109
+time_offset = 1.1128
+
+[node name="Spikes2" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -3.0)
+script = ExtResource("2_spike_field")
+columns = 18
+rows = 1
+period = 2.5959
+up_time = 1.3339
+wave_delay = -0.1676
+time_offset = 2.3542
+
+[node name="Spikes3" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -5.0)
+script = ExtResource("2_spike_field")
+columns = 18
+rows = 1
+period = 2.6011
+up_time = 1.4407
+wave_delay = 0.1386
+time_offset = 1.0819
+
+[node name="Spikes4" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -7.0)
+script = ExtResource("2_spike_field")
+columns = 18
+rows = 1
+period = 2.8263
+up_time = 1.4366
+wave_delay = -0.2747
+time_offset = 0.7516
+
+[node name="Spikes5" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -9.0)
+script = ExtResource("2_spike_field")
+columns = 18
+rows = 1
+period = 2.8848
+up_time = 1.4029
+wave_delay = 0.153
+time_offset = 1.9823
+
+[node name="Walker" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -11.6)
+line_offset = Vector3(20.4, 0.0, 0.0)
+line_period = 3.7423
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker2" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -11.6)
+line_offset = Vector3(20.4, 0.0, 0.0)
+line_period = 3.7423
+time_offset = 1.8711
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker3" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -14.0)
+line_offset = Vector3(-20.4, 0.0, 0.0)
+line_period = 3.8528
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker4" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -14.0)
+line_offset = Vector3(-20.4, 0.0, 0.0)
+line_period = 3.8528
+time_offset = 1.9264
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Checkpoint" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -18.0)
+script = ExtResource("5_zone")
+size = Vector3(14.0, 2.0, 3.0)
+
+[node name="Walker5" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -22.0)
+line_offset = Vector3(20.4, 0.0, 0.0)
+pattern = 3
+move_time = 1.4487
+pause_time = 0.7067
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker6" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -22.0)
+line_offset = Vector3(20.4, 0.0, 0.0)
+pattern = 3
+move_time = 1.4487
+pause_time = 0.7067
+time_offset = 2.1554
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker7" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -24.6)
+line_offset = Vector3(-20.4, 0.0, 0.0)
+line_period = 4.0851
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker8" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -24.6)
+line_offset = Vector3(-20.4, 0.0, 0.0)
+line_period = 4.0851
+time_offset = 2.0425
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker9" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -27.2)
+line_offset = Vector3(20.4, 0.0, 0.0)
+pattern = 3
+move_time = 1.5479
+pause_time = 0.8842
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker10" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -27.2)
+line_offset = Vector3(20.4, 0.0, 0.0)
+pattern = 3
+move_time = 1.5479
+pause_time = 0.8842
+time_offset = 2.4321
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker11" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -29.8)
+line_offset = Vector3(-20.4, 0.0, 0.0)
+pattern = 3
+move_time = 1.5586
+pause_time = 0.5639
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker12" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -29.8)
+line_offset = Vector3(-20.4, 0.0, 0.0)
+pattern = 3
+move_time = 1.5586
+pause_time = 0.5639
+time_offset = 2.1225
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker13" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -32.4)
+line_offset = Vector3(20.4, 0.0, 0.0)
+line_period = 3.874
+time_offset = 0.0
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Walker14" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -32.4)
+line_offset = Vector3(20.4, 0.0, 0.0)
+line_period = 3.874
+time_offset = 1.937
+model_scene = ExtResource("3_character_orc")
+model_scale = 1.3
+
+[node name="Checkpoint2" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -36.4)
+script = ExtResource("5_zone")
+size = Vector3(14.0, 2.0, 3.0)
+
+[node name="Arm" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.5, 0.0, -44.1)
+script = ExtResource("6_hazard_arm")
+ball_color = Color(0.35, 0.3, 0.33, 1.0)
+period = 3.6709
+arms = 2
+balls = 6
+clockwise = true
+time_offset = 0.0
+
+[node name="Arm2" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.5, 0.0, -45.3)
+script = ExtResource("6_hazard_arm")
+ball_color = Color(0.35, 0.3, 0.33, 1.0)
+period = 4.8159
+arms = 3
+balls = 6
+clockwise = false
+time_offset = 0.3636
+
+[node name="Arm3" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.5, 0.0, -49.3)
+script = ExtResource("6_hazard_arm")
+ball_color = Color(0.35, 0.3, 0.33, 1.0)
+period = 4.0966
+arms = 3
+balls = 6
+clockwise = false
+time_offset = 0.7273
+
+[node name="Arm4" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.5, 0.0, -50.5)
+script = ExtResource("6_hazard_arm")
+ball_color = Color(0.35, 0.3, 0.33, 1.0)
+period = 3.7413
+arms = 2
+balls = 6
+clockwise = true
+time_offset = 0.9697
+
+[node name="Arm5" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.5, 0.0, -54.5)
+script = ExtResource("6_hazard_arm")
+ball_color = Color(0.35, 0.3, 0.33, 1.0)
+period = 3.8763
+arms = 2
+balls = 6
+clockwise = true
+time_offset = 1.4545
+
+[node name="Arm6" type="Node3D" parent="Hazards"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.5, 0.0, -55.7)
+script = ExtResource("6_hazard_arm")
+ball_color = Color(0.35, 0.3, 0.33, 1.0)
+period = 3.763
+arms = 3
+balls = 6
+clockwise = false
+time_offset = 1.5758
+
+[node name="Finish" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -63.9)
+script = ExtResource("5_zone")
+kind = 1
+size = Vector3(20.0, 2.0, 4.0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Moonlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 10, 0)
+light_color = Color(0.85, 0.85, 1.0, 1.0)
+light_energy = 0.45
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, -1.0, -30.7)
+script = ExtResource("8_block")
+size = Vector3(26.0, 1.0, 79.4)
+color = Color(0.16, 0.15, 0.16, 1.0)
+decoration = ExtResource("7_floor")
+decoration_scale = 2.02
+decoration_spacing = 2.0
+random_turn = false
+decoration_height = 1.005
+
+[node name="Wall" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -12.0, 0.0, -30.7)
+script = ExtResource("8_block")
+size = Vector3(2.0, 2.2, 79.4)
+show_box = false
+decoration = ExtResource("9_wall")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Wall2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 12.0, 0.0, -30.7)
+script = ExtResource("8_block")
+size = Vector3(2.0, 2.2, 79.4)
+show_box = false
+decoration = ExtResource("9_wall")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Wall3" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 7.5)
+script = ExtResource("8_block")
+size = Vector3(22.0, 2.2, 2.0)
+show_box = false
+decoration = ExtResource("9_wall")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Wall4" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -68.9)
+script = ExtResource("8_block")
+size = Vector3(22.0, 2.2, 2.0)
+show_box = false
+decoration = ExtResource("9_wall")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.3, 2.5, 3.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.3, 2.5, -7.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.3, 2.5, -17.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.3, 2.5, -27.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light5" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.3, 2.5, -37.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light6" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.3, 2.5, -47.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light7" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.3, 2.5, -57.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0
+
+[node name="Light8" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.3, 2.5, -67.0)
+light_color = Color(1.0, 0.6, 0.3, 1.0)
+light_energy = 2.5
+omni_range = 9.0

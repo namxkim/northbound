@@ -2,22 +2,33 @@ extends Node
 
 ## The list of levels, and which ones this player has unlocked.
 ##
-## Winning a level unlocks the next one. Progress is saved on this computer.
-## In co-op the host picks the level, so the host's progress decides what the
-## team can play; everyone who wins also unlocks the next level for themselves.
+## The game has worlds of five levels each, named like "1-1" to "7-5". Levels
+## unlock in order: winning a level unlocks the next one, and the last level
+## of a world unlocks the first level of the next world. Progress is saved on
+## this computer. In co-op the host picks the level, so the host's progress
+## decides what the team can play; everyone who wins also unlocks the next
+## level for themselves.
 
-const LIST: Array[Dictionary] = [
-	{"name": "Forest Path", "path": "res://levels/level_01.tscn"},
-	{"name": "City Crossing", "path": "res://levels/level_02.tscn"},
-	{"name": "Dungeon Halls", "path": "res://levels/level_03.tscn"},
-	{"name": "Rush Hour", "path": "res://levels/level_04.tscn"},
-]
+const WORLDS: Array[String] = ["Forest", "City", "Dungeon", "Graveyard", "Space Station", "Pirate Beach", "Snow"]
+const LEVELS_PER_WORLD := 5
 const SAVE_PATH := "user://progress.cfg"
 
+## Every level in order: {"name": "1-1", "world": "Forest", "path": ...}.
+var LIST: Array[Dictionary] = []
 ## How many levels are open, counting from the first.
 var unlocked := 1
 ## Automated tests turn this off so they don't change real progress.
 var saving := true
+
+
+func _init() -> void:
+	for w in WORLDS.size():
+		for l in LEVELS_PER_WORLD:
+			LIST.append({
+				"name": "%d-%d" % [w + 1, l + 1],
+				"world": WORLDS[w],
+				"path": "res://levels/w%d_l%d.tscn" % [w + 1, l + 1],
+			})
 
 
 func _ready() -> void:
@@ -28,6 +39,11 @@ func _ready() -> void:
 
 func is_unlocked(index: int) -> bool:
 	return index < unlocked
+
+
+## "1-1  Forest", for menus.
+func label(index: int) -> String:
+	return "%s  %s" % [LIST[index]["name"], LIST[index]["world"]]
 
 
 func index_of(path: String) -> int:
