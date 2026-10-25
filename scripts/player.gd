@@ -13,10 +13,10 @@ signal died
 ## Which character model this player uses. The level sets one per player.
 @export var character: PackedScene = preload("res://assets/characters/character-male-a.glb")
 ## The Kenney characters are small, so they're scaled up to fit the world.
-@export var character_scale := 2.2
+@export var character_scale := 1.3
 
 ## Top speed, in meters per second.
-@export var speed := 6.0
+@export var speed := 5.0
 ## How quickly the player speeds up and slows down.
 @export var acceleration := 40.0
 @export var deceleration := 50.0

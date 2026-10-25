@@ -18,7 +18,7 @@ extends Node3D
 		rows = value
 		_rebuild()
 ## Meters between traps.
-@export var spacing := 2.0:
+@export var spacing := 1.2:
 	set(value):
 		spacing = value
 		_rebuild()
@@ -90,18 +90,18 @@ func _make_trap(at: Vector3, column: int) -> Dictionary:
 
 	var shape := CollisionShape3D.new()
 	var box := BoxShape3D.new()
-	box.size = Vector3(1.4, 0.8, 1.4)
+	box.size = Vector3(0.85, 0.5, 0.85)
 	shape.shape = box
-	shape.position.y = 0.4
+	shape.position.y = 0.25
 	area.add_child(shape)
 
 	var model: Node3D = _TRAP_MODEL.instantiate()
-	model.scale = Vector3.ONE * 2.0
+	model.scale = Vector3.ONE * 1.2
 	area.add_child(model)
 
 	var plate := MeshInstance3D.new()
 	var plate_mesh := BoxMesh.new()
-	plate_mesh.size = Vector3(1.8, 0.02, 1.8)
+	plate_mesh.size = Vector3(1.1, 0.02, 1.1)
 	plate.mesh = plate_mesh
 	plate.material_override = _calm
 	plate.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

@@ -35,16 +35,16 @@ enum Mode { SPIN, SWING }
 		balls = value
 		_rebuild()
 ## Meters between balls.
-@export var spacing := 1.2:
+@export var spacing := 0.75:
 	set(value):
 		spacing = value
 		_rebuild()
 ## Meters from the post to the first ball.
-@export var first_ball := 1.2:
+@export var first_ball := 0.8:
 	set(value):
 		first_ball = value
 		_rebuild()
-@export var ball_radius := 0.45:
+@export var ball_radius := 0.28:
 	set(value):
 		ball_radius = value
 		_rebuild()
@@ -95,12 +95,12 @@ func _rebuild() -> void:
 
 	var post := MeshInstance3D.new()
 	var post_mesh := CylinderMesh.new()
-	post_mesh.top_radius = 0.3
-	post_mesh.bottom_radius = 0.4
-	post_mesh.height = 1.4
+	post_mesh.top_radius = 0.18
+	post_mesh.bottom_radius = 0.24
+	post_mesh.height = 0.9
 	post_mesh.material = dark
 	post.mesh = post_mesh
-	post.position.y = 0.7
+	post.position.y = 0.45
 	_parts.add_child(post)
 
 	var arm_count := arms if mode == Mode.SPIN else 1
@@ -113,7 +113,7 @@ func _rebuild() -> void:
 		# A thin bar from the post to the last ball, so players can read the arm.
 		var bar := MeshInstance3D.new()
 		var bar_mesh := BoxMesh.new()
-		bar_mesh.size = Vector3(0.12, 0.12, length)
+		bar_mesh.size = Vector3(0.08, 0.08, length)
 		bar_mesh.material = dark
 		bar.mesh = bar_mesh
 		bar.position = Vector3(0, ball_radius + 0.05, length / 2.0)
@@ -145,8 +145,8 @@ func _make_ball(at: Vector3) -> Area3D:
 
 	var ring := MeshInstance3D.new()
 	var ring_mesh := CylinderMesh.new()
-	ring_mesh.top_radius = ball_radius + 0.2
-	ring_mesh.bottom_radius = ball_radius + 0.2
+	ring_mesh.top_radius = ball_radius + 0.12
+	ring_mesh.bottom_radius = ball_radius + 0.12
 	ring_mesh.height = 0.02
 	var ring_material := StandardMaterial3D.new()
 	ring_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA

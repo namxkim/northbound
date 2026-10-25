@@ -22,7 +22,7 @@ extends Node3D
 ## Seconds between dying and coming back, in solo.
 @export var respawn_delay := 1.0
 ## Meters between players standing side by side at the start or a checkpoint.
-@export var spawn_spacing := 1.3
+@export var spawn_spacing := 0.8
 
 ## The player controlled on this computer.
 var player: CharacterBody3D

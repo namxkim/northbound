@@ -12,14 +12,24 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 ## Levels
 Winning a level unlocks the next. Progress is saved on each player's computer (`user://progress.cfg`). In co-op the host picks the level from the ones they've unlocked. After a win, Enter replays and N goes to the next level (solo or host).
 
-| # | Name | Setting | What's in it |
-|---|---|---|---|
-| 1 | Forest Path | Forest | Rolling boulders, circling and patrolling archers, 1 checkpoint |
-| 2 | City Crossing | City | 7 lanes of one-way traffic, some cars stop halfway, 2 checkpoints |
-| 3 | Dungeon Halls | Dungeon | Spike waves, spinning arms, orc patrols, a pendulum gauntlet, sliding boulders, 2 checkpoints |
-| 4 | Rush Hour | City | Faster traffic plus a construction zone with a spinning arm and a wrecking ball, 2 checkpoints |
+| # | Name | Setting | Length | What's in it |
+|---|---|---|---|---|
+| 1 | Forest Path | Forest | 115 m | 22 boulder rows (48 boulders), 35 archers circling, pacing and marching, a zigzag through rock walls |
+| 2 | City Crossing | City | 92 m | 27 lanes of traffic (95 cars), some stop halfway |
+| 3 | Dungeon Halls | Dungeon | 108 m | 7 rows of pop-up spikes plus a 4x16 spike field, 19 spinning and swinging arms, 13 orcs, 4 sliding boulders |
+| 4 | Rush Hour | City | 111 m | 24 lanes (85 cars), a construction zone with 6 spinners and 2 wrecking-ball chains, 2 more wrecking balls and a spinner near the finish |
 
-The list lives in `scripts/levels.gd`. To add a level, make a scene with `level.gd` on the root, a `Start` marker, terrain, hazards and Zones, then add it to the list. The camera and on-screen text are added automatically.
+Every level has 3 checkpoints. The levels are meant to take real effort: every section is tuned so a perfect player can get through with about 0.35 m to spare around each hazard, but not 0.5 m.
+
+The list lives in `scripts/levels.gd`. To add a level by hand, make a scene with `level.gd` on the root, a `Start` marker, terrain, hazards and Zones, then add it to the list. The camera and on-screen text are added automatically.
+
+### Level tools (`tools/`)
+- `level_generator.py` writes the four level scenes from a short description of each section. Running it **overwrites** `levels/level_01-04.tscn`, so changes made to those files in the editor are lost. Run: `uv run --no-project tools/level_generator.py`
+- `solver.gd` proves each section can be beaten: it replays every hazard's exact movement and searches every position and moment for a way through, with hazards grown by a safety margin. It also checks no hazard ever touches a checkpoint's spawn spots. Run: `Godot_console.exe --headless --path . -s tools/solver.gd -- level=res://levels/level_02.tscn margin=0.35`
+- `tune_levels.py` sets each section's speed dial (in `level_dials.json`) to the fastest speed that's still beatable, capped at 1.4x, then regenerates the levels. Run: `uv run --no-project tools/tune_levels.py 0.35` (takes about 7 minutes).
+
+## Sizes and speed
+Players and enemies are small (about 60% of the original size) so more hazards fit on the 22 m-wide map; scenery (trees, walls, houses) is full size. Player top speed is 5 m/s. Hitboxes: player 0.21 m radius, walkers 0.27 m, boulders 0.36 m, cars 1.05 x 1.9 m, spiked balls 0.28 m (wrecking balls 0.6 m), spikes 0.85 m square. City lanes are 2.5 m wide.
 
 ## Players
 - Solo or online co-op, up to 8 players. Each player controls one character.
@@ -32,7 +42,7 @@ The list lives in `scripts/levels.gd`. To add a level, make a scene with `level.
 - **Co-op:** if everyone is down, the round is lost. The host restarts it from the start of the level.
 - **Co-op:** the first player across the finish wins the round for the whole team.
 - The host's game makes every team decision (checkpoints, win, loss) and tells everyone, so all the games agree even when two things happen at once.
-- Levels need checkpoints spread along the way, since they're the only way to bring teammates back. Level 1 has one; levels 2-4 have two.
+- Levels need checkpoints spread along the way, since they're the only way to bring teammates back. Every level has three.
 
 ## Build plan
 1. Single-player core: movement, camera, terrain, enemy patterns, death, checkpoint, finish. **(done)**

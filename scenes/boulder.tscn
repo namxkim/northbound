@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/low_poly_rock.gd" id="2_rock"]
 
 [sub_resource type="SphereShape3D" id="Shape_boulder"]
-radius = 0.6
+radius = 0.36
 
 [sub_resource type="StandardMaterial3D" id="Material_ring"]
 transparency = 1
@@ -13,8 +13,8 @@ albedo_color = Color(1, 0.15, 0.1, 0.45)
 
 [sub_resource type="CylinderMesh" id="Mesh_ring"]
 material = SubResource("Material_ring")
-top_radius = 0.8
-bottom_radius = 0.8
+top_radius = 0.5
+bottom_radius = 0.5
 height = 0.02
 
 [node name="Boulder" type="Area3D"]
@@ -23,9 +23,10 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("1_enemy")
 rolls = true
+roll_radius = 0.36
 
 [node name="Shape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
 shape = SubResource("Shape_boulder")
 
 [node name="DangerRing" type="MeshInstance3D" parent="."]
@@ -34,7 +35,8 @@ cast_shadow = 0
 mesh = SubResource("Mesh_ring")
 
 [node name="Model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
 
 [node name="Rock" type="MeshInstance3D" parent="Model"]
 script = ExtResource("2_rock")
+radius = 0.36

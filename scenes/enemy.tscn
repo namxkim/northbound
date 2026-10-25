@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" path="res://assets/forest/character-archer.glb" id="2_archer"]
 
 [sub_resource type="CapsuleShape3D" id="Shape_enemy"]
-radius = 0.45
-height = 1.6
+radius = 0.27
+height = 0.96
 
 [sub_resource type="StandardMaterial3D" id="Material_ring"]
 transparency = 1
@@ -14,8 +14,8 @@ albedo_color = Color(1, 0.15, 0.1, 0.45)
 
 [sub_resource type="CylinderMesh" id="Mesh_ring"]
 material = SubResource("Material_ring")
-top_radius = 0.75
-bottom_radius = 0.75
+top_radius = 0.45
+bottom_radius = 0.45
 height = 0.02
 
 [node name="Enemy" type="Area3D"]
@@ -23,9 +23,10 @@ collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_enemy")
+model_scale = 1.3
 
 [node name="Shape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
 shape = SubResource("Shape_enemy")
 
 [node name="DangerRing" type="MeshInstance3D" parent="."]
@@ -36,4 +37,4 @@ mesh = SubResource("Mesh_ring")
 [node name="Model" type="Node3D" parent="."]
 
 [node name="Archer" parent="Model" instance=ExtResource("2_archer")]
-transform = Transform3D(-2.2, 0, 0, 0, 2.2, 0, 0, 0, -2.2, 0, 0, 0)
+transform = Transform3D(-1.3, 0, 0, 0, 1.3, 0, 0, 0, -1.3, 0, 0, 0)
