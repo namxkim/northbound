@@ -30,16 +30,19 @@ var player: CharacterBody3D
 var _players := {}  # peer id -> player node
 var _checkpoint: Vector3  # where the team respawns
 var _round_over := false
+var _won := false
 var _watched_id := -1  # teammate the camera follows while dead (co-op)
 var _message_id := 0
 # Only used by the computer that decides for the team (host or solo):
 var _reached := {}  # checkpoint paths the team has reached
 var _dead := {}  # peer ids that are down
 
+const _FOLLOW_CAMERA := preload("res://scripts/follow_camera.gd")
+
 @onready var _start: Marker3D = $Start
-@onready var _camera: Camera3D = $Camera
-@onready var _status: Label = $UI/Status
-@onready var _help: Label = $UI/Help
+var _camera: Camera3D
+var _status: Label
+var _help: Label
 var _watching_label: Label
 
 
@@ -50,6 +53,7 @@ func _ready() -> void:
 		# The level was run straight from the editor: play solo.
 		Network.players = {1: {"name": "Player", "character": 0}}
 
+	_add_camera_and_screen_text()
 	_spawn_players()
 	_camera.target = player
 	_camera.snap_to_target()
@@ -86,6 +90,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			restart_round()
 	elif event.is_action_pressed("ui_cancel"):
 		Network.leave()
+	elif event.is_action_pressed("next_level") and _won and _can_choose_level():
+		var next := Levels.next_path(scene_file_path)
+		if next:
+			Network.change_level(next)
 	elif _is_watching() and event.is_action_pressed("move_right"):
 		_watch_next(1)
 	elif _is_watching() and event.is_action_pressed("move_left"):
@@ -99,6 +107,11 @@ func restart_round() -> void:
 ## Co-op rules apply when more than one player is in the round.
 func is_coop() -> bool:
 	return _players.size() > 1
+
+
+## Solo players and the host choose levels; players who joined wait for the host.
+func _can_choose_level() -> bool:
+	return not Network.online or Network.is_host()
 
 
 func _my_id() -> int:
@@ -258,13 +271,18 @@ func _on_team_event(kind: String, data: Variant) -> void:
 		"won":
 			var by: int = data["by"]
 			_end_round()
+			_won = true
+			Levels.mark_won(scene_file_path)
 			var who: String = _players[by].display_name if _players.has(by) else "Someone"
+			var what_next := "Press Enter to play again."
+			if not Levels.next_path(scene_file_path).is_empty():
+				what_next = "Press Enter to play again, or N for the next level."
 			if not Network.online:
-				_show("You made it! Press Enter to play again.")
+				_show("You made it! " + what_next)
 			elif Network.is_host():
-				_show("%s made it across! The team wins! Press Enter to play again." % who)
+				_show("%s made it across! The team wins! %s" % [who, what_next])
 			else:
-				_show("%s made it across! The team wins! Waiting for the host to restart." % who)
+				_show("%s made it across! The team wins! Waiting for the host." % who)
 		"lost":
 			_end_round()
 			if Network.is_host():
@@ -358,6 +376,53 @@ func _stop_watching() -> void:
 	_watched_id = -1
 	_camera.target = player
 	_watching_label.visible = false
+
+
+## Level 1 has its own camera and on-screen text. Newer levels leave them out,
+## and this adds them.
+func _add_camera_and_screen_text() -> void:
+	_camera = get_node_or_null("Camera")
+	if _camera == null:
+		_camera = Camera3D.new()
+		_camera.name = "Camera"
+		_camera.fov = 50.0
+		_camera.set_script(_FOLLOW_CAMERA)
+		add_child(_camera)
+	_camera.current = true
+
+	var ui := get_node_or_null("UI")
+	if ui == null:
+		ui = CanvasLayer.new()
+		ui.name = "UI"
+		add_child(ui)
+	_status = ui.get_node_or_null("Status")
+	if _status == null:
+		_status = _make_label("Status", 36, 8)
+		_status.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+		_status.offset_left = 60
+		_status.offset_right = -60
+		_status.offset_top = 24
+		_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		ui.add_child(_status)
+	_help = ui.get_node_or_null("Help")
+	if _help == null:
+		_help = _make_label("Help", 20, 6)
+		_help.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+		_help.offset_left = 16
+		_help.offset_top = -48
+		_help.offset_bottom = -16
+		_help.grow_vertical = Control.GROW_DIRECTION_BEGIN
+		ui.add_child(_help)
+
+
+func _make_label(label_name: String, font_size: int, outline: int) -> Label:
+	var label := Label.new()
+	label.name = label_name
+	label.add_theme_font_size_override("font_size", font_size)
+	label.add_theme_constant_override("outline_size", outline)
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	return label
 
 
 func _add_watching_label() -> void:

@@ -79,11 +79,21 @@ func character_path(index: int) -> String:
 # --- Starting and leaving -------------------------------------------------
 
 
-func start_solo(player_name: String) -> void:
+func start_solo(player_name: String, level_path := FIRST_LEVEL) -> void:
 	_go_offline()
 	players = {1: {"name": _clean_name(player_name), "character": 0}}
-	_level_path = FIRST_LEVEL
+	_level_path = level_path
 	get_tree().change_scene_to_file(_level_path)
+
+
+## Solo, or the host in an online game: moves everyone to another level.
+func change_level(level_path: String) -> void:
+	if not online:
+		_level_path = level_path
+		round_active = false
+		get_tree().change_scene_to_file(level_path)
+	elif is_host():
+		_start_game.rpc(level_path)
 
 
 ## Starts hosting. bind_ip "*" accepts players from other computers;

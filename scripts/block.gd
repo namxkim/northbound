@@ -26,6 +26,12 @@ extends StaticBody3D
 		show_box = value
 		_rebuild()
 
+## Turn off for decoration players can walk over, like a road surface.
+@export var solid := true:
+	set(value):
+		solid = value
+		_rebuild()
+
 @export_group("Decoration")
 ## A model repeated across the block, like a row of trees.
 @export var decoration: PackedScene:
@@ -49,6 +55,20 @@ extends StaticBody3D
 @export var random_turn := true:
 	set(value):
 		random_turn = value
+		_rebuild()
+
+## Extra turn for every copy, in degrees. Useful for models that face the
+## wrong way, like road pieces.
+@export var decoration_turn := 0.0:
+	set(value):
+		decoration_turn = value
+		_rebuild()
+
+## How high above the block's bottom the copies sit. Set it to the block's
+## height to put copies on top, like floor tiles on the ground.
+@export var decoration_height := 0.0:
+	set(value):
+		decoration_height = value
 		_rebuild()
 
 # Built in code and never saved, so the level file only stores the settings.
@@ -79,6 +99,7 @@ func _rebuild() -> void:
 	box_shape.size = size
 	_shape.shape = box_shape
 	_shape.position = Vector3(0, size.y / 2.0, 0)
+	_shape.disabled = not solid
 
 	_rebuild_decoration()
 
@@ -99,7 +120,7 @@ func _rebuild_decoration() -> void:
 			copy.scale = Vector3.ONE * decoration_scale
 			copy.position = Vector3(
 				-size.x / 2.0 + (ix + 0.5) * size.x / count_x,
-				0.0,
+				decoration_height,
 				-size.z / 2.0 + (iz + 0.5) * size.z / count_z)
 			if random_turn:
 				# Same "random" turn every time, so the level looks the same on every load.
@@ -108,4 +129,5 @@ func _rebuild_decoration() -> void:
 				copy.rotation.y = rng.randf() * TAU
 			elif along_z:
 				copy.rotation.y = PI / 2.0
+			copy.rotation.y += deg_to_rad(decoration_turn)
 			_decor.add_child(copy)

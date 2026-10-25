@@ -103,6 +103,28 @@ custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 text = "Quit"
 
+[node name="LevelPicker" type="VBoxContainer" parent="Center/Panel/Margin/Box"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PickerTitle" type="Label" parent="Center/Panel/Margin/Box/LevelPicker"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Choose a level"
+
+[node name="LevelButtons" type="VBoxContainer" parent="Center/Panel/Margin/Box/LevelPicker"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="Center/Panel/Margin/Box/LevelPicker"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Back"
+
 [node name="Lobby" type="VBoxContainer" parent="Center/Panel/Margin/Box"]
 unique_name_in_owner = true
 visible = false
@@ -117,6 +139,20 @@ text = "Lobby"
 [node name="PlayerList" type="Label" parent="Center/Panel/Margin/Box/Lobby"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="LevelRow" type="HBoxContainer" parent="Center/Panel/Margin/Box/Lobby"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="Center/Panel/Margin/Box/Lobby/LevelRow"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+text = "Level"
+
+[node name="LobbyLevel" type="OptionButton" parent="Center/Panel/Margin/Box/Lobby/LevelRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="StartButton" type="Button" parent="Center/Panel/Margin/Box/Lobby"]
 unique_name_in_owner = true
