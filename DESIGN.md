@@ -20,7 +20,7 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 
 ## Build plan
 1. Single-player core: movement, camera, terrain, enemy patterns, death, checkpoint, finish. **(done)**
-2. Networking: Host / Join menu, one character per player, synced positions, tested with several copies on one PC.
+2. Networking: Host / Join menu, one character per player, synced positions, tested with several copies on one PC. **(done)** Until step 3, every player respawns at their own last checkpoint, and the round ends when everyone has reached the finish.
 3. Co-op round rules: watching teammates while dead, respawning at checkpoints, "round lost" when everyone is dead, host restarts.
 4. Content: 3-5 levels, more enemy patterns, level select.
 5. Real online play: Steam invites (GodotSteam) so friends can join over the internet.
@@ -35,5 +35,10 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 
 ## How the code is set up
 - `GameClock` (autoload) holds the round time. Enemies calculate their position from it, so in online play every player's game can show enemies in the same place from one shared clock.
+- `Network` (autoload) handles hosting, joining, the lobby's player list, starting rounds and syncing the clock (players who joined check the host's clock once a second). All network messages go through it, because it exists in every scene.
+- Online flow: the main menu hosts or joins. In the lobby, the host presses Start, and everyone loads the level. When all players have loaded, the host starts the round clock for everyone.
+- Each player's own computer moves their character, checks whether an enemy hit them and sends their position about 30 times a second. Deaths, respawns and finishes are sent as separate messages that always arrive.
+- Port 24680 (ENet). Players on the same network join with the host's local address. Internet play needs port forwarding until Steam is added in step 5.
+- To test online play on one PC: in the editor, open Debug > Customize Run Instances, turn on multiple instances (e.g. 3), then press F5. Host in one window, join 127.0.0.1 in the others.
 - `Block` and `Zone` are custom node types. Add them with Add Node, then set the size, color and kind in the Inspector.
 - Physics layers: 1 = world, 2 = players, 3 = enemies. Players don't block each other.
