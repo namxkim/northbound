@@ -1,0 +1,225 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="2_camera"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="3_block"]
+[ext_resource type="Script" path="res://scripts/zone.gd" id="4_zone"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/boulder.tscn" id="6_boulder"]
+[ext_resource type="PackedScene" path="res://assets/forest/tree-high.glb" id="7_tree_high"]
+[ext_resource type="PackedScene" path="res://assets/forest/tree.glb" id="8_tree"]
+[ext_resource type="PackedScene" path="res://assets/forest/fence.glb" id="9_fence"]
+[ext_resource type="PackedScene" path="res://assets/forest/rocks-low.glb" id="10_rocks"]
+[ext_resource type="PackedScene" path="res://assets/forest/tent.glb" id="11_tent"]
+[ext_resource type="PackedScene" path="res://assets/forest/flag.glb" id="12_flag"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_1"]
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("SkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+tonemap_mode = 2
+
+[node name="Level01" type="Node3D"]
+script = ExtResource("1_level")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="."]
+fov = 50.0
+script = ExtResource("2_camera")
+
+[node name="Start" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -27)
+script = ExtResource("3_block")
+size = Vector3(80, 1, 120)
+color = Color(0.35, 0.6, 0.3, 1)
+
+[node name="WallWest" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0, -27)
+script = ExtResource("3_block")
+size = Vector3(1, 1.5, 70)
+show_box = false
+decoration = ExtResource("7_tree_high")
+decoration_spacing = 1.9
+
+[node name="WallEast" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -27)
+script = ExtResource("3_block")
+size = Vector3(1, 1.5, 70)
+show_box = false
+decoration = ExtResource("8_tree")
+decoration_spacing = 1.9
+
+[node name="WallSouth" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+script = ExtResource("3_block")
+size = Vector3(22, 1.5, 1)
+show_box = false
+decoration = ExtResource("8_tree")
+decoration_spacing = 1.9
+
+[node name="WallNorth" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -61.5)
+script = ExtResource("3_block")
+size = Vector3(22, 1.5, 1)
+show_box = false
+decoration = ExtResource("7_tree_high")
+decoration_spacing = 1.9
+
+[node name="Barrier1" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -17)
+script = ExtResource("3_block")
+size = Vector3(14, 1.5, 1)
+show_box = false
+decoration = ExtResource("9_fence")
+decoration_spacing = 2.2
+random_turn = false
+
+[node name="Barrier2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -36)
+script = ExtResource("3_block")
+size = Vector3(14, 1.5, 1)
+show_box = false
+decoration = ExtResource("10_rocks")
+decoration_scale = 1.4
+decoration_spacing = 1.4
+
+[node name="Pillar1" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -43)
+script = ExtResource("3_block")
+size = Vector3(2, 1.5, 1.2)
+show_box = false
+decoration = ExtResource("11_tent")
+decoration_scale = 1.6
+random_turn = false
+
+[node name="Pillar2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -47)
+script = ExtResource("3_block")
+size = Vector3(2, 1.5, 1.2)
+show_box = false
+decoration = ExtResource("11_tent")
+decoration_scale = 1.6
+random_turn = false
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Sweeper1" parent="Enemies" instance=ExtResource("6_boulder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3, 0, -8)
+line_offset = Vector3(20.6, 0, 0)
+
+[node name="Sweeper2" parent="Enemies" instance=ExtResource("6_boulder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3, 0, -12)
+time_offset = 0.75
+line_offset = Vector3(-20.6, 0, 0)
+line_period = 3.0
+
+[node name="Circler1" parent="Enemies" instance=ExtResource("5_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -25)
+pattern = 1
+circle_radius = 4.0
+
+[node name="Circler2" parent="Enemies" instance=ExtResource("5_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -25)
+pattern = 1
+time_offset = 2.5
+circle_radius = 4.0
+
+[node name="Patroller" parent="Enemies" instance=ExtResource("5_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -20)
+pattern = 2
+waypoints = PackedVector3Array(3.5, 0, 0, 3.5, 0, -8, 0, 0, -8)
+
+[node name="Sweeper3" parent="Enemies" instance=ExtResource("6_boulder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3, 0, -41)
+line_offset = Vector3(20.6, 0, 0)
+line_period = 2.6
+
+[node name="Sweeper4" parent="Enemies" instance=ExtResource("6_boulder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3, 0, -45)
+time_offset = 1.0
+line_offset = Vector3(-20.6, 0, 0)
+line_period = 2.2
+
+[node name="Sweeper5" parent="Enemies" instance=ExtResource("6_boulder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3, 0, -49)
+time_offset = 0.4
+line_offset = Vector3(20.6, 0, 0)
+line_period = 2.0
+
+[node name="Zones" type="Node3D" parent="."]
+
+[node name="Checkpoint" type="Area3D" parent="Zones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+script = ExtResource("4_zone")
+
+[node name="Finish" type="Area3D" parent="Zones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -57)
+script = ExtResource("4_zone")
+kind = 1
+size = Vector3(20, 2, 4)
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="CheckpointFlagWest" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -10, 0, -32)
+
+[node name="CheckpointFlagEast" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 10, 0, -32)
+
+[node name="FinishFlag1" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -9, 0, -58.5)
+
+[node name="FinishFlag2" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -4.5, 0, -58.5)
+
+[node name="FinishFlag3" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, -58.5)
+
+[node name="FinishFlag4" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 4.5, 0, -58.5)
+
+[node name="FinishFlag5" parent="Decor" instance=ExtResource("12_flag")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 9, 0, -58.5)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Status" type="Label" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 24.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="Help" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -48.0
+offset_right = 640.0
+offset_bottom = -16.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "WASD / arrow keys: move     R: restart round"
