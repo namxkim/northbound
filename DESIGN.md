@@ -24,11 +24,11 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 | 6 Pirate Beach | Cannonballs, barrels drifting down water channels, skeleton pirates, crate zigzags | |
 | 7 Snow | Snowballs, sleds on ice lanes, marching nutcrackers, wandering gingerbread people | |
 
-Difficulty starts high and ramps up: x-1 levels are already demanding, x-5 levels are hardest, and later worlds are harder overall. Four things grow together:
+Difficulty starts high and ramps up: x-1 levels are already demanding, x-5 levels are hardest, and later worlds are harder overall. Two things grow together:
 - **How busy:** each section's hazard count scales from 0.85 (1-1) to 1.41 (7-5).
 - **Length:** 6 sections in x-1 and x-2, 7 in x-3 and x-4, 8 in x-5, with a checkpoint every two sections.
-- **Room for error:** the solver must find a way through with 0.4 m around every hazard in x-1 levels, down to 0.35 m in x-4 and x-5.
-- **Speed cap:** 1.0x in 1-1, rising each level and world up to 1.4x.
+
+All hazards currently run at their base speed. The levels have **not** been checked by the solver since they got longer and busier, so a stretch could turn out unfair or impossible; if one does, `tools/tune_levels.py` can tune just that level (for example `w3_l4`), or its recipe can be adjusted in the generator. When tuning, x-1 levels need a way through with 0.4 m around every hazard (down to 0.35 m in x-4 and x-5), with speeds capped from 1.0x in 1-1 up to 1.4x.
 
 The list lives in `scripts/levels.gd`. To add a level by hand, make a scene with `level.gd` on the root, a `Start` marker, terrain, hazards and Zones, then add it to the list. The camera and on-screen text are added automatically.
 
