@@ -6,10 +6,9 @@ it tries, with hazards grown by the level's safety margin. Writes the result to
 tools/level_dials.json and regenerates the levels.
 
 Difficulty ramps up through the game:
-- Room for error: x-1 levels need 0.5 m around every hazard, x-4 and x-5 0.35 m.
-- Speed cap: 0.75x in 1-1, rising with each level and world, up to 1.4x.
-Chasers aren't part of the search (they react to players); they're kept
-slower than players instead.
+- Room for error: x-1 levels need 0.4 m around every hazard, x-4 and x-5 0.35 m.
+- Speed cap: 1.0x in 1-1, rising with each level and world, up to 1.4x.
+Each checkpoint-to-checkpoint stretch (two sections) has its own dial.
 
 Run from the project folder:  uv run --no-project tools/tune_levels.py
 Optional: a list of levels to tune, like  w2_l3 w2_l4
@@ -34,12 +33,12 @@ PARALLEL = max(2, min(8, (os.cpu_count() or 4) - 2))
 
 def margin_for(level):
     number = int(level.split("_l")[1])
-    return [0.5, 0.45, 0.4, 0.35, 0.35][number - 1]
+    return [0.4, 0.38, 0.36, 0.35, 0.35][number - 1]
 
 
 def cap_for(level):
     world, number = int(level[1]), int(level.split("_l")[1])
-    return round(min(1.4, 0.75 + 0.13 * (number - 1) + 0.04 * (world - 1)), 3)
+    return round(min(1.4, 1.0 + 0.08 * (number - 1) + 0.03 * (world - 1)), 3)
 
 
 def load_dials():
@@ -57,20 +56,20 @@ def generate(dials):
                    cwd=PROJECT, check=True, capture_output=True)
 
 
-def solve(level, margin=None):
+def solve(level, margin=None, starts=6):
     output = subprocess.run(
         [GODOT, "--headless", "--path", PROJECT, "-s", "tools/solver.gd", "--",
-         f"level=res://levels/{level}.tscn", f"margin={margin or margin_for(level)}"],
+         f"level=res://levels/{level}.tscn", f"margin={margin or margin_for(level)}", f"starts={starts}"],
         capture_output=True, text=True).stdout
     sections = [int(m.group(1)) == int(m.group(2)) for m in re.finditer(r"beatable from (\d+)/(\d+)", output)]
     spawn_safe = "spawn spots: all safe" in output
     return level, sections, spawn_safe, output
 
 
-def solve_all(levels, margin=None):
+def solve_all(levels, margin=None, starts=6):
     with ThreadPoolExecutor(PARALLEL) as pool:
         return {level: (sections, safe, text) for level, sections, safe, text in
-                pool.map(lambda lv: solve(lv, margin), levels)}
+                pool.map(lambda lv: solve(lv, margin, starts), levels)}
 
 
 def main():
@@ -82,7 +81,8 @@ def main():
         for level in levels:
             dials[level] = [round((low[level][i] + high[level][i]) / 2, 3) for i in range(4)]
         generate(dials)
-        results = solve_all(levels)
+        # 4 start times while searching (faster); the final check below uses 6.
+        results = solve_all(levels, starts=4)
         for level in levels:
             for i, ok in enumerate(results[level][0]):
                 (low if ok else high)[level][i] = dials[level][i]

@@ -19,7 +19,7 @@ const PLAYER_RADIUS := 0.21  # The player's hurtbox.
 const CELL := 0.5
 const STEP := 0.14  # Seconds per search step. At 5 m/s that's 0.7 m, one diagonal cell.
 const SUBSTEPS := 8  # Hazard samples per step, so fast hazards can't skip over a cell.
-const HORIZON := 40.0  # Give up on a section after this many seconds.
+const HORIZON := 70.0  # Give up on a section after this many seconds.
 const WALL_MASK := 1
 
 var level_path := ""

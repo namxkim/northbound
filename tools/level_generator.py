@@ -1,9 +1,10 @@
 """Writes every level scene: levels/w1_l1.tscn (level 1-1) to w7_l5.tscn (7-5).
 
 The game has 7 worlds of 5 levels. Each world has its own look and enemy
-models. Each level is a recipe: a list of section types (rolling hazards,
-traffic, circling walkers, wanderers, chasers...), with a checkpoint after
-each section. Levels get busier from x-1 to x-5 and from world to world.
+models. Each level is a recipe: a list of 6 to 8 section types (rolling
+hazards, traffic, circling walkers, swarms of wanderers...), with a checkpoint
+after every second section. Levels get busier from x-1 to x-5 and from world
+to world.
 
 Running this script OVERWRITES all those level files, so any changes made to
 them in the Godot editor are lost. Tweak the recipes here instead.
@@ -117,7 +118,6 @@ SPIKES = "res://scripts/spike_field.gd"
 WALKER = "res://scenes/enemy.tscn"
 BOULDER = "res://scenes/boulder.tscn"
 CAR = "res://scenes/car.tscn"
-CHASER = "res://scenes/chaser.tscn"
 SUN = "Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 10, 0)"
 
 
@@ -134,8 +134,8 @@ class Level:
         self.number = number
         self.key = f"w{world.index}_l{number}"
         self.rng = random.Random(world.index * 100 + number)
-        # How busy the level is: 0.5 for 1-1, up to 1.2 for 7-5.
-        self.intensity = 0.5 + 0.1 * (number - 1) + 0.05 * (world.index - 1)
+        # How busy the level is: 0.85 for 1-1, up to 1.41 for 7-5.
+        self.intensity = 0.85 + 0.08 * (number - 1) + 0.04 * (world.index - 1)
         self.recipe = recipe
         self.speed = 1.0
         self.s = Scene()
@@ -150,7 +150,9 @@ class Level:
     # --- timing ---
 
     def section(self, index):
-        self.speed = DIALS.get(self.key, [1.0] * 4)[index]
+        """Starts section `index`. Sections come in pairs between checkpoints, and
+        each pair (one checkpoint-to-checkpoint stretch) shares a speed dial."""
+        self.speed = DIALS.get(self.key, [1.0] * 4)[index // 2]
 
     def t(self, seconds):
         return None if seconds is None else seconds / self.speed
@@ -234,22 +236,14 @@ class Level:
                 props.update(line_period=p, time_offset=p * i / count)
             self.walker(x, z, skin["model"], skin["scale"], skin.get("hit"), **props)
 
-    def wanderer(self, x, z, area_x, area_z):
+    def wanderer(self, x, z, area_x, area_z, hop=3.5):
+        """An enemy hopping around randomly inside an area centered on (x, z)."""
         skin = self.world.wanderer
         self.seed_counter += 1
         self.walker(x, z, skin["model"], skin["scale"], skin.get("hit"), pattern=4,
-                    wander_area=vec2(area_x, area_z), wander_step=self.t(self.uniform(0.9, 1.5)),
-                    wander_pause_chance=0.2, wander_seed=self.world.index * 10000 + self.number * 1000 + self.seed_counter)
-
-    def chaser(self, x, z):
-        skin = self.world.chaser
-        i = self.intensity
-        props = dict(transform=transform(x, 0, z), model_scene=self.s.res(skin["model"]),
-                     model_scale=skin["scale"], speed=round(min(4.2, 2.8 + 1.0 * i), 2),
-                     sight_radius=round(min(6.5, 4.5 + 1.5 * i), 2), leash_radius=5.0)
-        if skin.get("hit"):
-            props["hit_radius"] = skin["hit"]
-        self.s.node("Chaser", "Hazards", instance=CHASER, **props)
+                    wander_area=vec2(area_x, area_z), wander_step=self.t(self.uniform(0.7, 1.2)),
+                    wander_variation=0.7, wander_hop=hop, wander_pause_chance=self.uniform(0.1, 0.3),
+                    wander_seed=self.world.index * 10000 + self.number * 1000 + self.seed_counter)
 
     def arm(self, x, z, yaw=0.0, **props):
         props = {k: fmt(v) for k, v in props.items()}
@@ -354,6 +348,8 @@ class Level:
         if i > 0.7:
             self.walker_line(-9.8, z_top - 1.0, 0, -(length - 2), self.uniform(3.0, 3.8), 2)
             self.walker_line(9.8, z_bottom + 1.0, 0, length - 2, self.uniform(3.0, 3.8), 2)
+        for _ in range(round(2 + 2 * i)):
+            self.wanderer(self.uniform(-7.0, 7.0), self.uniform(z_bottom + 3.0, z_top - 3.0), 6.0, 4.0)
         for _ in range(2):
             self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2, z_top - 2))
         return z_bottom
@@ -370,7 +366,10 @@ class Level:
                 self.walker_line(x, z, dx, 0, None, count, stop=(self.uniform(0.9, 1.3), self.uniform(0.4, 0.8)))
             else:
                 self.walker_line(x, z, dx, 0, self.uniform(2.6, 3.6), count)
-        return z_top - 1.5 - 2.6 * (rows - 1) - 1.5
+        z_bottom = z_top - 1.5 - 2.6 * (rows - 1) - 1.5
+        for _ in range(round(2 + 2 * i)):
+            self.wanderer(self.uniform(-7.0, 7.0), self.uniform(z_bottom + 2.5, z_top - 2.5), 6.0, 3.0, hop=2.5)
+        return z_bottom
 
     def zigzag(self, z_top):
         i = self.intensity
@@ -396,25 +395,21 @@ class Level:
 
     def wanderers(self, z_top):
         i = self.intensity
-        length = 18.0
+        length = 20.0
         z_bottom = z_top - length
-        for _ in range(round(5 + 9 * i)):
-            self.wanderer(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 3.5, z_top - 3.5), 6.0, 5.0)
+        for _ in range(round(8 + 12 * i)):
+            self.wanderer(self.uniform(-6.5, 6.5), self.uniform(z_bottom + 4.0, z_top - 4.0), 8.0, 6.0)
         for _ in range(3):
             self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2.5, z_top - 2.5))
         return z_bottom
 
-    def chasers(self, z_top):
+    def swarm(self, z_top):
+        """A big field packed with wanderers roaming wide areas."""
         i = self.intensity
-        length = 20.0
+        length = 24.0
         z_bottom = z_top - length
-        count = round(1 + 3 * i)
-        for c in range(count):
-            # Posts stay at least the leash (5 m) plus a bit away from either checkpoint.
-            x = -7.0 + 14.0 * (c + 0.5) / count + self.uniform(-1.0, 1.0)
-            self.chaser(x, self.uniform(z_bottom + 7.5, z_top - 7.5))
-        for _ in range(round(2 + 3 * i)):
-            self.wanderer(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 3.5, z_top - 3.5), 6.0, 5.0)
+        for _ in range(round(14 + 14 * i)):
+            self.wanderer(self.uniform(-4.5, 4.5), self.uniform(z_bottom + 5.0, z_top - 5.0), 12.0, 9.0, hop=4.0)
         for _ in range(4):
             self.obstacle(self.uniform(-8.5, 8.5), self.uniform(z_bottom + 3.0, z_top - 3.0))
         return z_bottom
@@ -490,12 +485,15 @@ class Level:
             self.section(n)
             z_bottom = getattr(self, section_name)(z)
             self.walls.append((z, z_bottom, section_name))
-            if n < len(self.recipe) - 1:
+            if n == len(self.recipe) - 1:
+                self.finish(z_bottom - 3.0)
+                self.finish_z = z_bottom - 3.0
+            elif n % 2 == 1:
+                # A checkpoint after every second section.
                 self.checkpoint(z_bottom - 2.5)
                 z = z_bottom - 5.0
             else:
-                self.finish(z_bottom - 3.0)
-                self.finish_z = z_bottom - 3.0
+                z = z_bottom - 2.0
         self.world.dress(self, 7.0, self.finish_z - 4.5)
 
     def write(self):
@@ -570,7 +568,6 @@ class Forest(World):
     roller = {"color": None}
     walker = {"model": A("forest", "character-archer"), "scale": 1.3}
     wanderer = {"model": A("dungeon", "character-human"), "scale": 1.3}
-    chaser = {"model": A("dungeon", "character-orc"), "scale": 1.3}
     wall_model = (A("forest", "rocks-low"), 1.1, 1.1)
     obstacles = [(A("forest", "tent"), 1.3, (1.6, 1.2, 1.4)), (A("forest", "rocks-low"), 1.4, (1.2, 1.0, 1.2))]
 
@@ -590,7 +587,6 @@ class City(World):
     roller = {"color": (0.55, 0.55, 0.58)}
     walker = {"model": A("characters", "character-male-e"), "scale": 1.3}
     wanderer = {"model": A("cars", "kart-oobi"), "scale": 1.0, "hit": 0.45}
-    chaser = {"model": A("cars", "police"), "scale": 0.72, "hit": 0.55}
     vehicles = [A("cars", c) for c in ["sedan", "taxi", "van", "suv", "police", "truck", "delivery", "hatchback-sports"]]
     arm_color = (0.95, 0.55, 0.1)
     wall_model = (A("roads", "construction-barrier"), 6.0, 1.0)
@@ -629,7 +625,6 @@ class Dungeon(World):
     roller = {"color": (0.45, 0.42, 0.42)}
     walker = {"model": A("dungeon", "character-orc"), "scale": 1.3}
     wanderer = {"model": A("dungeon", "character-orc"), "scale": 1.3}
-    chaser = {"model": A("graveyard", "character-skeleton"), "scale": 1.3}
     wall_model = (A("dungeon", "wall"), 2.0, 2.0)
     obstacles = [(A("dungeon", "barrel"), 1.4, (0.8, 1.0, 0.8)), (A("dungeon", "column"), 2.0, (1.0, 2.0, 1.0))]
 
@@ -666,7 +661,6 @@ class Graveyard(World):
     roller = {"model": A("graveyard", "pumpkin-carved"), "scale": 1.9}
     walker = {"model": A("graveyard", "character-zombie"), "scale": 1.3}
     wanderer = {"model": A("graveyard", "character-ghost"), "scale": 1.3}
-    chaser = {"model": A("graveyard", "character-vampire"), "scale": 1.3}
     arm_color = (0.3, 0.3, 0.35)
     obstacles = [(A("graveyard", "crypt"), 1.6, (1.2, 1.2, 1.8)), (A("graveyard", "gravestone-cross"), 1.6, (0.7, 1.4, 0.5)),
                  (A("graveyard", "gravestone-round"), 1.8, (0.8, 1.0, 0.5))]
@@ -697,7 +691,6 @@ class SpaceStation(World):
     roller = {"model": A("space", "meteor"), "scale": 0.85}
     walker = {"model": A("space", "alien"), "scale": 1.3}
     wanderer = {"model": A("space", "alien"), "scale": 1.3}
-    chaser = {"model": A("space", "rover"), "scale": 2.5, "hit": 0.45}
     vehicles = [A("space", "craft_cargoA"), A("space", "craft_cargoB"), A("space", "craft_miner")]
     vehicle_scale = 0.75
     arm_color = (0.3, 0.55, 0.95)
@@ -730,7 +723,6 @@ class PirateBeach(World):
     roller = {"model": A("pirate", "cannon-ball"), "scale": 1.1}
     walker = {"model": A("graveyard", "character-skeleton"), "scale": 1.3}
     wanderer = {"model": A("graveyard", "character-skeleton"), "scale": 1.3}
-    chaser = {"model": A("pirate", "cannon-mobile"), "scale": 0.55, "hit": 0.45}
     vehicle_rolls = True  # Barrels drifting down water channels.
     arm_color = (0.25, 0.22, 0.2)
     obstacles = [(A("pirate", "crate"), 1.0, (1.1, 0.8, 1.3)), (A("pirate", "barrel"), 0.7, (0.95, 0.9, 0.95))]
@@ -763,7 +755,6 @@ class Snow(World):
     roller = {"color": (0.95, 0.97, 1.0)}
     walker = {"model": A("holiday", "nutcracker"), "scale": 1.0}
     wanderer = {"model": A("holiday", "gingerbread-man"), "scale": 2.4}
-    chaser = {"model": A("holiday", "reindeer"), "scale": 0.85, "hit": 0.4}
     vehicles = [A("holiday", "sled"), A("holiday", "sled-long")]
     vehicle_scale = 1.6
     arm_color = (0.85, 0.15, 0.15)
@@ -788,63 +779,38 @@ class Snow(World):
 
 # --- Recipes: the sections of every level, south to north -------------------------
 
-RECIPES = {
-    Forest: [
-        ["rollers", "circles", "rollers"],
-        ["patrols", "rollers", "circles"],
-        ["zigzag", "wanderers", "rollers"],
-        ["circles", "wanderers", "zigzag", "chasers"],
-        ["rollers", "chasers", "wanderers", "zigzag"],
-    ],
-    City: [
-        ["traffic", "traffic", "construction"],
-        ["traffic", "wanderers", "traffic"],
-        ["construction", "traffic", "chasers"],
-        ["traffic", "wanderers", "traffic", "construction"],
-        ["traffic", "chasers", "traffic", "traffic"],
-    ],
-    Dungeon: [
-        ["spikes", "patrols", "spinners"],
-        ["spinners", "pendulums", "rams"],
-        ["spikes", "wanderers", "pendulums"],
-        ["patrols", "spinners", "chasers", "rams"],
-        ["spikes", "pendulums", "wanderers", "spinners"],
-    ],
-    Graveyard: [
-        ["wanderers", "circles", "rollers"],
-        ["zigzag", "wanderers", "chasers"],
-        ["circles", "chasers", "rollers"],
-        ["wanderers", "zigzag", "chasers", "circles"],
-        ["chasers", "wanderers", "rollers", "zigzag"],
-    ],
-    SpaceStation: [
-        ["traffic", "wanderers", "spinners"],
-        ["rollers", "spinners", "chasers"],
-        ["traffic", "pendulums", "wanderers"],
-        ["spinners", "chasers", "traffic", "rollers"],
-        ["wanderers", "pendulums", "traffic", "chasers"],
-    ],
-    PirateBeach: [
-        ["rollers", "traffic", "patrols"],
-        ["zigzag", "wanderers", "rollers"],
-        ["traffic", "chasers", "rams"],
-        ["rollers", "wanderers", "traffic", "chasers"],
-        ["zigzag", "chasers", "traffic", "rollers"],
-    ],
-    Snow: [
-        ["rollers", "patrols", "wanderers"],
-        ["traffic", "circles", "chasers"],
-        ["spinners", "wanderers", "rollers"],
-        ["chasers", "traffic", "patrols", "spinners"],
-        ["rollers", "wanderers", "chasers", "traffic"],
-    ],
+# The section types each world uses. Every level also gets a "swarm" section
+# (a field packed with wanderers) as every third section.
+PALETTES = {
+    Forest: ["rollers", "circles", "patrols", "zigzag", "wanderers"],
+    City: ["traffic", "construction", "wanderers", "traffic"],
+    Dungeon: ["spikes", "spinners", "pendulums", "rams", "patrols", "wanderers"],
+    Graveyard: ["rollers", "circles", "zigzag", "patrols", "wanderers"],
+    SpaceStation: ["traffic", "rollers", "spinners", "pendulums", "wanderers"],
+    PirateBeach: ["rollers", "traffic", "patrols", "zigzag", "rams", "wanderers"],
+    Snow: ["rollers", "traffic", "patrols", "circles", "spinners", "wanderers"],
 }
 
 
+def recipe_for(world_class, number):
+    """6 sections for x-1 and x-2, 7 for x-3 and x-4, 8 for x-5."""
+    rng = random.Random(world_class.index * 31 + number * 7)
+    palette = list(PALETTES[world_class])
+    rng.shuffle(palette)
+    recipe, next_type = [], 0
+    for n in range(6 + (number - 1) // 2):
+        if n % 3 == 1:
+            recipe.append("swarm")
+        else:
+            recipe.append(palette[next_type % len(palette)])
+            next_type += 1
+    return recipe
+
+
 def all_levels():
-    for world_class, recipes in RECIPES.items():
-        for number, recipe in enumerate(recipes, 1):
-            yield world_class(), number, recipe
+    for world_class in PALETTES:
+        for number in range(1, 6):
+            yield world_class(), number, recipe_for(world_class, number)
 
 
 def main():

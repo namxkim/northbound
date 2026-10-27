@@ -53,18 +53,27 @@ enum Pattern { LINE, CIRCLE, WAYPOINTS, STOP_AND_GO, WANDER }
 @export var pause_time := 1.5
 
 @export_group("Wander")
-## Moves to a random spot in this area (width, depth) around where it was
-## placed, then another. The spots come from Wander Seed and the round clock,
-## so every player's game picks the same "random" spots.
+## Hops around randomly inside this area (width, depth) around where it was
+## placed: each hop goes a random distance in a random direction at a random
+## speed, sometimes as a quick dash, sometimes pausing instead. The moves come
+## from Wander Seed and the round clock, so every player's game shows the same
+## "random" moves.
 @export var wander_area := Vector2(8, 6)
-## Seconds to get from one spot to the next.
-@export var wander_step := 1.2
-## Chance (0 to 1) of staying put for a step instead of moving.
+## Average seconds per hop.
+@export var wander_step := 1.0
+## How much hop times vary: 0 = all the same, 1 = from almost nothing to double.
+@export_range(0.0, 1.0) var wander_variation := 0.6
+## Longest hop, in meters.
+@export var wander_hop := 3.5
+## Chance (0 to 1) of pausing instead of hopping.
 @export_range(0.0, 0.9) var wander_pause_chance := 0.2
 ## Different numbers give different paths.
 @export var wander_seed := 1
 
 var _origin: Vector3
+# Wander path, worked out as far as needed: where each hop starts and when.
+var _wander_times := PackedFloat64Array()
+var _wander_spots := PackedVector3Array()
 var _animations: AnimationPlayer
 var _facing_set := false
 
@@ -139,19 +148,51 @@ func offset_at(t: float) -> Vector3:
 		Pattern.STOP_AND_GO:
 			return line_offset * _stop_and_go_progress(t)
 		Pattern.WANDER:
-			var step := maxf(wander_step, 0.05)
-			var index := floori(t / step)
-			var progress := smoothstep(0.0, 1.0, t / step - index)
-			return _wander_spot(index).lerp(_wander_spot(index + 1), progress)
+			return _wander_offset(t)
 	return Vector3.ZERO
 
 
-## The wander spot for step number `index`. Same answer on every computer.
-func _wander_spot(index: int) -> Vector3:
-	# Sometimes stay put: reuse the previous step's spot.
-	while index > 0 and _random(index, 2) < wander_pause_chance:
-		index -= 1
-	return Vector3((_random(index, 0) - 0.5) * wander_area.x, 0.0, (_random(index, 1) - 0.5) * wander_area.y)
+func _wander_offset(t: float) -> Vector3:
+	t = maxf(t, 0.0)
+	_extend_wander(t)
+	var hop := clampi(_wander_times.bsearch(t, false) - 1, 0, _wander_times.size() - 2)
+	var length := _wander_times[hop + 1] - _wander_times[hop]
+	var progress := clampf((t - _wander_times[hop]) / length, 0.0, 1.0)
+	# Some hops start and stop smoothly, others go at full speed and turn sharply.
+	if _random(hop, 4) < 0.5:
+		progress = smoothstep(0.0, 1.0, progress)
+	return _wander_spots[hop].lerp(_wander_spots[hop + 1], progress)
+
+
+## Works out the wander path up to time t. Same path on every computer.
+func _extend_wander(t: float) -> void:
+	if _wander_spots.is_empty():
+		_wander_spots.append(Vector3((_random(0, 0) - 0.5) * wander_area.x, 0.0, (_random(0, 1) - 0.5) * wander_area.y))
+		_wander_times.append(0.0)
+	while _wander_times[-1] <= t:
+		var hop := _wander_spots.size() - 1
+		var duration := maxf(wander_step, 0.05) * (1.0 + wander_variation * (2.0 * _random(hop, 3) - 1.0))
+		if _random(hop, 5) < 0.15:
+			duration *= 0.5  # A quick dash.
+		var spot := _wander_spots[hop]
+		if _random(hop, 2) >= wander_pause_chance:
+			var angle := TAU * _random(hop, 0)
+			var distance := wander_hop * (0.35 + 0.65 * _random(hop, 1))
+			spot += Vector3(cos(angle), 0.0, sin(angle)) * distance
+			# Bounce back inside the area.
+			var half := wander_area / 2.0
+			spot.x = _reflect(spot.x, half.x)
+			spot.z = _reflect(spot.z, half.y)
+		_wander_spots.append(spot)
+		_wander_times.append(_wander_times[-1] + maxf(duration, 0.25))
+
+
+func _reflect(value: float, limit: float) -> float:
+	if value > limit:
+		return clampf(2.0 * limit - value, -limit, limit)
+	if value < -limit:
+		return clampf(-2.0 * limit - value, -limit, limit)
+	return value
 
 
 ## A number from 0 to 1 that looks random but is always the same for the same inputs.
