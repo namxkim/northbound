@@ -9,15 +9,15 @@
 [ext_resource type="PackedScene" path="res://assets/suburban/planter.glb" id="7_planter"]
 [ext_resource type="Script" path="res://scripts/zone.gd" id="8_zone"]
 [ext_resource type="PackedScene" path="res://assets/roads/road-straight.glb" id="9_road_straight"]
-[ext_resource type="PackedScene" path="res://assets/cars/taxi.glb" id="10_taxi"]
+[ext_resource type="PackedScene" path="res://assets/cars/van.glb" id="10_van"]
 [ext_resource type="PackedScene" path="res://scenes/car.tscn" id="11_car"]
-[ext_resource type="PackedScene" path="res://assets/cars/police.glb" id="12_police"]
-[ext_resource type="PackedScene" path="res://assets/cars/van.glb" id="13_van"]
-[ext_resource type="PackedScene" path="res://assets/cars/truck.glb" id="14_truck"]
-[ext_resource type="PackedScene" path="res://assets/cars/suv.glb" id="15_suv"]
-[ext_resource type="PackedScene" path="res://assets/cars/hatchback-sports.glb" id="16_hatchback_sports"]
-[ext_resource type="PackedScene" path="res://assets/cars/sedan.glb" id="17_sedan"]
-[ext_resource type="PackedScene" path="res://assets/cars/delivery.glb" id="18_delivery"]
+[ext_resource type="PackedScene" path="res://assets/cars/hatchback-sports.glb" id="12_hatchback_sports"]
+[ext_resource type="PackedScene" path="res://assets/cars/sedan.glb" id="13_sedan"]
+[ext_resource type="PackedScene" path="res://assets/cars/police.glb" id="14_police"]
+[ext_resource type="PackedScene" path="res://assets/cars/truck.glb" id="15_truck"]
+[ext_resource type="PackedScene" path="res://assets/cars/delivery.glb" id="16_delivery"]
+[ext_resource type="PackedScene" path="res://assets/cars/taxi.glb" id="17_taxi"]
+[ext_resource type="PackedScene" path="res://assets/cars/suv.glb" id="18_suv"]
 [ext_resource type="PackedScene" path="res://assets/suburban/building-type-a.glb" id="19_building_type_a"]
 [ext_resource type="PackedScene" path="res://assets/suburban/building-type-b.glb" id="20_building_type_b"]
 [ext_resource type="PackedScene" path="res://assets/suburban/building-type-f.glb" id="21_building_type_f"]
@@ -139,345 +139,527 @@ spacing = 3.25
 ball_radius = 0.6
 
 [node name="Walker" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.2712, 0.0, -29.3483)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9255
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1015
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2729
+wander_hop = 5.0
+wander_pause_chance = 0.1902
 wander_seed = 21001
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker2" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.9902, 0.0, -37.9452)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9834
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.572
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1954
+wander_hop = 5.0
+wander_pause_chance = 0.1279
 wander_seed = 21002
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker3" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.3219, 0.0, -36.889)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0476
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9907
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1378
+wander_hop = 5.0
+wander_pause_chance = 0.2072
 wander_seed = 21003
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker4" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.8044, 0.0, -36.5453)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8334
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.8172
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1362
+wander_pause_chance = 0.1378
 wander_seed = 21004
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker5" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.2783, 0.0, -30.5823)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7152
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5438
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2151
+wander_pause_chance = 0.1534
 wander_seed = 21005
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker6" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.797, 0.0, -30.8906)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9037
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.8519
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2077
+wander_pause_chance = 0.2331
 wander_seed = 21006
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker7" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.3547, 0.0, -28.9967)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0414
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.7453
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1587
+wander_pause_chance = 0.1156
 wander_seed = 21007
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker8" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.6495, 0.0, -31.7286)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9673
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9629
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2786
+wander_hop = 5.0
+wander_pause_chance = 0.2077
 wander_seed = 21008
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker9" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.4353, 0.0, -37.2744)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9056
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6058
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2421
+wander_hop = 5.0
+wander_pause_chance = 0.2366
 wander_seed = 21009
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker10" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.7313, 0.0, -26.3741)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7067
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.4567
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1827
+wander_pause_chance = 0.2167
 wander_seed = 21010
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker11" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.0859, 0.0, -26.6232)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9529
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1572
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1504
+wander_hop = 5.0
+wander_pause_chance = 0.2763
 wander_seed = 21011
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker12" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.8246, 0.0, -35.4367)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0483
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.6467
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1685
+wander_pause_chance = 0.2421
 wander_seed = 21012
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker13" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.773, 0.0, -31.6735)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0856
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1865
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.198
+wander_hop = 5.0
+wander_pause_chance = 0.1027
 wander_seed = 21013
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker14" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.836, 0.0, -31.9123)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9622
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1372
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1012
+wander_hop = 5.0
+wander_pause_chance = 0.2897
 wander_seed = 21014
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker15" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.1462, 0.0, -27.6709)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9558
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9007
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2567
+wander_hop = 5.0
+wander_pause_chance = 0.2183
 wander_seed = 21015
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker16" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.0919, 0.0, -39.3769)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.064
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0786
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1978
+wander_hop = 5.0
+wander_pause_chance = 0.1685
 wander_seed = 21016
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker17" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.4779, 0.0, -36.8359)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9467
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.7526
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1922
+wander_pause_chance = 0.2543
 wander_seed = 21017
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker18" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.3352, 0.0, -34.9275)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0938
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0372
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1822
+wander_hop = 5.0
+wander_pause_chance = 0.2141
 wander_seed = 21018
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker19" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.9879, 0.0, -26.221)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7809
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8024
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2635
+wander_hop = 5.0
+wander_pause_chance = 0.1745
 wander_seed = 21019
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker20" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.4841, 0.0, -35.2028)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1428
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5523
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1867
+wander_hop = 5.0
+wander_pause_chance = 0.2567
 wander_seed = 21020
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker21" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.3164, 0.0, -39.8333)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1935
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4575
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2718
+wander_hop = 5.0
+wander_pause_chance = 0.2456
 wander_seed = 21021
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker22" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.1766, 0.0, -35.1313)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8526
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.801
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2371
+wander_hop = 5.0
+wander_pause_chance = 0.1438
 wander_seed = 21022
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker23" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.0577, 0.0, -31.51)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7769
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9845
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1373
+wander_hop = 5.0
+wander_pause_chance = 0.2741
 wander_seed = 21023
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker24" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.3083, 0.0, -36.5704)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1945
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.115
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2338
+wander_hop = 5.0
+wander_pause_chance = 0.1822
 wander_seed = 21024
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker25" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.9, 0.0, -30.9017)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8196
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6454
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2916
+wander_hop = 5.0
+wander_pause_chance = 0.1324
 wander_seed = 21025
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker26" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.1389, 0.0, -27.1939)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9665
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4726
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2204
+wander_hop = 5.0
+wander_pause_chance = 0.1671
 wander_seed = 21026
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
+[node name="Walker27" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5367
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1041
+wander_seed = 21027
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker28" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9922
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2718
+wander_seed = 21028
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker29" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5181
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.161
+wander_seed = 21029
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker30" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8197
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2199
+wander_seed = 21030
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker31" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5119
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2513
+wander_seed = 21031
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker32" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9934
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2338
+wander_seed = 21032
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker33" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0571
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1478
+wander_seed = 21033
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker34" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.458
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2815
+wander_seed = 21034
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker35" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0409
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2088
+wander_seed = 21035
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker36" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8665
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1704
+wander_seed = 21036
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker37" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9245
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2592
+wander_seed = 21037
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker38" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8119
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1186
+wander_seed = 21038
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker39" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5569
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1267
+wander_seed = 21039
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker40" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -32.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0198
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2416
+wander_seed = 21040
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
 [node name="Cover" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.7485, 0.0, -34.9134)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.3932, 0.0, -25.1471)
 script = ExtResource("6_block")
 size = Vector3(0.6, 2.0, 0.6)
 show_box = false
@@ -487,7 +669,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover2" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.4189, 0.0, -27.7554)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.6927, 0.0, -41.6297)
 script = ExtResource("6_block")
 size = Vector3(1.2, 0.6, 0.9)
 show_box = false
@@ -497,7 +679,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover3" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.151, 0.0, -41.1116)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.097, 0.0, -40.0621)
 script = ExtResource("6_block")
 size = Vector3(0.6, 2.0, 0.6)
 show_box = false
@@ -507,11 +689,11 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover4" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.0751, 0.0, -38.3905)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 7.2533, 0.0, -27.7424)
 script = ExtResource("6_block")
-size = Vector3(1.2, 0.6, 0.9)
+size = Vector3(0.6, 2.0, 0.6)
 show_box = false
-decoration = ExtResource("7_planter")
+decoration = ExtResource("5_tree_large")
 decoration_scale = 3.0
 decoration_spacing = 10.0
 random_turn = true
@@ -521,275 +703,392 @@ transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 
 script = ExtResource("8_zone")
 size = Vector3(14.0, 2.0, 3.0)
 
-[node name="Walker27" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.4504, 0.0, -64.2993)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9646
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2099
-wander_seed = 21027
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker28" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.7025, 0.0, -60.1775)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.1654
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.103
-wander_seed = 21028
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker29" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.0375, 0.0, -57.4178)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8883
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1204
-wander_seed = 21029
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker30" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.6201, 0.0, -57.4591)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.033
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.206
-wander_seed = 21030
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker31" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.4216, 0.0, -64.6886)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9431
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1216
-wander_seed = 21031
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker32" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.6708, 0.0, -65.5816)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8131
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2104
-wander_seed = 21032
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker33" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.9557, 0.0, -65.7335)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8498
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1663
-wander_seed = 21033
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker34" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.6409, 0.0, -61.0047)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.7004
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1377
-wander_seed = 21034
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker35" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.059, 0.0, -55.626)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8492
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.238
-wander_seed = 21035
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker36" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.4354, 0.0, -57.5744)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9168
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1629
-wander_seed = 21036
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker37" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.3265, 0.0, -61.584)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8531
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1746
-wander_seed = 21037
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker38" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.7549, 0.0, -58.6471)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8996
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1121
-wander_seed = 21038
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker39" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0992, 0.0, -65.1288)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9504
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.21
-wander_seed = 21039
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker40" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.1286, 0.0, -64.0855)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.986
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2583
-wander_seed = 21040
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
 [node name="Walker41" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.3476, 0.0, -60.4661)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9914
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.8332
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1224
+wander_hop = 4.5
+wander_pause_chance = 0.1202
 wander_seed = 21041
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker42" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.6857, 0.0, -55.0553)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.1555
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.8431
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2817
+wander_hop = 4.5
+wander_pause_chance = 0.1589
 wander_seed = 21042
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker43" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.3283, 0.0, -57.8681)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.0688
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.5357
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1629
+wander_hop = 3.6
+wander_pause_chance = 0.2104
 wander_seed = 21043
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker44" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.4005, 0.0, -57.7787)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.874
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.4528
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2829
+wander_hop = 4.5
+wander_pause_chance = 0.1599
 wander_seed = 21044
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker45" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.3681, 0.0, -55.51)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.0496
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.888
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.177
+wander_hop = 4.5
+wander_pause_chance = 0.1816
 wander_seed = 21045
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
+[node name="Walker46" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.5132
+wander_variation = 0.7
+wander_hop = 3.6
+wander_pause_chance = 0.1529
+wander_seed = 21046
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker47" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.5097
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.238
+wander_seed = 21047
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker48" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.5888
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1867
+wander_seed = 21048
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker49" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.01
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1719
+wander_seed = 21049
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker50" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9491
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1115
+wander_seed = 21050
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker51" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9597
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1121
+wander_seed = 21051
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker52" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.8257
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2002
+wander_seed = 21052
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker53" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1886
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1302
+wander_seed = 21053
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker54" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1166
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1485
+wander_seed = 21054
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker55" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0331
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1224
+wander_seed = 21055
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker56" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1615
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2822
+wander_seed = 21056
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker57" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.4526
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2339
+wander_seed = 21057
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker58" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9258
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1477
+wander_seed = 21058
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker59" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9392
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2829
+wander_seed = 21059
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker60" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1463
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2398
+wander_seed = 21060
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker61" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0856
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2801
+wander_seed = 21061
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker62" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9127
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1233
+wander_seed = 21062
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker63" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1043
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2223
+wander_seed = 21063
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker64" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.7926
+wander_variation = 0.7
+wander_hop = 3.6
+wander_pause_chance = 0.2417
+wander_seed = 21064
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker65" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0779
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2346
+wander_seed = 21065
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker66" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.4537
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2905
+wander_seed = 21066
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker67" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.8543
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1329
+wander_seed = 21067
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker68" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -59.9)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0459
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2165
+wander_seed = 21068
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
 [node name="Cover5" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.4257, 0.0, -53.8934)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.3348, 0.0, -54.5418)
 script = ExtResource("6_block")
-size = Vector3(1.2, 0.6, 0.9)
+size = Vector3(0.6, 2.0, 0.6)
 show_box = false
-decoration = ExtResource("7_planter")
+decoration = ExtResource("5_tree_large")
 decoration_scale = 3.0
 decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover6" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.4908, 0.0, -65.6513)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.4167, 0.0, -65.0096)
 script = ExtResource("6_block")
-size = Vector3(1.2, 0.6, 0.9)
+size = Vector3(0.6, 2.0, 0.6)
 show_box = false
-decoration = ExtResource("7_planter")
+decoration = ExtResource("5_tree_large")
 decoration_scale = 3.0
 decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover7" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.173, 0.0, -58.2269)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.2459, 0.0, -56.8921)
 script = ExtResource("6_block")
 size = Vector3(0.6, 2.0, 0.6)
 show_box = false
@@ -812,18 +1111,26 @@ solid = false
 [node name="Vehicle" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -73.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 1.7
-model_scene = ExtResource("10_taxi")
+time_offset = 2.861
+model_scene = ExtResource("10_van")
 model_scale = 0.72
-line_period = 3.7068
+line_period = 3.3678
 
 [node name="Vehicle2" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -73.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 3.5534
-model_scene = ExtResource("12_police")
+time_offset = 3.9836
+model_scene = ExtResource("12_hatchback_sports")
 model_scale = 0.72
-line_period = 3.7068
+line_period = 3.3678
+
+[node name="Vehicle3" parent="Hazards" instance=ExtResource("11_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -73.4)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 5.1062
+model_scene = ExtResource("13_sedan")
+model_scale = 0.72
+line_period = 3.3678
 
 [node name="Road2" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -75.9)
@@ -836,29 +1143,21 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle3" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -75.9)
-line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 2.7136
-model_scene = ExtResource("13_van")
-model_scale = 0.72
-line_period = 3.7428
-
 [node name="Vehicle4" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -75.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 3.9612
-model_scene = ExtResource("14_truck")
+time_offset = 0.5913
+model_scene = ExtResource("12_hatchback_sports")
 model_scale = 0.72
-line_period = 3.7428
+line_period = 2.6757
 
 [node name="Vehicle5" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -75.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 5.2088
-model_scene = ExtResource("13_van")
+time_offset = 1.9291
+model_scene = ExtResource("10_van")
 model_scale = 0.72
-line_period = 3.7428
+line_period = 2.6757
 
 [node name="Road3" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -78.4)
@@ -874,18 +1173,18 @@ solid = false
 [node name="Vehicle6" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -78.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 0.579
-model_scene = ExtResource("15_suv")
+time_offset = 1.8237
+model_scene = ExtResource("13_sedan")
 model_scale = 0.72
-line_period = 3.7037
+line_period = 3.6407
 
 [node name="Vehicle7" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -78.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 2.4308
-model_scene = ExtResource("13_van")
+time_offset = 3.6441
+model_scene = ExtResource("14_police")
 model_scale = 0.72
-line_period = 3.7037
+line_period = 3.6407
 
 [node name="Road4" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -80.9)
@@ -901,26 +1200,22 @@ solid = false
 [node name="Vehicle8" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -80.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 1.2701
-model_scene = ExtResource("13_van")
+time_offset = 0.4375
+model_scene = ExtResource("15_truck")
 model_scale = 0.72
-line_period = 2.6978
+pattern = 3
+move_time = 1.1594
+pause_time = 0.7823
 
 [node name="Vehicle9" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -80.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 2.1694
-model_scene = ExtResource("10_taxi")
+time_offset = 1.988
+model_scene = ExtResource("13_sedan")
 model_scale = 0.72
-line_period = 2.6978
-
-[node name="Vehicle10" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -80.9)
-line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 3.0686
-model_scene = ExtResource("13_van")
-model_scale = 0.72
-line_period = 2.6978
+pattern = 3
+move_time = 1.1594
+pause_time = 0.7823
 
 [node name="Road5" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -83.4)
@@ -933,29 +1228,25 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
+[node name="Vehicle10" parent="Hazards" instance=ExtResource("11_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -83.4)
+line_offset = Vector3(36.0, 0.0, 0.0)
+time_offset = 2.0279
+model_scene = ExtResource("12_hatchback_sports")
+model_scale = 0.72
+pattern = 3
+move_time = 0.9589
+pause_time = 0.7298
+
 [node name="Vehicle11" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -83.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 3.4925
-model_scene = ExtResource("16_hatchback_sports")
+time_offset = 3.3517
+model_scene = ExtResource("16_delivery")
 model_scale = 0.72
-line_period = 3.5411
-
-[node name="Vehicle12" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -83.4)
-line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 4.6728
-model_scene = ExtResource("17_sedan")
-model_scale = 0.72
-line_period = 3.5411
-
-[node name="Vehicle13" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -83.4)
-line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 5.8532
-model_scene = ExtResource("16_hatchback_sports")
-model_scale = 0.72
-line_period = 3.5411
+pattern = 3
+move_time = 0.9589
+pause_time = 0.7298
 
 [node name="Road6" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -85.9)
@@ -968,29 +1259,21 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle14" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle12" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -85.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 2.6869
-model_scene = ExtResource("16_hatchback_sports")
+time_offset = 2.0424
+model_scene = ExtResource("12_hatchback_sports")
 model_scale = 0.72
-line_period = 2.8652
+line_period = 3.3496
 
-[node name="Vehicle15" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle13" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -85.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 3.642
-model_scene = ExtResource("13_van")
+time_offset = 3.7172
+model_scene = ExtResource("17_taxi")
 model_scale = 0.72
-line_period = 2.8652
-
-[node name="Vehicle16" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -85.9)
-line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 4.5971
-model_scene = ExtResource("18_delivery")
-model_scale = 0.72
-line_period = 2.8652
+line_period = 3.3496
 
 [node name="Road7" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -88.4)
@@ -1003,367 +1286,553 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle17" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle14" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -88.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 0.1068
-model_scene = ExtResource("17_sedan")
+time_offset = 2.584
+model_scene = ExtResource("15_truck")
 model_scale = 0.72
-line_period = 3.2011
+pattern = 3
+move_time = 0.901
+pause_time = 0.7923
 
-[node name="Vehicle18" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle15" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -88.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 1.7073
-model_scene = ExtResource("15_suv")
+time_offset = 3.8811
+model_scene = ExtResource("15_truck")
 model_scale = 0.72
-line_period = 3.2011
+pattern = 3
+move_time = 0.901
+pause_time = 0.7923
 
 [node name="Checkpoint2" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -92.4)
 script = ExtResource("8_zone")
 size = Vector3(14.0, 2.0, 3.0)
 
-[node name="Walker46" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.2285, 0.0, -109.8323)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8602
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1088
-wander_seed = 21046
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker47" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.3164, 0.0, -113.568)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1972
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2637
-wander_seed = 21047
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker48" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.0235, 0.0, -105.6942)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1169
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1235
-wander_seed = 21048
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker49" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.6089, 0.0, -101.9214)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9572
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.275
-wander_seed = 21049
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker50" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.2712, 0.0, -113.8657)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8154
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2992
-wander_seed = 21050
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker51" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.4477, 0.0, -109.3371)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7349
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1783
-wander_seed = 21051
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker52" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.2774, 0.0, -106.96)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.716
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1219
-wander_seed = 21052
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker53" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.3404, 0.0, -100.8448)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0873
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1427
-wander_seed = 21053
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker54" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.8345, 0.0, -110.661)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9479
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2023
-wander_seed = 21054
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker55" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.0108, 0.0, -105.2316)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7201
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2175
-wander_seed = 21055
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker56" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.222, 0.0, -107.9066)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7279
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1727
-wander_seed = 21056
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker57" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.1382, 0.0, -104.089)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9037
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2542
-wander_seed = 21057
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker58" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.7869, 0.0, -110.4395)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9469
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1947
-wander_seed = 21058
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker59" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.5136, 0.0, -105.0975)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.977
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2687
-wander_seed = 21059
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker60" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.2706, 0.0, -103.146)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8357
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2286
-wander_seed = 21060
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker61" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.2711, 0.0, -113.4281)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0032
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1529
-wander_seed = 21061
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker62" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.4281, 0.0, -105.0554)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8128
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2865
-wander_seed = 21062
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker63" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.6221, 0.0, -111.3972)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1887
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1361
-wander_seed = 21063
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker64" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.1738, 0.0, -101.363)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8651
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2572
-wander_seed = 21064
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker65" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.1184, 0.0, -110.8703)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1055
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2002
-wander_seed = 21065
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker66" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.4652, 0.0, -101.2688)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9075
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2981
-wander_seed = 21066
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker67" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.177, 0.0, -103.8996)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9776
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.257
-wander_seed = 21067
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
-[node name="Walker68" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.3674, 0.0, -111.9255)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1061
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.278
-wander_seed = 21068
-model_scene = ExtResource("3_kart_oobi")
-model_scale = 1.0
-hit_radius = 0.45
-
 [node name="Walker69" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.6375, 0.0, -101.7314)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1549
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8279
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2816
+wander_hop = 5.0
+wander_pause_chance = 0.1783
 wander_seed = 21069
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker70" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.7009, 0.0, -108.3328)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7225
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.6974
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1739
+wander_pause_chance = 0.1064
 wander_seed = 21070
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
 [node name="Walker71" parent="Hazards" instance=ExtResource("4_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.1624, 0.0, -104.8495)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7712
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.4106
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1476
+wander_pause_chance = 0.2865
 wander_seed = 21071
 model_scene = ExtResource("3_kart_oobi")
 model_scale = 1.0
 hit_radius = 0.45
 
+[node name="Walker72" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4927
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1592
+wander_seed = 21072
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker73" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.6974
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2023
+wander_seed = 21073
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker74" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0477
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.108
+wander_seed = 21074
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker75" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8124
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1856
+wander_seed = 21075
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker76" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.618
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1303
+wander_seed = 21076
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker77" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.963
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2542
+wander_seed = 21077
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker78" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5483
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1988
+wander_seed = 21078
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker79" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8438
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2257
+wander_seed = 21079
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker80" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1374
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2949
+wander_seed = 21080
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker81" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5043
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2286
+wander_seed = 21081
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker82" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8135
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2213
+wander_seed = 21082
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker83" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5381
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2264
+wander_seed = 21083
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker84" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9595
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2805
+wander_seed = 21084
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker85" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9865
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1361
+wander_seed = 21085
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker86" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1582
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.166
+wander_seed = 21086
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker87" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5474
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1433
+wander_seed = 21087
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker88" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5502
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2548
+wander_seed = 21088
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker89" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.533
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2981
+wander_seed = 21089
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker90" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0857
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.211
+wander_seed = 21090
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker91" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4752
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1282
+wander_seed = 21091
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker92" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.628
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2364
+wander_seed = 21092
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker93" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.632
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2816
+wander_seed = 21093
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker94" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5295
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.109
+wander_seed = 21094
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker95" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1405
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2293
+wander_seed = 21095
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker96" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5428
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1803
+wander_seed = 21096
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker97" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.8259
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1992
+wander_seed = 21097
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker98" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6019
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1877
+wander_seed = 21098
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker99" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.7504
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2988
+wander_seed = 21099
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker100" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4858
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1266
+wander_seed = 21100
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker101" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.7105
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1144
+wander_seed = 21101
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker102" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5493
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2076
+wander_seed = 21102
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker103" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9649
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2193
+wander_seed = 21103
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker104" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9631
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2979
+wander_seed = 21104
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker105" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5413
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1157
+wander_seed = 21105
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker106" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.7317
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1825
+wander_seed = 21106
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker107" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1196
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2889
+wander_seed = 21107
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
+[node name="Walker108" parent="Hazards" instance=ExtResource("4_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -106.9)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.102
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2202
+wander_seed = 21108
+model_scene = ExtResource("3_kart_oobi")
+model_scale = 1.0
+hit_radius = 0.45
+
 [node name="Cover8" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.6731, 0.0, -115.0372)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.8858, 0.0, -109.2706)
 script = ExtResource("6_block")
 size = Vector3(1.2, 0.6, 0.9)
 show_box = false
@@ -1373,7 +1842,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover9" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.4048, 0.0, -115.1854)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.9229, 0.0, -103.6428)
 script = ExtResource("6_block")
 size = Vector3(1.2, 0.6, 0.9)
 show_box = false
@@ -1383,7 +1852,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover10" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.5611, 0.0, -113.4841)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.6985, 0.0, -101.5284)
 script = ExtResource("6_block")
 size = Vector3(1.2, 0.6, 0.9)
 show_box = false
@@ -1393,7 +1862,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover11" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 8.4015, 0.0, -102.1852)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.1868, 0.0, -115.3519)
 script = ExtResource("6_block")
 size = Vector3(0.6, 2.0, 0.6)
 show_box = false
@@ -1413,29 +1882,21 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle19" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle16" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -122.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 2.7554
-model_scene = ExtResource("14_truck")
+time_offset = 3.0525
+model_scene = ExtResource("12_hatchback_sports")
 model_scale = 0.72
-line_period = 3.0527
+line_period = 3.5207
 
-[node name="Vehicle20" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle17" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -122.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 3.7729
-model_scene = ExtResource("16_hatchback_sports")
+time_offset = 4.8128
+model_scene = ExtResource("14_police")
 model_scale = 0.72
-line_period = 3.0527
-
-[node name="Vehicle21" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -122.4)
-line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 4.7905
-model_scene = ExtResource("16_hatchback_sports")
-model_scale = 0.72
-line_period = 3.0527
+line_period = 3.5207
 
 [node name="Road9" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -124.9)
@@ -1448,29 +1909,25 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle22" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle18" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -124.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 2.9106
-model_scene = ExtResource("17_sedan")
+time_offset = 2.263
+model_scene = ExtResource("18_suv")
 model_scale = 0.72
-line_period = 3.0698
+pattern = 3
+move_time = 0.9939
+pause_time = 0.9139
 
-[node name="Vehicle23" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle19" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -124.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 3.9339
-model_scene = ExtResource("12_police")
+time_offset = 3.7138
+model_scene = ExtResource("10_van")
 model_scale = 0.72
-line_period = 3.0698
-
-[node name="Vehicle24" parent="Hazards" instance=ExtResource("11_car")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -124.9)
-line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 4.9571
-model_scene = ExtResource("16_hatchback_sports")
-model_scale = 0.72
-line_period = 3.0698
+pattern = 3
+move_time = 0.9939
+pause_time = 0.9139
 
 [node name="Road10" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -127.4)
@@ -1483,29 +1940,29 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle25" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle20" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -127.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 1.9696
-model_scene = ExtResource("12_police")
+time_offset = 0.3846
+model_scene = ExtResource("15_truck")
 model_scale = 0.72
-line_period = 3.0677
+line_period = 3.1518
 
-[node name="Vehicle26" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle21" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -127.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 2.9922
-model_scene = ExtResource("16_hatchback_sports")
+time_offset = 1.4352
+model_scene = ExtResource("16_delivery")
 model_scale = 0.72
-line_period = 3.0677
+line_period = 3.1518
 
-[node name="Vehicle27" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle22" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -127.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 4.0148
-model_scene = ExtResource("13_van")
+time_offset = 2.4858
+model_scene = ExtResource("13_sedan")
 model_scale = 0.72
-line_period = 3.0677
+line_period = 3.1518
 
 [node name="Road11" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -129.9)
@@ -1518,21 +1975,29 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle28" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle23" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -129.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 1.2016
-model_scene = ExtResource("12_police")
+time_offset = 2.1455
+model_scene = ExtResource("10_van")
 model_scale = 0.72
-line_period = 3.2625
+line_period = 2.6735
 
-[node name="Vehicle29" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle24" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -129.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 2.8329
-model_scene = ExtResource("16_hatchback_sports")
+time_offset = 3.0367
+model_scene = ExtResource("17_taxi")
 model_scale = 0.72
-line_period = 3.2625
+line_period = 2.6735
+
+[node name="Vehicle25" parent="Hazards" instance=ExtResource("11_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -129.9)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 3.9278
+model_scene = ExtResource("18_suv")
+model_scale = 0.72
+line_period = 2.6735
 
 [node name="Road12" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -132.4)
@@ -1545,25 +2010,21 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle30" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle26" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -132.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 1.1792
-model_scene = ExtResource("18_delivery")
+time_offset = 3.7031
+model_scene = ExtResource("16_delivery")
 model_scale = 0.72
-pattern = 3
-move_time = 1.2194
-pause_time = 0.8294
+line_period = 3.7974
 
-[node name="Vehicle31" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle27" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -132.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 2.8132
-model_scene = ExtResource("15_suv")
+time_offset = 5.6018
+model_scene = ExtResource("18_suv")
 model_scale = 0.72
-pattern = 3
-move_time = 1.2194
-pause_time = 0.8294
+line_period = 3.7974
 
 [node name="Road13" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -134.9)
@@ -1576,21 +2037,29 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle32" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle28" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -134.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 3.0525
-model_scene = ExtResource("16_hatchback_sports")
+time_offset = 3.1436
+model_scene = ExtResource("12_hatchback_sports")
 model_scale = 0.72
-line_period = 3.5207
+line_period = 3.6184
 
-[node name="Vehicle33" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle29" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -134.9)
 line_offset = Vector3(-36.0, 0.0, 0.0)
-time_offset = 4.8128
-model_scene = ExtResource("12_police")
+time_offset = 4.3497
+model_scene = ExtResource("14_police")
 model_scale = 0.72
-line_period = 3.5207
+line_period = 3.6184
+
+[node name="Vehicle30" parent="Hazards" instance=ExtResource("11_car")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 18.0, 0.0, -134.9)
+line_offset = Vector3(-36.0, 0.0, 0.0)
+time_offset = 5.5558
+model_scene = ExtResource("10_van")
+model_scale = 0.72
+line_period = 3.6184
 
 [node name="Road14" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -137.4)
@@ -1603,25 +2072,21 @@ decoration_spacing = 2.5
 random_turn = false
 solid = false
 
-[node name="Vehicle34" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle31" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -137.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 2.263
-model_scene = ExtResource("15_suv")
+time_offset = 1.1221
+model_scene = ExtResource("18_suv")
 model_scale = 0.72
-pattern = 3
-move_time = 0.9939
-pause_time = 0.9139
+line_period = 3.1792
 
-[node name="Vehicle35" parent="Hazards" instance=ExtResource("11_car")]
+[node name="Vehicle32" parent="Hazards" instance=ExtResource("11_car")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -18.0, 0.0, -137.4)
 line_offset = Vector3(36.0, 0.0, 0.0)
-time_offset = 3.7138
-model_scene = ExtResource("13_van")
+time_offset = 2.7117
+model_scene = ExtResource("15_truck")
 model_scale = 0.72
-pattern = 3
-move_time = 0.9939
-pause_time = 0.9139
+line_period = 3.1792
 
 [node name="Finish" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -141.9)

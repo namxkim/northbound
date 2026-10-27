@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/spike_field.gd" id="3_spike_field"]
 [ext_resource type="PackedScene" path="res://assets/dungeon/character-orc.glb" id="4_character_orc"]
 [ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="5_enemy"]
-[ext_resource type="PackedScene" path="res://assets/dungeon/column.glb" id="6_column"]
+[ext_resource type="PackedScene" path="res://assets/dungeon/barrel.glb" id="6_barrel"]
 [ext_resource type="Script" path="res://scripts/block.gd" id="7_block"]
-[ext_resource type="PackedScene" path="res://assets/dungeon/barrel.glb" id="8_barrel"]
+[ext_resource type="PackedScene" path="res://assets/dungeon/column.glb" id="8_column"]
 [ext_resource type="Script" path="res://scripts/zone.gd" id="9_zone"]
 [ext_resource type="PackedScene" path="res://assets/dungeon/floor.glb" id="10_floor"]
 [ext_resource type="PackedScene" path="res://assets/dungeon/wall.glb" id="11_wall"]
@@ -133,366 +133,534 @@ wave_delay = 0.25
 time_offset = 0.0
 
 [node name="Walker" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.3109, 0.0, -40.0349)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7477
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9771
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1893
+wander_pause_chance = 0.1191
 wander_seed = 31001
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker2" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.4753, 0.0, -40.1903)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1221
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0211
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.162
+wander_hop = 5.0
+wander_pause_chance = 0.2901
 wander_seed = 31002
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker3" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.2, 0.0, -41.4902)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7875
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.512
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2635
+wander_hop = 5.0
+wander_pause_chance = 0.2267
 wander_seed = 31003
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker4" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.8109, 0.0, -39.9997)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8098
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.485
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2476
+wander_hop = 5.0
+wander_pause_chance = 0.2635
 wander_seed = 31004
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker5" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.3819, 0.0, -40.1218)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0851
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6429
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1035
+wander_hop = 5.0
+wander_pause_chance = 0.1439
 wander_seed = 31005
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker6" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.9824, 0.0, -41.9674)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8419
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.983
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2929
+wander_hop = 5.0
+wander_pause_chance = 0.2911
 wander_seed = 31006
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker7" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.0334, 0.0, -40.3336)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.998
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4535
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1048
+wander_hop = 5.0
+wander_pause_chance = 0.2885
 wander_seed = 31007
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker8" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.7985, 0.0, -49.0703)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7361
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5068
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.133
+wander_hop = 5.0
+wander_pause_chance = 0.2929
 wander_seed = 31008
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker9" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.7165, 0.0, -47.1776)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8435
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9643
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2838
+wander_pause_chance = 0.2192
 wander_seed = 31009
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker10" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.0442, 0.0, -52.0064)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7019
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.8866
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2413
+wander_pause_chance = 0.1633
 wander_seed = 31010
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker11" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.5283, 0.0, -40.0892)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0754
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.499
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2137
+wander_pause_chance = 0.1174
 wander_seed = 31011
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker12" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.6525, 0.0, -49.5812)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1517
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9148
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1619
+wander_hop = 5.0
+wander_pause_chance = 0.2838
 wander_seed = 31012
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker13" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.1964, 0.0, -45.4041)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1326
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8427
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2939
+wander_hop = 5.0
+wander_pause_chance = 0.1008
 wander_seed = 31013
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker14" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.0855, 0.0, -50.1501)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9315
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8432
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1215
+wander_hop = 5.0
+wander_pause_chance = 0.2916
 wander_seed = 31014
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker15" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.8917, 0.0, -50.4339)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8485
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5637
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2576
+wander_hop = 5.0
+wander_pause_chance = 0.2145
 wander_seed = 31015
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker16" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.9985, 0.0, -44.815)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8411
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9421
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2895
+wander_pause_chance = 0.1619
 wander_seed = 31016
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker17" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.8622, 0.0, -45.7593)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.902
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.747
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2652
+wander_pause_chance = 0.2731
 wander_seed = 31017
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker18" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.5955, 0.0, -51.25)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.879
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5259
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1634
+wander_hop = 5.0
+wander_pause_chance = 0.1479
 wander_seed = 31018
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker19" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.0223, 0.0, -51.715)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0483
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.843
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1485
+wander_hop = 5.0
+wander_pause_chance = 0.2198
 wander_seed = 31019
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker20" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2807, 0.0, -44.3936)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1201
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5782
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2339
+wander_pause_chance = 0.2576
 wander_seed = 31020
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker21" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.9698, 0.0, -42.2158)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7138
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5741
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1829
+wander_hop = 5.0
+wander_pause_chance = 0.1564
 wander_seed = 31021
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker22" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.0419, 0.0, -45.8037)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1544
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5692
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2021
+wander_hop = 5.0
+wander_pause_chance = 0.2106
 wander_seed = 31022
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker23" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.4569, 0.0, -47.9457)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8709
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1305
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2275
+wander_hop = 5.0
+wander_pause_chance = 0.1645
 wander_seed = 31023
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker24" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.1783, 0.0, -48.5583)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0951
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.6148
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1788
+wander_pause_chance = 0.1634
 wander_seed = 31024
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker25" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.9756, 0.0, -46.2999)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.907
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.4765
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2907
+wander_pause_chance = 0.2393
 wander_seed = 31025
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker26" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.3024, 0.0, -48.0627)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0048
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9187
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.2008
+wander_pause_chance = 0.2301
 wander_seed = 31026
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker27" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.1733, 0.0, -50.223)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8463
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5839
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2226
+wander_hop = 5.0
+wander_pause_chance = 0.1118
 wander_seed = 31027
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Cover" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.7136, 0.0, -48.0284)
-script = ExtResource("7_block")
-size = Vector3(1.0, 2.0, 1.0)
-show_box = false
-decoration = ExtResource("6_column")
-decoration_scale = 2.0
-decoration_spacing = 10.0
-random_turn = true
+[node name="Walker28" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4555
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1829
+wander_seed = 31028
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
 
-[node name="Cover2" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.0061, 0.0, -55.0094)
+[node name="Walker29" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5599
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2818
+wander_seed = 31029
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker30" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1092
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1793
+wander_seed = 31030
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker31" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.055
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.196
+wander_seed = 31031
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker32" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1161
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1788
+wander_seed = 31032
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker33" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5529
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1828
+wander_seed = 31033
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker34" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5567
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1777
+wander_seed = 31034
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker35" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0016
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1073
+wander_seed = 31035
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker36" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5756
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2226
+wander_seed = 31036
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker37" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.966
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1686
+wander_seed = 31037
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker38" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5214
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1375
+wander_seed = 31038
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker39" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.8732
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1633
+wander_seed = 31039
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker40" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8538
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1078
+wander_seed = 31040
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker41" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -46.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4557
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.15
+wander_seed = 31041
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Cover" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.519, 0.0, -50.6734)
 script = ExtResource("7_block")
 size = Vector3(0.8, 1.0, 0.8)
 show_box = false
-decoration = ExtResource("8_barrel")
+decoration = ExtResource("6_barrel")
 decoration_scale = 1.4
 decoration_spacing = 10.0
 random_turn = true
 
-[node name="Cover3" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.312, 0.0, -51.8226)
+[node name="Cover2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.5186, 0.0, -38.3238)
 script = ExtResource("7_block")
 size = Vector3(1.0, 2.0, 1.0)
 show_box = false
-decoration = ExtResource("6_column")
+decoration = ExtResource("8_column")
+decoration_scale = 2.0
+decoration_spacing = 10.0
+random_turn = true
+
+[node name="Cover3" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.764, 0.0, -54.6119)
+script = ExtResource("7_block")
+size = Vector3(1.0, 2.0, 1.0)
+show_box = false
+decoration = ExtResource("8_column")
 decoration_scale = 2.0
 decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover4" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.1741, 0.0, -45.1573)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.4941, 0.0, -52.5468)
 script = ExtResource("7_block")
-size = Vector3(0.8, 1.0, 0.8)
+size = Vector3(1.0, 2.0, 1.0)
 show_box = false
-decoration = ExtResource("8_barrel")
-decoration_scale = 1.4
+decoration = ExtResource("8_column")
+decoration_scale = 2.0
 decoration_spacing = 10.0
 random_turn = true
 
@@ -501,260 +669,380 @@ transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 
 script = ExtResource("9_zone")
 size = Vector3(14.0, 2.0, 3.0)
 
-[node name="Walker28" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.759, 0.0, -75.7988)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.1776
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2728
-wander_seed = 31028
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker29" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.4194, 0.0, -71.4362)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.7884
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2486
-wander_seed = 31029
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker30" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.733, 0.0, -78.2746)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.7247
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1882
-wander_seed = 31030
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker31" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0948, 0.0, -75.8069)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8008
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1188
-wander_seed = 31031
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker32" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.0067, 0.0, -76.0439)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.009
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1444
-wander_seed = 31032
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker33" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.3093, 0.0, -68.1481)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.1546
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2768
-wander_seed = 31033
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker34" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.9665, 0.0, -69.5706)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.0272
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2005
-wander_seed = 31034
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker35" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.1559, 0.0, -73.3055)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.0063
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.158
-wander_seed = 31035
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker36" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.5092, 0.0, -73.5582)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9853
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1517
-wander_seed = 31036
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker37" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.3088, 0.0, -69.6078)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.1267
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2923
-wander_seed = 31037
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker38" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.2407, 0.0, -67.6858)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8586
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1847
-wander_seed = 31038
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker39" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.3563, 0.0, -67.662)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9448
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2193
-wander_seed = 31039
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker40" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.0809, 0.0, -78.8883)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.0581
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2313
-wander_seed = 31040
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker41" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.3713, 0.0, -73.1075)
-pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9489
-wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1416
-wander_seed = 31041
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
 [node name="Walker42" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.3537, 0.0, -68.1763)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 1.1235
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.4563
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2071
+wander_hop = 3.6
+wander_pause_chance = 0.2155
 wander_seed = 31042
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker43" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.6305, 0.0, -71.4033)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.7618
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.7709
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2868
+wander_hop = 3.6
+wander_pause_chance = 0.1444
 wander_seed = 31043
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker44" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.4718, 0.0, -75.6188)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.777
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1784
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.2749
+wander_hop = 4.5
+wander_pause_chance = 0.2818
 wander_seed = 31044
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker45" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.7306, 0.0, -69.0956)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.9566
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.611
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1728
+wander_hop = 4.5
+wander_pause_chance = 0.2655
 wander_seed = 31045
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker46" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.9445, 0.0, -71.1424)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
 pattern = 4
-wander_area = Vector2(8.0, 6.0)
-wander_step = 0.8791
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.001
 wander_variation = 0.7
-wander_hop = 3.5
-wander_pause_chance = 0.1584
+wander_hop = 4.5
+wander_pause_chance = 0.1053
 wander_seed = 31046
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Cover5" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.8728, 0.0, -69.5845)
-script = ExtResource("7_block")
-size = Vector3(0.8, 1.0, 0.8)
-show_box = false
-decoration = ExtResource("8_barrel")
-decoration_scale = 1.4
-decoration_spacing = 10.0
-random_turn = true
+[node name="Walker47" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.045
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.158
+wander_seed = 31047
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
 
-[node name="Cover6" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.5717, 0.0, -70.9963)
+[node name="Walker48" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9981
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2141
+wander_seed = 31048
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker49" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.455
+wander_variation = 0.7
+wander_hop = 3.6
+wander_pause_chance = 0.2649
+wander_seed = 31049
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker50" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.6423
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1348
+wander_seed = 31050
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker51" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.5135
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1847
+wander_seed = 31051
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker52" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1946
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1979
+wander_seed = 31052
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker53" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0333
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1102
+wander_seed = 31053
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker54" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0626
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2826
+wander_seed = 31054
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker55" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9991
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1416
+wander_seed = 31055
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker56" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.6387
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2694
+wander_seed = 31056
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker57" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0194
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2349
+wander_seed = 31057
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker58" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.9604
+wander_variation = 0.7
+wander_hop = 3.6
+wander_pause_chance = 0.1774
+wander_seed = 31058
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker59" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.8616
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2749
+wander_seed = 31059
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker60" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1468
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2027
+wander_seed = 31060
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker61" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.1521
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2393
+wander_seed = 31061
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker62" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9168
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1141
+wander_seed = 31062
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker63" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.4578
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2361
+wander_seed = 31063
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker64" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.5079
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1509
+wander_seed = 31064
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker65" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9797
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1253
+wander_seed = 31065
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker66" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.958
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2498
+wander_seed = 31066
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker67" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 0.9174
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2245
+wander_seed = 31067
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker68" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.198
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1032
+wander_seed = 31068
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker69" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0033
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2462
+wander_seed = 31069
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker70" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -73.5)
+pattern = 4
+wander_area = Vector2(20.4, 18.0)
+wander_step = 1.0299
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2504
+wander_seed = 31070
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Cover5" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.0992, 0.0, -71.7324)
 script = ExtResource("7_block")
 size = Vector3(1.0, 2.0, 1.0)
 show_box = false
-decoration = ExtResource("6_column")
+decoration = ExtResource("8_column")
 decoration_scale = 2.0
 decoration_spacing = 10.0
 random_turn = true
 
+[node name="Cover6" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.3161, 0.0, -70.0307)
+script = ExtResource("7_block")
+size = Vector3(0.8, 1.0, 0.8)
+show_box = false
+decoration = ExtResource("6_barrel")
+decoration_scale = 1.4
+decoration_spacing = 10.0
+random_turn = true
+
 [node name="Cover7" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.3668, 0.0, -77.1836)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.4955, 0.0, -73.7874)
 script = ExtResource("7_block")
 size = Vector3(1.0, 2.0, 1.0)
 show_box = false
-decoration = ExtResource("6_column")
+decoration = ExtResource("8_column")
 decoration_scale = 2.0
 decoration_spacing = 10.0
 random_turn = true
@@ -764,90 +1052,90 @@ transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 
 script = ExtResource("3_spike_field")
 columns = 18
 rows = 1
-period = 2.2695
-up_time = 0.938
-wave_delay = 0.2066
-time_offset = 0.79
+period = 2.183
+up_time = 1.0499
+wave_delay = 0.1902
+time_offset = 0.3022
 
 [node name="Spikes3" type="Node3D" parent="Hazards"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -89.0)
 script = ExtResource("3_spike_field")
 columns = 18
 rows = 1
-period = 2.4495
-up_time = 0.9983
-wave_delay = -0.144
-time_offset = 1.245
+period = 2.1752
+up_time = 1.1159
+wave_delay = -0.1877
+time_offset = 0.178
 
 [node name="Spikes4" type="Node3D" parent="Hazards"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -91.0)
 script = ExtResource("3_spike_field")
 columns = 18
 rows = 1
-period = 2.4049
-up_time = 1.1985
-wave_delay = 0.1024
-time_offset = 1.108
+period = 2.265
+up_time = 1.0876
+wave_delay = 0.2309
+time_offset = 0.4222
 
 [node name="Spikes5" type="Node3D" parent="Hazards"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -93.0)
 script = ExtResource("3_spike_field")
 columns = 18
 rows = 1
-period = 2.3049
-up_time = 1.1193
-wave_delay = -0.1926
-time_offset = 1.1494
+period = 2.0917
+up_time = 1.0773
+wave_delay = -0.2224
+time_offset = 0.0623
 
 [node name="Spikes6" type="Node3D" parent="Hazards"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -95.0)
 script = ExtResource("3_spike_field")
 columns = 18
 rows = 1
-period = 2.4512
-up_time = 0.9544
-wave_delay = 0.1927
-time_offset = 1.6631
+period = 2.1806
+up_time = 1.0946
+wave_delay = 0.1505
+time_offset = 0.0915
 
 [node name="Spikes7" type="Node3D" parent="Hazards"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -97.0)
 script = ExtResource("3_spike_field")
 columns = 18
 rows = 1
-period = 2.5506
-up_time = 1.0253
-wave_delay = -0.2097
-time_offset = 1.5765
+period = 2.5383
+up_time = 1.1047
+wave_delay = -0.1353
+time_offset = 0.1659
 
-[node name="Walker47" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker71" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -99.6)
 line_offset = Vector3(20.4, 0.0, 0.0)
-line_period = 2.9186
+line_period = 2.762
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker48" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker72" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -99.6)
 line_offset = Vector3(20.4, 0.0, 0.0)
-line_period = 2.9186
-time_offset = 1.4593
+line_period = 2.762
+time_offset = 1.381
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker49" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker73" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -102.0)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-line_period = 2.8885
+line_period = 2.9521
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker50" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker74" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -102.0)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-line_period = 2.8885
-time_offset = 1.4443
+line_period = 2.9521
+time_offset = 1.4761
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
@@ -856,523 +1144,727 @@ transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 
 script = ExtResource("9_zone")
 size = Vector3(14.0, 2.0, 3.0)
 
-[node name="Walker51" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.3114, 0.0, -122.6308)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.005
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1132
-wander_seed = 31047
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker52" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.7746, 0.0, -123.9917)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7021
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1511
-wander_seed = 31048
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker53" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.2612, 0.0, -117.141)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1504
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2741
-wander_seed = 31049
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker54" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.2425, 0.0, -117.8116)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9183
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.168
-wander_seed = 31050
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker55" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.5416, 0.0, -126.7836)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8371
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2144
-wander_seed = 31051
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker56" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.8397, 0.0, -126.2318)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7118
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1746
-wander_seed = 31052
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker57" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.9877, 0.0, -118.5327)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7719
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.13
-wander_seed = 31053
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker58" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.5745, 0.0, -119.7084)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9317
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2254
-wander_seed = 31054
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker59" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.9707, 0.0, -125.2564)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7146
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1769
-wander_seed = 31055
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker60" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.1236, 0.0, -124.6339)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7141
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2474
-wander_seed = 31056
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker61" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.2815, 0.0, -122.0785)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.781
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1021
-wander_seed = 31057
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker62" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.1874, 0.0, -124.4975)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9476
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2781
-wander_seed = 31058
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker63" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.6692, 0.0, -124.7684)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0274
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1826
-wander_seed = 31059
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker64" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.5022, 0.0, -117.1331)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0377
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.159
-wander_seed = 31060
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker65" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.282, 0.0, -126.5032)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7835
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2738
-wander_seed = 31061
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker66" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.0163, 0.0, -115.9201)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8434
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1572
-wander_seed = 31062
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker67" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.6495, 0.0, -114.0856)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1459
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.127
-wander_seed = 31063
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker68" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.1777, 0.0, -126.456)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1178
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1452
-wander_seed = 31064
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker69" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.4393, 0.0, -116.6677)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.7708
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2619
-wander_seed = 31065
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker70" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.8159, 0.0, -119.6878)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8557
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1483
-wander_seed = 31066
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker71" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.329, 0.0, -126.8874)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9634
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1625
-wander_seed = 31067
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker72" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.0711, 0.0, -113.5046)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9821
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.2951
-wander_seed = 31068
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker73" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.4666, 0.0, -123.7691)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.9503
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1571
-wander_seed = 31069
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
-[node name="Walker74" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.5037, 0.0, -121.0269)
-pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.0237
-wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.146
-wander_seed = 31070
-model_scene = ExtResource("4_character_orc")
-model_scale = 1.3
-
 [node name="Walker75" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.4982, 0.0, -114.5457)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1095
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1988
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.1877
+wander_hop = 5.0
+wander_pause_chance = 0.1022
 wander_seed = 31071
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker76" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.984, 0.0, -117.6597)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 1.1365
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1246
 wander_variation = 0.7
-wander_hop = 4.0
-wander_pause_chance = 0.265
+wander_hop = 5.0
+wander_pause_chance = 0.1275
 wander_seed = 31072
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
 [node name="Walker77" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.9492, 0.0, -116.142)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
 pattern = 4
-wander_area = Vector2(12.0, 9.0)
-wander_step = 0.8557
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9531
 wander_variation = 0.7
 wander_hop = 4.0
-wander_pause_chance = 0.1996
+wander_pause_chance = 0.2254
 wander_seed = 31073
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
+[node name="Walker78" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4939
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2745
+wander_seed = 31074
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker79" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.544
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.103
+wander_seed = 31075
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker80" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6096
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2648
+wander_seed = 31076
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker81" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0808
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1261
+wander_seed = 31077
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker82" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9345
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2279
+wander_seed = 31078
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker83" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.075
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1384
+wander_seed = 31079
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker84" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6342
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2781
+wander_seed = 31080
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker85" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8705
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2141
+wander_seed = 31081
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker86" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9103
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2994
+wander_seed = 31082
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker87" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0459
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2893
+wander_seed = 31083
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker88" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.056
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2763
+wander_seed = 31084
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker89" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1492
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1069
+wander_seed = 31085
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker90" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1327
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1959
+wander_seed = 31086
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker91" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9299
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2382
+wander_seed = 31087
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker92" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.4249
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2714
+wander_seed = 31088
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker93" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.7994
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1867
+wander_seed = 31089
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker94" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4803
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2712
+wander_seed = 31090
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker95" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0449
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.172
+wander_seed = 31091
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker96" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.6514
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1081
+wander_seed = 31092
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker97" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9646
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1908
+wander_seed = 31093
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker98" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.6217
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1352
+wander_seed = 31094
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker99" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9853
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2512
+wander_seed = 31095
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker100" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9341
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2047
+wander_seed = 31096
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker101" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8369
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2099
+wander_seed = 31097
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker102" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5769
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2353
+wander_seed = 31098
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker103" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9812
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1856
+wander_seed = 31099
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker104" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.5513
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2841
+wander_seed = 31100
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker105" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9828
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1002
+wander_seed = 31101
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker106" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5574
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2038
+wander_seed = 31102
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker107" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.0926
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2549
+wander_seed = 31103
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker108" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.8373
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2736
+wander_seed = 31104
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker109" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.9625
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2293
+wander_seed = 31105
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker110" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.6465
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.2856
+wander_seed = 31106
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker111" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.9841
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2916
+wander_seed = 31107
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker112" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.4978
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1523
+wander_seed = 31108
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker113" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 0.532
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.2609
+wander_seed = 31109
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker114" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.5199
+wander_variation = 0.7
+wander_hop = 4.0
+wander_pause_chance = 0.1697
+wander_seed = 31110
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker115" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -120.5)
+pattern = 4
+wander_area = Vector2(20.4, 22.0)
+wander_step = 1.1804
+wander_variation = 0.7
+wander_hop = 5.0
+wander_pause_chance = 0.1405
+wander_seed = 31111
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
 [node name="Cover8" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.7927, 0.0, -125.984)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -8.3412, 0.0, -115.6446)
 script = ExtResource("7_block")
 size = Vector3(1.0, 2.0, 1.0)
 show_box = false
-decoration = ExtResource("6_column")
+decoration = ExtResource("8_column")
 decoration_scale = 2.0
 decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover9" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.264, 0.0, -124.685)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 7.8129, 0.0, -121.418)
 script = ExtResource("7_block")
-size = Vector3(0.8, 1.0, 0.8)
+size = Vector3(1.0, 2.0, 1.0)
 show_box = false
-decoration = ExtResource("8_barrel")
-decoration_scale = 1.4
+decoration = ExtResource("8_column")
+decoration_scale = 2.0
 decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover10" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.3036, 0.0, -120.3801)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.3915, 0.0, -121.2994)
 script = ExtResource("7_block")
 size = Vector3(0.8, 1.0, 0.8)
 show_box = false
-decoration = ExtResource("8_barrel")
+decoration = ExtResource("6_barrel")
 decoration_scale = 1.4
 decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover11" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.3237, 0.0, -117.289)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.9819, 0.0, -120.9242)
 script = ExtResource("7_block")
-size = Vector3(1.0, 2.0, 1.0)
+size = Vector3(0.8, 1.0, 0.8)
 show_box = false
-decoration = ExtResource("6_column")
-decoration_scale = 2.0
+decoration = ExtResource("6_barrel")
+decoration_scale = 1.4
 decoration_spacing = 10.0
 random_turn = true
 
-[node name="Walker78" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker116" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -136.0)
 line_offset = Vector3(20.4, 0.0, 0.0)
-pattern = 3
-move_time = 1.0049
-pause_time = 0.6076
+line_period = 2.758
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker79" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker117" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -136.0)
 line_offset = Vector3(20.4, 0.0, 0.0)
-pattern = 3
-move_time = 1.0049
-pause_time = 0.6076
-time_offset = 1.6125
+line_period = 2.758
+time_offset = 1.379
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker80" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker118" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -138.6)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-line_period = 3.3314
+line_period = 3.2027
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker81" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker119" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -138.6)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-line_period = 3.3314
-time_offset = 1.6657
+line_period = 3.2027
+time_offset = 1.6013
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker82" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker120" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -141.2)
 line_offset = Vector3(20.4, 0.0, 0.0)
-line_period = 3.219
+line_period = 3.1073
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker83" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker121" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -141.2)
 line_offset = Vector3(20.4, 0.0, 0.0)
-line_period = 3.219
-time_offset = 1.6095
+line_period = 3.1073
+time_offset = 1.5537
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker84" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker122" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -143.8)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-pattern = 3
-move_time = 1.2472
-pause_time = 0.5046
+line_period = 3.4082
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker85" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker123" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -143.8)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-pattern = 3
-move_time = 1.2472
-pause_time = 0.5046
-time_offset = 1.7518
+line_period = 3.4082
+time_offset = 1.7041
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker86" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker124" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -146.4)
 line_offset = Vector3(20.4, 0.0, 0.0)
-line_period = 3.2465
+line_period = 3.3086
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker87" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker125" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.2, 0.0, -146.4)
 line_offset = Vector3(20.4, 0.0, 0.0)
-line_period = 3.2465
-time_offset = 1.6233
+line_period = 3.3086
+time_offset = 1.6543
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker88" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker126" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -149.0)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-pattern = 3
-move_time = 1.0643
-pause_time = 0.7711
+line_period = 3.5654
 time_offset = 0.0
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker89" parent="Hazards" instance=ExtResource("5_enemy")]
+[node name="Walker127" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.2, 0.0, -149.0)
 line_offset = Vector3(-20.4, 0.0, 0.0)
-pattern = 3
-move_time = 1.0643
-pause_time = 0.7711
-time_offset = 1.8354
+line_period = 3.5654
+time_offset = 1.7827
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker90" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.6144, 0.0, -142.9383)
+[node name="Walker128" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
 pattern = 4
-wander_area = Vector2(6.0, 3.0)
-wander_step = 1.179
+wander_area = Vector2(20.4, 14.0)
+wander_step = 1.1457
 wander_variation = 0.7
-wander_hop = 2.5
-wander_pause_chance = 0.2832
-wander_seed = 31074
+wander_hop = 4.5
+wander_pause_chance = 0.1137
+wander_seed = 31112
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker91" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.6519, 0.0, -145.1238)
+[node name="Walker129" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
 pattern = 4
-wander_area = Vector2(6.0, 3.0)
-wander_step = 1.1059
+wander_area = Vector2(20.4, 14.0)
+wander_step = 0.969
 wander_variation = 0.7
-wander_hop = 2.5
-wander_pause_chance = 0.182
-wander_seed = 31075
+wander_hop = 4.5
+wander_pause_chance = 0.1601
+wander_seed = 31113
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker92" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.2607, 0.0, -147.828)
+[node name="Walker130" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
 pattern = 4
-wander_area = Vector2(6.0, 3.0)
-wander_step = 0.7999
+wander_area = Vector2(20.4, 14.0)
+wander_step = 1.0624
 wander_variation = 0.7
-wander_hop = 2.5
-wander_pause_chance = 0.1697
-wander_seed = 31076
+wander_hop = 4.5
+wander_pause_chance = 0.1878
+wander_seed = 31114
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 
-[node name="Walker93" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.1641, 0.0, -137.5403)
+[node name="Walker131" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
 pattern = 4
-wander_area = Vector2(6.0, 3.0)
-wander_step = 0.8012
+wander_area = Vector2(20.4, 14.0)
+wander_step = 1.1611
 wander_variation = 0.7
-wander_hop = 2.5
-wander_pause_chance = 0.1019
-wander_seed = 31077
+wander_hop = 4.5
+wander_pause_chance = 0.2781
+wander_seed = 31115
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker132" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
+pattern = 4
+wander_area = Vector2(20.4, 14.0)
+wander_step = 1.776
+wander_variation = 0.7
+wander_hop = 3.6
+wander_pause_chance = 0.1493
+wander_seed = 31116
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker133" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
+pattern = 4
+wander_area = Vector2(20.4, 14.0)
+wander_step = 0.9493
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2714
+wander_seed = 31117
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker134" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
+pattern = 4
+wander_area = Vector2(20.4, 14.0)
+wander_step = 0.4514
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.2285
+wander_seed = 31118
+model_scene = ExtResource("4_character_orc")
+model_scale = 1.3
+
+[node name="Walker135" parent="Hazards" instance=ExtResource("5_enemy")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -142.5)
+pattern = 4
+wander_area = Vector2(20.4, 14.0)
+wander_step = 1.1984
+wander_variation = 0.7
+wander_hop = 4.5
+wander_pause_chance = 0.1069
+wander_seed = 31119
 model_scene = ExtResource("4_character_orc")
 model_scale = 1.3
 

@@ -236,13 +236,27 @@ class Level:
                 props.update(line_period=p, time_offset=p * i / count)
             self.walker(x, z, skin["model"], skin["scale"], skin.get("hit"), **props)
 
+    def roamers(self, count, z_top, z_bottom, hop=4.5):
+        """Wanderers that roam the whole section: the full width of the map and
+        all but a meter at each end. Each starts at its own random spot in it."""
+        for _ in range(count):
+            self.wanderer(0.0, (z_top + z_bottom) / 2, 2 * HALF_WIDTH - 1.6, (z_top - z_bottom) - 2.0, hop)
+
     def wanderer(self, x, z, area_x, area_z, hop=3.5):
         """An enemy hopping around randomly inside an area centered on (x, z)."""
         skin = self.world.wanderer
         self.seed_counter += 1
+        # Each wanderer has its own pace: slow drifters, normal walkers and fast runners.
+        pace = self.rng.random()
+        if pace < 0.3:
+            step, hop_scale = self.uniform(1.4, 2.0), 0.8  # About 2 m/s.
+        elif pace < 0.75:
+            step, hop_scale = self.uniform(0.8, 1.2), 1.0  # About 3 m/s.
+        else:
+            step, hop_scale = self.uniform(0.45, 0.65), 1.0  # About 5-6 m/s.
         self.walker(x, z, skin["model"], skin["scale"], skin.get("hit"), pattern=4,
-                    wander_area=vec2(area_x, area_z), wander_step=self.t(self.uniform(0.7, 1.2)),
-                    wander_variation=0.7, wander_hop=hop, wander_pause_chance=self.uniform(0.1, 0.3),
+                    wander_area=vec2(area_x, area_z), wander_step=self.t(step),
+                    wander_variation=0.7, wander_hop=hop * hop_scale, wander_pause_chance=self.uniform(0.1, 0.3),
                     wander_seed=self.world.index * 10000 + self.number * 1000 + self.seed_counter)
 
     def arm(self, x, z, yaw=0.0, **props):
@@ -348,8 +362,7 @@ class Level:
         if i > 0.7:
             self.walker_line(-9.8, z_top - 1.0, 0, -(length - 2), self.uniform(3.0, 3.8), 2)
             self.walker_line(9.8, z_bottom + 1.0, 0, length - 2, self.uniform(3.0, 3.8), 2)
-        for _ in range(round(2 + 2 * i)):
-            self.wanderer(self.uniform(-7.0, 7.0), self.uniform(z_bottom + 3.0, z_top - 3.0), 6.0, 4.0)
+        self.roamers(round(4 + 4 * i), z_top, z_bottom)
         for _ in range(2):
             self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2, z_top - 2))
         return z_bottom
@@ -367,8 +380,7 @@ class Level:
             else:
                 self.walker_line(x, z, dx, 0, self.uniform(2.6, 3.6), count)
         z_bottom = z_top - 1.5 - 2.6 * (rows - 1) - 1.5
-        for _ in range(round(2 + 2 * i)):
-            self.wanderer(self.uniform(-7.0, 7.0), self.uniform(z_bottom + 2.5, z_top - 2.5), 6.0, 3.0, hop=2.5)
+        self.roamers(round(4 + 4 * i), z_top, z_bottom)
         return z_bottom
 
     def zigzag(self, z_top):
@@ -397,8 +409,7 @@ class Level:
         i = self.intensity
         length = 20.0
         z_bottom = z_top - length
-        for _ in range(round(8 + 12 * i)):
-            self.wanderer(self.uniform(-6.5, 6.5), self.uniform(z_bottom + 4.0, z_top - 4.0), 8.0, 6.0)
+        self.roamers(round(14 + 16 * i), z_top, z_bottom)
         for _ in range(3):
             self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2.5, z_top - 2.5))
         return z_bottom
@@ -408,8 +419,7 @@ class Level:
         i = self.intensity
         length = 24.0
         z_bottom = z_top - length
-        for _ in range(round(14 + 14 * i)):
-            self.wanderer(self.uniform(-4.5, 4.5), self.uniform(z_bottom + 5.0, z_top - 5.0), 12.0, 9.0, hop=4.0)
+        self.roamers(round(22 + 20 * i), z_top, z_bottom, hop=5.0)
         for _ in range(4):
             self.obstacle(self.uniform(-8.5, 8.5), self.uniform(z_bottom + 3.0, z_top - 3.0))
         return z_bottom
