@@ -1,7 +1,7 @@
 """Writes every level scene: levels/w1_l1.tscn (level 1-1) to w7_l5.tscn (7-5).
 
 The game has 7 worlds of 5 levels. Each world has its own look and enemy
-models. Each level is a recipe: a list of 6 to 8 section types (rolling
+models. Each level is a recipe: a list of 12 to 16 section types (rolling
 hazards, traffic, circling walkers, swarms of wanderers...), with a checkpoint
 after every second section. Levels get busier from x-1 to x-5 and from world
 to world.
@@ -152,7 +152,9 @@ class Level:
     def section(self, index):
         """Starts section `index`. Sections come in pairs between checkpoints, and
         each pair (one checkpoint-to-checkpoint stretch) shares a speed dial."""
-        self.speed = DIALS.get(self.key, [1.0] * 4)[index // 2]
+        dials = DIALS.get(self.key, [])
+        stretch = index // 2
+        self.speed = dials[stretch] if stretch < len(dials) else 1.0
 
     def t(self, seconds):
         return None if seconds is None else seconds / self.speed
@@ -803,12 +805,12 @@ PALETTES = {
 
 
 def recipe_for(world_class, number):
-    """6 sections for x-1 and x-2, 7 for x-3 and x-4, 8 for x-5."""
+    """12 sections for x-1 and x-2, 14 for x-3 and x-4, 16 for x-5."""
     rng = random.Random(world_class.index * 31 + number * 7)
     palette = list(PALETTES[world_class])
     rng.shuffle(palette)
     recipe, next_type = [], 0
-    for n in range(6 + (number - 1) // 2):
+    for n in range(2 * (6 + (number - 1) // 2)):
         if n % 3 == 1:
             recipe.append("swarm")
         else:

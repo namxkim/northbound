@@ -6,10 +6,10 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 - 2.5D: a 3D world seen from a fixed camera angled down. Players head north (-Z), like Crossy Road.
 - Movement is smooth and free in any direction, with no grid. Players can only move (more abilities may come later).
 - Terrain blocks paths. Most enemies move in set patterns: back and forth, one-way traffic, circling, waypoint loops, stop-and-go, spinning arms, pendulums and pop-up spikes.
-- **Wanderers** move randomly and roam their whole section (wall to wall, end to end): each hop goes a random distance (up to 4.5-5 m) in a random direction. Some hops are quick dashes, some ease in and out, others turn sharply, and they pause at random. Each wanderer also has its own pace: slow drifters (~2 m/s), normal walkers (~3 m/s) or fast runners (~5-6 m/s). The moves come from a seed and the round clock, so every player's game shows the same moves. Every level has 120-210 of them, including **swarm** sections packed with about 40-50. The busiest levels run at 120-145 fps on the development PC.
+- **Wanderers** move randomly and roam their whole section (wall to wall, end to end): each hop goes a random distance (up to 4.5-5 m) in a random direction. Some hops are quick dashes, some ease in and out, others turn sharply, and they pause at random. Each wanderer also has its own pace: slow drifters (~2 m/s), normal walkers (~3 m/s) or fast runners (~5-6 m/s). The moves come from a seed and the round clock, so every player's game shows the same moves. Every level has 210-365 of them, including **swarm** sections packed with about 40-50. The busiest levels (over 500 enemies) still run at 120-145 fps on the development PC.
 - Chasers (enemies that follow players) were tried and removed. The code is still in `scripts/chaser.gd` and `scenes/chaser.tscn` but no level uses them.
 - Touching an enemy kills you.
-- Each level has a start, a checkpoint after every second section (2 or 3 in all) and a finish at the north end. Levels are 135-225 m long.
+- Each level has a start, a checkpoint after every second section (2 or 3 in all) and a finish at the north end. Levels are 285-430 m long.
 
 ## Worlds and levels
 7 worlds of 5 levels, named 1-1 to 7-5 (35 levels). Levels unlock in order across worlds (1-5 unlocks 2-1). Progress is saved on each player's computer (`user://progress.cfg`). Play Solo shows a grid of worlds and levels; in co-op the host picks from the levels they've unlocked. After a win, Enter replays and N goes to the next level (solo or host).
@@ -26,7 +26,7 @@ The game's title is **Northbound Together**. The project folder and GitHub repos
 
 Difficulty starts high and ramps up: x-1 levels are already demanding, x-5 levels are hardest, and later worlds are harder overall. Two things grow together:
 - **How busy:** each section's hazard count scales from 0.85 (1-1) to 1.41 (7-5).
-- **Length:** 6 sections in x-1 and x-2, 7 in x-3 and x-4, 8 in x-5, with a checkpoint every two sections.
+- **Length:** 12 sections in x-1 and x-2, 14 in x-3 and x-4, 16 in x-5, with a checkpoint every two sections (5 to 7 checkpoints).
 
 All hazards currently run at their base speed. The levels have **not** been checked by the solver since they got longer and busier, so a stretch could turn out unfair or impossible; if one does, `tools/tune_levels.py` can tune just that level (for example `w3_l4`), or its recipe can be adjusted in the generator. When tuning, x-1 levels need a way through with 0.4 m around every hazard (down to 0.35 m in x-4 and x-5), with speeds capped from 1.0x in 1-1 up to 1.4x.
 
