@@ -12,6 +12,9 @@ extends Node
 const WORLDS: Array[String] = ["Forest", "City", "Dungeon", "Graveyard", "Space Station", "Pirate Beach", "Snow"]
 const LEVELS_PER_WORLD := 5
 const SAVE_PATH := "user://progress.cfg"
+## Opens every level in the menus (for play-testing). Winning still saves
+## real progress, so turning this off goes back to normal unlocking.
+const UNLOCK_ALL := true
 
 ## Every level in order: {"name": "1-1", "world": "Forest", "path": ...}.
 var LIST: Array[Dictionary] = []
@@ -38,7 +41,7 @@ func _ready() -> void:
 
 
 func is_unlocked(index: int) -> bool:
-	return index < unlocked
+	return UNLOCK_ALL or index < unlocked
 
 
 ## "1-1  Forest", for menus.
