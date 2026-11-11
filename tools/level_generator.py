@@ -32,6 +32,17 @@ if os.path.exists(DIALS_FILE):
 # Play area is x from -11 to 11. North is -z.
 HALF_WIDTH = 11.0
 
+# Edge gullies: along both side walls of most sections, hazards roll south in
+# two lanes, so players can't just hug a wall to the finish. The lanes
+# (rollers 0.36 m wide on each side of these x values) leave no gap a player
+# (0.21 m radius) fits in from 8.94 m out to the wall.
+GULLY_LANES = [9.3, 10.4]
+# Solid outcrops at both ends of every section, from this x out to the wall.
+# They hide where gully hazards appear and vanish, and push wall-huggers out.
+GATE_FROM = 8.6
+# Sections whose own layout already stops wall-hugging (or would clash with gullies).
+NO_GULLY = {"zigzag"}
+
 
 def num(value):
     if isinstance(value, bool):
@@ -190,9 +201,9 @@ class Level:
 
     # --- hazards ---
 
-    def roller(self, x, z, dx, period, offset=0.0, pattern=None, move=None, pause=None, one_way=False):
+    def roller(self, x, z, dx, period, offset=0.0, pattern=None, move=None, pause=None, one_way=False, dz=0.0):
         skin = self.world.roller
-        props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, 0), time_offset=self.t(offset))
+        props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, dz), time_offset=self.t(offset))
         if pattern == "stop":
             props.update(pattern=3, move_time=self.t(move), pause_time=self.t(pause))
         else:
@@ -272,13 +283,17 @@ class Level:
 
     def pendulum(self, from_west, z, balls, period, swing=55.0, offset=0.0, first_ball=0.8, spacing=None,
                  radius=None):
-        props = dict(mode=1, period=self.t(period), swing_angle=swing, balls=balls, first_ball=first_ball,
+        # The post sits in the side wall (out of the edge gully). The first ball
+        # is moved out by the same amount, so the balls are where they were.
+        tuck = 0.6
+        props = dict(mode=1, period=self.t(period), swing_angle=swing, balls=balls, first_ball=first_ball + tuck,
                      time_offset=self.t(offset))
         if spacing:
             props["spacing"] = spacing
         if radius:
             props["ball_radius"] = radius
-        self.arm(-10.6 if from_west else 10.6, z, 90.0 if from_west else -90.0, **props)
+        pivot = 10.6 + tuck
+        self.arm(-pivot if from_west else pivot, z, 90.0 if from_west else -90.0, **props)
 
     def spike_row(self, z, columns, rows, period, up_time, wave=0.0, offset=0.0, x=0.0):
         self.s.node("Spikes", "Hazards", "Node3D", transform=transform(x, 0, z), script=self.s.res(SPIKES),
@@ -315,6 +330,30 @@ class Level:
     def obstacle(self, x, z):
         model, scale, size = self.rng.choice(self.world.obstacles)
         self.decorated("Cover", x, z, size, model, scale, 10.0, random_turn=True)
+
+    def gully(self, z_south, z_north):
+        """Hazards rolling south down both edges, from the outcrop at z_north to the
+        one at z_south, then starting again. Two lanes per side, staggered, so a
+        player hugging a wall keeps meeting them head-on."""
+        i = self.intensity
+        length = z_south - z_north
+        speed = 3.4 + 1.2 * (i - 0.85) / 0.56  # 3.4 m/s in 1-1, up to 4.6 m/s in 7-5.
+        spacing = 5.0 - 1.0 * (i - 0.85) / 0.56  # 5 m apart in 1-1, down to 4 m in 7-5.
+        count = max(2, round(length / spacing))
+        period = length / speed
+        for side in (-1, 1):
+            for lane, x in enumerate(GULLY_LANES):
+                # Each lane and side gets its own phase, so the gaps never line up.
+                phase = (0.5 * lane + 0.25 * (side > 0) + 0.13 * len(self.walls)) % 1.0
+                for c in range(count):
+                    self.roller(side * x, z_north, 0, period, period * ((c + phase) / count) % period,
+                                one_way=True, dz=length)
+
+    def gate(self, z):
+        """Solid outcrops sticking out from both side walls at z."""
+        width = HALF_WIDTH - GATE_FROM
+        for side in (-1, 1):
+            self.world.wall(self, side * (GATE_FROM + width / 2), z, width)
 
     # --- sections: each fills the stretch going north from z_top and returns where it ends ---
 
@@ -366,7 +405,7 @@ class Level:
             self.walker_line(9.8, z_bottom + 1.0, 0, length - 2, self.uniform(3.0, 3.8), 2)
         self.roamers(round(4 + 4 * i), z_top, z_bottom)
         for _ in range(2):
-            self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2, z_top - 2))
+            self.obstacle(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 2, z_top - 2))
         return z_bottom
 
     def patrols(self, z_top):
@@ -393,9 +432,11 @@ class Level:
         spacing = 7.4 if rows == 2 else 5.5
         for w in range(walls):
             z = z_top - 2.0 - spacing * w
-            gap = (7.0, 11.0) if w % 2 == 0 else (-11.0, -7.0)
-            solid = (-HALF_WIDTH, gap[0]) if w % 2 == 0 else (gap[1], HALF_WIDTH)
-            self.world.wall(self, (solid[0] + solid[1]) / 2, z, solid[1] - solid[0])
+            # The gap is 4 m wide but stops 2.4 m short of the side wall, so the
+            # way through is never along the wall itself.
+            gap = (4.6, 8.6) if w % 2 == 0 else (-8.6, -4.6)
+            for solid in [(-HALF_WIDTH, gap[0]), (gap[1], HALF_WIDTH)]:
+                self.world.wall(self, (solid[0] + solid[1]) / 2, z, solid[1] - solid[0])
             self.walker_circle((gap[0] + gap[1]) / 2, z, 1.3, 2.0, 1)
             if w < walls - 1:
                 for r in range(rows):
@@ -413,7 +454,7 @@ class Level:
         z_bottom = z_top - length
         self.roamers(round(14 + 16 * i), z_top, z_bottom)
         for _ in range(3):
-            self.obstacle(self.uniform(-8, 8), self.uniform(z_bottom + 2.5, z_top - 2.5))
+            self.obstacle(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 2.5, z_top - 2.5))
         return z_bottom
 
     def swarm(self, z_top):
@@ -423,7 +464,7 @@ class Level:
         z_bottom = z_top - length
         self.roamers(round(22 + 20 * i), z_top, z_bottom, hop=5.0)
         for _ in range(4):
-            self.obstacle(self.uniform(-8.5, 8.5), self.uniform(z_bottom + 3.0, z_top - 3.0))
+            self.obstacle(self.uniform(-7.5, 7.5), self.uniform(z_bottom + 3.0, z_top - 3.0))
         return z_bottom
 
     def spinners(self, z_top):
@@ -496,6 +537,13 @@ class Level:
         for n, section_name in enumerate(self.recipe):
             self.section(n)
             z_bottom = getattr(self, section_name)(z)
+            # Outcrops 1 m beyond each end of the section (in the 2 m gap between
+            # sections, or either side of a checkpoint), and edge gullies between them.
+            if n % 2 == 0:
+                self.gate(z + 1.0)
+            self.gate(z_bottom - 1.0)
+            if section_name not in NO_GULLY:
+                self.gully(z + 1.0, z_bottom - 1.0)
             self.walls.append((z, z_bottom, section_name))
             if n == len(self.recipe) - 1:
                 self.finish(z_bottom - 3.0)

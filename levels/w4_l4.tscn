@@ -38,9 +38,19 @@ script = ExtResource("1_level")
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 3.0)
 
 [node name="Fence" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0, 0.0, -1.5)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2, 0.0, -1.5)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(15.6, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence2" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -1.5)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -48,7 +58,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.0, 0.0, -1.5)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.6, 0.0, -1.5)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -101,10 +111,20 @@ model_scale = 1.9
 [node name="Rock" parent="Hazards/Roller4/Model"]
 visible = false
 
-[node name="Fence2" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.0, 0.0, -8.9)
+[node name="Fence3" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -8.9)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence4" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2, 0.0, -8.9)
+script = ExtResource("3_block")
+size = Vector3(15.6, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -112,7 +132,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker2" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.0, 0.0, -8.9)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.6, 0.0, -8.9)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -165,10 +185,20 @@ model_scale = 1.9
 [node name="Rock" parent="Hazards/Roller8/Model"]
 visible = false
 
-[node name="Fence3" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0, 0.0, -16.3)
+[node name="Fence5" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2, 0.0, -16.3)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(15.6, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence6" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -16.3)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -176,7 +206,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker3" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.0, 0.0, -16.3)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.6, 0.0, -16.3)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -229,10 +259,20 @@ model_scale = 1.9
 [node name="Rock" parent="Hazards/Roller12/Model"]
 visible = false
 
-[node name="Fence4" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.0, 0.0, -23.7)
+[node name="Fence7" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -23.7)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence8" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2, 0.0, -23.7)
+script = ExtResource("3_block")
+size = Vector3(15.6, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -240,7 +280,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker4" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.0, 0.0, -23.7)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.6, 0.0, -23.7)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -293,10 +333,20 @@ model_scale = 1.9
 [node name="Rock" parent="Hazards/Roller16/Model"]
 visible = false
 
-[node name="Fence5" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0, 0.0, -31.1)
+[node name="Fence9" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2, 0.0, -31.1)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(15.6, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence10" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -31.1)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -304,7 +354,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker5" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.0, 0.0, -31.1)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.6, 0.0, -31.1)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -312,6 +362,46 @@ circle_period = 2.0
 clockwise = true
 model_scene = ExtResource("4_character_zombie")
 model_scale = 1.3
+
+[node name="Fence11" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, 1.5)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence12" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, 1.5)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence13" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -34.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence14" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -34.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
 
 [node name="Walker6" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -47.6)
@@ -866,7 +956,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.2782, 0.0, -50.2803)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.1278, 0.0, -50.2803)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -876,7 +966,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover2" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.3417, 0.0, -44.4255)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -0.3015, 0.0, -44.4255)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -886,7 +976,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover3" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.1391, 0.0, -49.2732)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.1228, 0.0, -49.2732)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -896,7 +986,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover4" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.1703, 0.0, -42.8838)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.4444, 0.0, -42.8838)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -905,16 +995,32 @@ decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
 
-[node name="Checkpoint" type="Area3D" parent="Zones"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -62.1)
-script = ExtResource("11_zone")
-size = Vector3(14.0, 2.0, 3.0)
+[node name="Fence15" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -60.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence16" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -60.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
 
 [node name="Roller17" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -65.9)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 3.0212
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.135
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -922,10 +1028,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller18" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -65.9)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 1.5106
-line_period = 3.0212
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.1739
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -933,10 +1040,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller19" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -68.1)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 3.1555
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.2127
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -944,10 +1052,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller20" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -68.1)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 1.5777
-line_period = 3.1555
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.2515
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -955,10 +1064,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller21" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -70.3)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 3.206
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.2903
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -966,10 +1076,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller22" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -70.3)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 1.0687
-line_period = 3.206
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.3291
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -977,10 +1088,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller23" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -70.3)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 2.1373
-line_period = 3.206
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.6545
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -988,10 +1100,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller24" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -72.5)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 2.5596
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.6933
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -999,10 +1112,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller25" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -72.5)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 1.2798
-line_period = 2.5596
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.7321
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1010,10 +1124,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller26" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -74.7)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 3.1497
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.7709
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1021,10 +1136,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller27" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -74.7)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 1.5749
-line_period = 3.1497
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.8097
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1032,10 +1148,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller28" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -76.9)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 2.9919
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.8485
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1043,10 +1160,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller29" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -76.9)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 0.9973
-line_period = 2.9919
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.3947
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1054,10 +1172,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller30" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -76.9)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 1.9946
-line_period = 2.9919
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.4336
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1065,10 +1184,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller31" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -79.1)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 2.8657
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.4724
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1076,10 +1196,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller32" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -79.1)
-line_offset = Vector3(21.0, 0.0, 0.0)
-time_offset = 1.4329
-line_period = 2.8657
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.5112
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1087,10 +1208,11 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller33" parent="Hazards" instance=ExtResource("7_boulder")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -81.3)
-line_offset = Vector3(-21.0, 0.0, 0.0)
-time_offset = 0.0
-line_period = 3.1808
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.55
+line_period = 6.2329
+one_way = true
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
@@ -1098,6 +1220,282 @@ model_scale = 1.9
 visible = false
 
 [node name="Roller34" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.5888
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller34/Model"]
+visible = false
+
+[node name="Roller35" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.9142
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller35/Model"]
+visible = false
+
+[node name="Roller36" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.953
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller36/Model"]
+visible = false
+
+[node name="Roller37" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.9918
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller37/Model"]
+visible = false
+
+[node name="Roller38" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.0306
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller38/Model"]
+visible = false
+
+[node name="Roller39" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.0694
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller39/Model"]
+visible = false
+
+[node name="Roller40" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -60.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 6.1082
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller40/Model"]
+visible = false
+
+[node name="Checkpoint" type="Area3D" parent="Zones"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -62.1)
+script = ExtResource("11_zone")
+size = Vector3(14.0, 2.0, 3.0)
+
+[node name="Roller41" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -65.9)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 3.0212
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller41/Model"]
+visible = false
+
+[node name="Roller42" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -65.9)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.5106
+line_period = 3.0212
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller42/Model"]
+visible = false
+
+[node name="Roller43" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -68.1)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 3.1555
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller43/Model"]
+visible = false
+
+[node name="Roller44" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -68.1)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 1.5777
+line_period = 3.1555
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller44/Model"]
+visible = false
+
+[node name="Roller45" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -70.3)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 3.206
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller45/Model"]
+visible = false
+
+[node name="Roller46" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -70.3)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.0687
+line_period = 3.206
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller46/Model"]
+visible = false
+
+[node name="Roller47" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -70.3)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 2.1373
+line_period = 3.206
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller47/Model"]
+visible = false
+
+[node name="Roller48" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -72.5)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.5596
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller48/Model"]
+visible = false
+
+[node name="Roller49" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -72.5)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 1.2798
+line_period = 2.5596
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller49/Model"]
+visible = false
+
+[node name="Roller50" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -74.7)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 3.1497
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller50/Model"]
+visible = false
+
+[node name="Roller51" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -74.7)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.5749
+line_period = 3.1497
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller51/Model"]
+visible = false
+
+[node name="Roller52" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -76.9)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.9919
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller52/Model"]
+visible = false
+
+[node name="Roller53" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -76.9)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.9973
+line_period = 2.9919
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller53/Model"]
+visible = false
+
+[node name="Roller54" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -76.9)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 1.9946
+line_period = 2.9919
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller54/Model"]
+visible = false
+
+[node name="Roller55" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -79.1)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 2.8657
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller55/Model"]
+visible = false
+
+[node name="Roller56" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -79.1)
+line_offset = Vector3(21.0, 0.0, 0.0)
+time_offset = 1.4329
+line_period = 2.8657
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller56/Model"]
+visible = false
+
+[node name="Roller57" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -81.3)
+line_offset = Vector3(-21.0, 0.0, 0.0)
+time_offset = 0.0
+line_period = 3.1808
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller57/Model"]
+visible = false
+
+[node name="Roller58" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -81.3)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.5904
@@ -1105,7 +1503,287 @@ line_period = 3.1808
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller34/Model"]
+[node name="Rock" parent="Hazards/Roller58/Model"]
+visible = false
+
+[node name="Fence17" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -63.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence18" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -63.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence19" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -83.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence20" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -83.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller59" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.2493
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller59/Model"]
+visible = false
+
+[node name="Roller60" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.2082
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller60/Model"]
+visible = false
+
+[node name="Roller61" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.1671
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller61/Model"]
+visible = false
+
+[node name="Roller62" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.126
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller62/Model"]
+visible = false
+
+[node name="Roller63" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 4.0849
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller63/Model"]
+visible = false
+
+[node name="Roller64" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.7288
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller64/Model"]
+visible = false
+
+[node name="Roller65" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.6877
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller65/Model"]
+visible = false
+
+[node name="Roller66" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.6466
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller66/Model"]
+visible = false
+
+[node name="Roller67" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.6055
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller67/Model"]
+visible = false
+
+[node name="Roller68" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 4.5644
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller68/Model"]
+visible = false
+
+[node name="Roller69" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.489
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller69/Model"]
+visible = false
+
+[node name="Roller70" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.4479
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller70/Model"]
+visible = false
+
+[node name="Roller71" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.4068
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller71/Model"]
+visible = false
+
+[node name="Roller72" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.3658
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller72/Model"]
+visible = false
+
+[node name="Roller73" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 4.3247
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller73/Model"]
+visible = false
+
+[node name="Roller74" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.0096
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller74/Model"]
+visible = false
+
+[node name="Roller75" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.9685
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller75/Model"]
+visible = false
+
+[node name="Roller76" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.9274
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller76/Model"]
+visible = false
+
+[node name="Roller77" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.8863
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller77/Model"]
+visible = false
+
+[node name="Roller78" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -83.6)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.8452
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller78/Model"]
 visible = false
 
 [node name="Walker52" parent="Hazards" instance=ExtResource("5_enemy")]
@@ -1505,7 +2183,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover5" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.2835, 0.0, -87.8808)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.9533, 0.0, -87.8808)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -1515,7 +2193,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover6" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.6495, 0.0, -95.7643)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.6089, 0.0, -95.7643)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -1525,7 +2203,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover7" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.5359, 0.0, -92.8563)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.3774, 0.0, -92.8563)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -1533,6 +2211,266 @@ decoration = ExtResource("10_crypt")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence21" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -105.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence22" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -105.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller79" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.4114
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller79/Model"]
+visible = false
+
+[node name="Roller80" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.4662
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller80/Model"]
+visible = false
+
+[node name="Roller81" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.521
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller81/Model"]
+visible = false
+
+[node name="Roller82" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.5758
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller82/Model"]
+visible = false
+
+[node name="Roller83" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.6305
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller83/Model"]
+visible = false
+
+[node name="Roller84" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.9388
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller84/Model"]
+visible = false
+
+[node name="Roller85" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.9936
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller85/Model"]
+visible = false
+
+[node name="Roller86" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.0484
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller86/Model"]
+visible = false
+
+[node name="Roller87" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.1032
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller87/Model"]
+visible = false
+
+[node name="Roller88" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 5.1579
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller88/Model"]
+visible = false
+
+[node name="Roller89" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.6751
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller89/Model"]
+visible = false
+
+[node name="Roller90" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.7299
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller90/Model"]
+visible = false
+
+[node name="Roller91" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.7847
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller91/Model"]
+visible = false
+
+[node name="Roller92" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.8395
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller92/Model"]
+visible = false
+
+[node name="Roller93" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.8942
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller93/Model"]
+visible = false
+
+[node name="Roller94" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.1477
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller94/Model"]
+visible = false
+
+[node name="Roller95" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.2025
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller95/Model"]
+visible = false
+
+[node name="Roller96" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.2573
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller96/Model"]
+visible = false
+
+[node name="Roller97" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.3121
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller97/Model"]
+visible = false
+
+[node name="Roller98" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -105.6)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.3668
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller98/Model"]
+visible = false
 
 [node name="Checkpoint2" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -107.1)
@@ -2092,7 +3030,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover8" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.6377, 0.0, -123.6321)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.7391, 0.0, -123.6321)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -2102,7 +3040,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover9" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2783, 0.0, -113.7276)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.8926, 0.0, -113.7276)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -2112,7 +3050,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover10" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.7928, 0.0, -118.6625)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.2289, 0.0, -118.6625)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -2122,7 +3060,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover11" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.8909, 0.0, -125.0021)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.9625, 0.0, -125.0021)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -2130,6 +3068,334 @@ decoration = ExtResource("10_crypt")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence23" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -108.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence24" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -108.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence25" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -134.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence26" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -134.6)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller99" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.5402
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller99/Model"]
+visible = false
+
+[node name="Roller100" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.579
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller100/Model"]
+visible = false
+
+[node name="Roller101" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.6178
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller101/Model"]
+visible = false
+
+[node name="Roller102" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.6566
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller102/Model"]
+visible = false
+
+[node name="Roller103" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.6954
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller103/Model"]
+visible = false
+
+[node name="Roller104" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.7342
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller104/Model"]
+visible = false
+
+[node name="Roller105" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.0208
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller105/Model"]
+visible = false
+
+[node name="Roller106" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.0596
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller106/Model"]
+visible = false
+
+[node name="Roller107" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.0984
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller107/Model"]
+visible = false
+
+[node name="Roller108" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.1372
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller108/Model"]
+visible = false
+
+[node name="Roller109" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.176
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller109/Model"]
+visible = false
+
+[node name="Roller110" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.2148
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller110/Model"]
+visible = false
+
+[node name="Roller111" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.7999
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller111/Model"]
+visible = false
+
+[node name="Roller112" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.8387
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller112/Model"]
+visible = false
+
+[node name="Roller113" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.8775
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller113/Model"]
+visible = false
+
+[node name="Roller114" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.9163
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller114/Model"]
+visible = false
+
+[node name="Roller115" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.9551
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller115/Model"]
+visible = false
+
+[node name="Roller116" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.9939
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller116/Model"]
+visible = false
+
+[node name="Roller117" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.2805
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller117/Model"]
+visible = false
+
+[node name="Roller118" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.3193
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller118/Model"]
+visible = false
+
+[node name="Roller119" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.3581
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller119/Model"]
+visible = false
+
+[node name="Roller120" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.3969
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller120/Model"]
+visible = false
+
+[node name="Roller121" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.4357
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller121/Model"]
+visible = false
+
+[node name="Roller122" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -134.6)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.4745
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller122/Model"]
+visible = false
 
 [node name="Walker131" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 4.5313, 0.0, -141.2676)
@@ -2412,7 +3678,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover12" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.3927, 0.0, -142.2965)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.9307, 0.0, -142.2965)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -2422,7 +3688,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover13" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 7.2324, 0.0, -151.4075)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.7804, 0.0, -151.4075)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -2430,6 +3696,266 @@ decoration = ExtResource("9_gravestone_cross")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence27" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -155.44)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence28" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -155.44)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller123" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.6495
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller123/Model"]
+visible = false
+
+[node name="Roller124" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.6486
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller124/Model"]
+visible = false
+
+[node name="Roller125" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.6478
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller125/Model"]
+visible = false
+
+[node name="Roller126" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.647
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller126/Model"]
+visible = false
+
+[node name="Roller127" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.6462
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller127/Model"]
+visible = false
+
+[node name="Roller128" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.1499
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller128/Model"]
+visible = false
+
+[node name="Roller129" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.1491
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller129/Model"]
+visible = false
+
+[node name="Roller130" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.1482
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller130/Model"]
+visible = false
+
+[node name="Roller131" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.1474
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller131/Model"]
+visible = false
+
+[node name="Roller132" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.1466
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller132/Model"]
+visible = false
+
+[node name="Roller133" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.8993
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller133/Model"]
+visible = false
+
+[node name="Roller134" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.8984
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller134/Model"]
+visible = false
+
+[node name="Roller135" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.8976
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller135/Model"]
+visible = false
+
+[node name="Roller136" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.8968
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller136/Model"]
+visible = false
+
+[node name="Roller137" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.896
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller137/Model"]
+visible = false
+
+[node name="Roller138" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.3997
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller138/Model"]
+visible = false
+
+[node name="Roller139" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.3988
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller139/Model"]
+visible = false
+
+[node name="Roller140" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.398
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller140/Model"]
+visible = false
+
+[node name="Roller141" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.3972
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller141/Model"]
+visible = false
+
+[node name="Roller142" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -155.44)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.3964
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller142/Model"]
+visible = false
 
 [node name="Checkpoint3" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -156.94)
@@ -2729,6 +4255,286 @@ wander_pause_chance = 0.1127
 wander_seed = 44143
 model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
+
+[node name="Fence29" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -158.44)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence30" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -158.44)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence31" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -179.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence32" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -179.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller143" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 0.7704
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller143/Model"]
+visible = false
+
+[node name="Roller144" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 1.7581
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller144/Model"]
+visible = false
+
+[node name="Roller145" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 2.7457
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller145/Model"]
+visible = false
+
+[node name="Roller146" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 3.7334
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller146/Model"]
+visible = false
+
+[node name="Roller147" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 4.7211
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller147/Model"]
+visible = false
+
+[node name="Roller148" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 0.2765
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller148/Model"]
+visible = false
+
+[node name="Roller149" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 1.2642
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller149/Model"]
+visible = false
+
+[node name="Roller150" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 2.2519
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller150/Model"]
+visible = false
+
+[node name="Roller151" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 3.2396
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller151/Model"]
+visible = false
+
+[node name="Roller152" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 4.2272
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller152/Model"]
+visible = false
+
+[node name="Roller153" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 0.0296
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller153/Model"]
+visible = false
+
+[node name="Roller154" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 1.0173
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller154/Model"]
+visible = false
+
+[node name="Roller155" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 2.005
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller155/Model"]
+visible = false
+
+[node name="Roller156" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 2.9926
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller156/Model"]
+visible = false
+
+[node name="Roller157" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 3.9803
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller157/Model"]
+visible = false
+
+[node name="Roller158" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 0.5235
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller158/Model"]
+visible = false
+
+[node name="Roller159" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 1.5111
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller159/Model"]
+visible = false
+
+[node name="Roller160" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 2.4988
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller160/Model"]
+visible = false
+
+[node name="Roller161" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 3.4865
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller161/Model"]
+visible = false
+
+[node name="Roller162" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -179.04)
+line_offset = Vector3(0.0, 0.0, 20.6)
+time_offset = 4.4742
+line_period = 4.9384
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller162/Model"]
+visible = false
 
 [node name="Walker188" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -192.04)
@@ -3283,7 +5089,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover14" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.3007, 0.0, -199.5808)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.2653, 0.0, -199.5808)
 script = ExtResource("3_block")
 size = Vector3(0.8, 1.0, 0.5)
 show_box = false
@@ -3293,7 +5099,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover15" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 7.1074, 0.0, -194.773)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.2712, 0.0, -194.773)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -3303,7 +5109,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover16" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.9366, 0.0, -193.7051)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.5911, 0.0, -193.7051)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -3313,7 +5119,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover17" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -4.464, 0.0, -185.5014)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.9388, 0.0, -185.5014)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -3322,15 +5128,333 @@ decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
 
+[node name="Fence33" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -205.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence34" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -205.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller163" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.9453
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller163/Model"]
+visible = false
+
+[node name="Roller164" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.9841
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller164/Model"]
+visible = false
+
+[node name="Roller165" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.0229
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller165/Model"]
+visible = false
+
+[node name="Roller166" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.0618
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller166/Model"]
+visible = false
+
+[node name="Roller167" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.1006
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller167/Model"]
+visible = false
+
+[node name="Roller168" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 6.1394
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller168/Model"]
+visible = false
+
+[node name="Roller169" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.4259
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller169/Model"]
+visible = false
+
+[node name="Roller170" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.4647
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller170/Model"]
+visible = false
+
+[node name="Roller171" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.5035
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller171/Model"]
+visible = false
+
+[node name="Roller172" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.5424
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller172/Model"]
+visible = false
+
+[node name="Roller173" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.5812
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller173/Model"]
+visible = false
+
+[node name="Roller174" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.62
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller174/Model"]
+visible = false
+
+[node name="Roller175" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.1662
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller175/Model"]
+visible = false
+
+[node name="Roller176" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.205
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller176/Model"]
+visible = false
+
+[node name="Roller177" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.2438
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller177/Model"]
+visible = false
+
+[node name="Roller178" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.2826
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller178/Model"]
+visible = false
+
+[node name="Roller179" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.3215
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller179/Model"]
+visible = false
+
+[node name="Roller180" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.3603
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller180/Model"]
+visible = false
+
+[node name="Roller181" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.6856
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller181/Model"]
+visible = false
+
+[node name="Roller182" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.7244
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller182/Model"]
+visible = false
+
+[node name="Roller183" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.7632
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller183/Model"]
+visible = false
+
+[node name="Roller184" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.8021
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller184/Model"]
+visible = false
+
+[node name="Roller185" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.8409
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller185/Model"]
+visible = false
+
+[node name="Roller186" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -205.04)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.8797
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller186/Model"]
+visible = false
+
 [node name="Checkpoint4" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -206.54)
 script = ExtResource("11_zone")
 size = Vector3(14.0, 2.0, 3.0)
 
-[node name="Fence6" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0, 0.0, -211.04)
+[node name="Fence35" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2, 0.0, -211.04)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(15.6, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence36" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -211.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -3338,7 +5462,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker234" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.0, 0.0, -211.04)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.6, 0.0, -211.04)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -3347,7 +5471,7 @@ clockwise = true
 model_scene = ExtResource("4_character_zombie")
 model_scale = 1.3
 
-[node name="Roller35" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller187" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -216.04)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3355,10 +5479,10 @@ line_period = 2.311
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller35/Model"]
+[node name="Rock" parent="Hazards/Roller187/Model"]
 visible = false
 
-[node name="Roller36" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller188" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -216.04)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.1555
@@ -3366,10 +5490,10 @@ line_period = 2.311
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller36/Model"]
+[node name="Rock" parent="Hazards/Roller188/Model"]
 visible = false
 
-[node name="Roller37" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller189" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -213.44)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3377,10 +5501,10 @@ line_period = 2.0687
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller37/Model"]
+[node name="Rock" parent="Hazards/Roller189/Model"]
 visible = false
 
-[node name="Roller38" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller190" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -213.44)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.0344
@@ -3388,13 +5512,23 @@ line_period = 2.0687
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller38/Model"]
+[node name="Rock" parent="Hazards/Roller190/Model"]
 visible = false
 
-[node name="Fence7" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.0, 0.0, -218.44)
+[node name="Fence37" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -218.44)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence38" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2, 0.0, -218.44)
+script = ExtResource("3_block")
+size = Vector3(15.6, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -3402,7 +5536,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker235" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.0, 0.0, -218.44)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.6, 0.0, -218.44)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -3411,7 +5545,7 @@ clockwise = true
 model_scene = ExtResource("4_character_zombie")
 model_scale = 1.3
 
-[node name="Roller39" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller191" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -223.44)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3419,10 +5553,10 @@ line_period = 2.1493
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller39/Model"]
+[node name="Rock" parent="Hazards/Roller191/Model"]
 visible = false
 
-[node name="Roller40" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller192" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -223.44)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.0747
@@ -3430,10 +5564,10 @@ line_period = 2.1493
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller40/Model"]
+[node name="Rock" parent="Hazards/Roller192/Model"]
 visible = false
 
-[node name="Roller41" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller193" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -220.84)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3441,10 +5575,10 @@ line_period = 2.0865
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller41/Model"]
+[node name="Rock" parent="Hazards/Roller193/Model"]
 visible = false
 
-[node name="Roller42" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller194" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -220.84)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.0432
@@ -3452,13 +5586,23 @@ line_period = 2.0865
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller42/Model"]
+[node name="Rock" parent="Hazards/Roller194/Model"]
 visible = false
 
-[node name="Fence8" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0, 0.0, -225.84)
+[node name="Fence39" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2, 0.0, -225.84)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(15.6, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence40" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -225.84)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -3466,7 +5610,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker236" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.0, 0.0, -225.84)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.6, 0.0, -225.84)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -3475,7 +5619,7 @@ clockwise = true
 model_scene = ExtResource("4_character_zombie")
 model_scale = 1.3
 
-[node name="Roller43" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller195" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -230.84)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3483,10 +5627,10 @@ line_period = 2.3654
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller43/Model"]
+[node name="Rock" parent="Hazards/Roller195/Model"]
 visible = false
 
-[node name="Roller44" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller196" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -230.84)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.1827
@@ -3494,10 +5638,10 @@ line_period = 2.3654
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller44/Model"]
+[node name="Rock" parent="Hazards/Roller196/Model"]
 visible = false
 
-[node name="Roller45" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller197" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -228.24)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3505,10 +5649,10 @@ line_period = 2.242
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller45/Model"]
+[node name="Rock" parent="Hazards/Roller197/Model"]
 visible = false
 
-[node name="Roller46" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller198" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -228.24)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.121
@@ -3516,13 +5660,23 @@ line_period = 2.242
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller46/Model"]
+[node name="Rock" parent="Hazards/Roller198/Model"]
 visible = false
 
-[node name="Fence9" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.0, 0.0, -233.24)
+[node name="Fence41" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -233.24)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence42" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2, 0.0, -233.24)
+script = ExtResource("3_block")
+size = Vector3(15.6, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -3530,7 +5684,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker237" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.0, 0.0, -233.24)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.6, 0.0, -233.24)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -3539,7 +5693,7 @@ clockwise = true
 model_scene = ExtResource("4_character_zombie")
 model_scale = 1.3
 
-[node name="Roller47" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller199" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -238.24)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3547,10 +5701,10 @@ line_period = 2.7068
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller47/Model"]
+[node name="Rock" parent="Hazards/Roller199/Model"]
 visible = false
 
-[node name="Roller48" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller200" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -238.24)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.3534
@@ -3558,10 +5712,10 @@ line_period = 2.7068
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller48/Model"]
+[node name="Rock" parent="Hazards/Roller200/Model"]
 visible = false
 
-[node name="Roller49" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller201" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -235.64)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3569,10 +5723,10 @@ line_period = 2.6483
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller49/Model"]
+[node name="Rock" parent="Hazards/Roller201/Model"]
 visible = false
 
-[node name="Roller50" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller202" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -235.64)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.3241
@@ -3580,13 +5734,23 @@ line_period = 2.6483
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller50/Model"]
+[node name="Rock" parent="Hazards/Roller202/Model"]
 visible = false
 
-[node name="Fence10" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.0, 0.0, -240.64)
+[node name="Fence43" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2, 0.0, -240.64)
 script = ExtResource("3_block")
-size = Vector3(18.0, 1.4, 0.6)
+size = Vector3(15.6, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence44" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -240.64)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
 show_box = false
 decoration = ExtResource("2_iron_fence")
 decoration_scale = 2.0
@@ -3594,7 +5758,7 @@ decoration_spacing = 2.0
 random_turn = false
 
 [node name="Walker238" parent="Hazards" instance=ExtResource("5_enemy")]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.0, 0.0, -240.64)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.6, 0.0, -240.64)
 pattern = 1
 time_offset = 0.0
 circle_radius = 1.3
@@ -3603,7 +5767,47 @@ clockwise = true
 model_scene = ExtResource("4_character_zombie")
 model_scale = 1.3
 
-[node name="Roller51" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Fence45" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -208.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence46" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -208.04)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence47" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -244.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence48" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -244.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller203" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -246.44)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3611,10 +5815,10 @@ line_period = 3.2412
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller51/Model"]
+[node name="Rock" parent="Hazards/Roller203/Model"]
 visible = false
 
-[node name="Roller52" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller204" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -246.44)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.6206
@@ -3622,10 +5826,10 @@ line_period = 3.2412
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller52/Model"]
+[node name="Rock" parent="Hazards/Roller204/Model"]
 visible = false
 
-[node name="Roller53" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller205" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -248.64)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3633,10 +5837,10 @@ line_period = 3.047
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller53/Model"]
+[node name="Rock" parent="Hazards/Roller205/Model"]
 visible = false
 
-[node name="Roller54" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller206" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -248.64)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.5235
@@ -3644,10 +5848,10 @@ line_period = 3.047
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller54/Model"]
+[node name="Rock" parent="Hazards/Roller206/Model"]
 visible = false
 
-[node name="Roller55" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller207" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -250.84)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3655,10 +5859,10 @@ line_period = 2.6219
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller55/Model"]
+[node name="Rock" parent="Hazards/Roller207/Model"]
 visible = false
 
-[node name="Roller56" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller208" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -250.84)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.874
@@ -3666,10 +5870,10 @@ line_period = 2.6219
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller56/Model"]
+[node name="Rock" parent="Hazards/Roller208/Model"]
 visible = false
 
-[node name="Roller57" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller209" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -250.84)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.7479
@@ -3677,10 +5881,10 @@ line_period = 2.6219
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller57/Model"]
+[node name="Rock" parent="Hazards/Roller209/Model"]
 visible = false
 
-[node name="Roller58" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller210" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -253.04)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3688,10 +5892,10 @@ line_period = 2.7942
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller58/Model"]
+[node name="Rock" parent="Hazards/Roller210/Model"]
 visible = false
 
-[node name="Roller59" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller211" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -253.04)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.3971
@@ -3699,10 +5903,10 @@ line_period = 2.7942
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller59/Model"]
+[node name="Rock" parent="Hazards/Roller211/Model"]
 visible = false
 
-[node name="Roller60" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller212" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -255.24)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3710,10 +5914,10 @@ line_period = 3.0751
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller60/Model"]
+[node name="Rock" parent="Hazards/Roller212/Model"]
 visible = false
 
-[node name="Roller61" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller213" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -255.24)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.5375
@@ -3721,10 +5925,10 @@ line_period = 3.0751
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller61/Model"]
+[node name="Rock" parent="Hazards/Roller213/Model"]
 visible = false
 
-[node name="Roller62" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller214" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -257.44)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3732,10 +5936,10 @@ line_period = 3.1383
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller62/Model"]
+[node name="Rock" parent="Hazards/Roller214/Model"]
 visible = false
 
-[node name="Roller63" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller215" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -257.44)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.0461
@@ -3743,10 +5947,10 @@ line_period = 3.1383
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller63/Model"]
+[node name="Rock" parent="Hazards/Roller215/Model"]
 visible = false
 
-[node name="Roller64" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller216" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -257.44)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 2.0922
@@ -3754,10 +5958,10 @@ line_period = 3.1383
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller64/Model"]
+[node name="Rock" parent="Hazards/Roller216/Model"]
 visible = false
 
-[node name="Roller65" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller217" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -259.64)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3765,10 +5969,10 @@ line_period = 2.8439
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller65/Model"]
+[node name="Rock" parent="Hazards/Roller217/Model"]
 visible = false
 
-[node name="Roller66" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller218" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.5, 0.0, -259.64)
 line_offset = Vector3(21.0, 0.0, 0.0)
 time_offset = 1.422
@@ -3776,10 +5980,10 @@ line_period = 2.8439
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller66/Model"]
+[node name="Rock" parent="Hazards/Roller218/Model"]
 visible = false
 
-[node name="Roller67" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller219" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -261.84)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 0.0
@@ -3787,10 +5991,10 @@ line_period = 3.0801
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller67/Model"]
+[node name="Rock" parent="Hazards/Roller219/Model"]
 visible = false
 
-[node name="Roller68" parent="Hazards" instance=ExtResource("7_boulder")]
+[node name="Roller220" parent="Hazards" instance=ExtResource("7_boulder")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.5, 0.0, -261.84)
 line_offset = Vector3(-21.0, 0.0, 0.0)
 time_offset = 1.5401
@@ -3798,7 +6002,267 @@ line_period = 3.0801
 model_scene = ExtResource("6_pumpkin_carved")
 model_scale = 1.9
 
-[node name="Rock" parent="Hazards/Roller68/Model"]
+[node name="Rock" parent="Hazards/Roller220/Model"]
+visible = false
+
+[node name="Fence49" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -264.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence50" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -264.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller221" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.163
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller221/Model"]
+visible = false
+
+[node name="Roller222" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.1219
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller222/Model"]
+visible = false
+
+[node name="Roller223" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.0808
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller223/Model"]
+visible = false
+
+[node name="Roller224" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.0397
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller224/Model"]
+visible = false
+
+[node name="Roller225" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.9986
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller225/Model"]
+visible = false
+
+[node name="Roller226" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.6425
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller226/Model"]
+visible = false
+
+[node name="Roller227" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.6014
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller227/Model"]
+visible = false
+
+[node name="Roller228" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.5603
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller228/Model"]
+visible = false
+
+[node name="Roller229" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.5192
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller229/Model"]
+visible = false
+
+[node name="Roller230" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 4.4781
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller230/Model"]
+visible = false
+
+[node name="Roller231" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.4027
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller231/Model"]
+visible = false
+
+[node name="Roller232" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.3616
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller232/Model"]
+visible = false
+
+[node name="Roller233" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.3205
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller233/Model"]
+visible = false
+
+[node name="Roller234" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.2795
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller234/Model"]
+visible = false
+
+[node name="Roller235" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 4.2384
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller235/Model"]
+visible = false
+
+[node name="Roller236" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 0.8822
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller236/Model"]
+visible = false
+
+[node name="Roller237" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 1.8411
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller237/Model"]
+visible = false
+
+[node name="Roller238" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 2.8
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller238/Model"]
+visible = false
+
+[node name="Roller239" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 3.7589
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller239/Model"]
+visible = false
+
+[node name="Roller240" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -264.14)
+line_offset = Vector3(0.0, 0.0, 20.0)
+time_offset = 4.7178
+line_period = 4.7945
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller240/Model"]
 visible = false
 
 [node name="Checkpoint5" type="Area3D" parent="Zones"]
@@ -4359,7 +6823,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover18" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.1911, 0.0, -274.9812)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 5.4627, 0.0, -274.9812)
 script = ExtResource("3_block")
 size = Vector3(0.8, 1.0, 0.5)
 show_box = false
@@ -4369,7 +6833,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover19" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.5957, 0.0, -274.701)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.8198, 0.0, -274.701)
 script = ExtResource("3_block")
 size = Vector3(0.8, 1.0, 0.5)
 show_box = false
@@ -4379,7 +6843,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover20" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -3.2183, 0.0, -277.8397)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -2.8397, 0.0, -277.8397)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -4389,7 +6853,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover21" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.6468, 0.0, -285.12)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.453, 0.0, -285.12)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -4397,6 +6861,334 @@ decoration = ExtResource("9_gravestone_cross")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence51" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -267.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence52" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -267.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence53" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -293.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence54" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -293.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller241" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.3116
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller241/Model"]
+visible = false
+
+[node name="Roller242" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.3505
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller242/Model"]
+visible = false
+
+[node name="Roller243" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.3893
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller243/Model"]
+visible = false
+
+[node name="Roller244" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.4281
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller244/Model"]
+visible = false
+
+[node name="Roller245" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.4669
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller245/Model"]
+visible = false
+
+[node name="Roller246" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.5057
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller246/Model"]
+visible = false
+
+[node name="Roller247" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.8311
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller247/Model"]
+visible = false
+
+[node name="Roller248" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.8699
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller248/Model"]
+visible = false
+
+[node name="Roller249" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.9087
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller249/Model"]
+visible = false
+
+[node name="Roller250" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.9475
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller250/Model"]
+visible = false
+
+[node name="Roller251" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.9863
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller251/Model"]
+visible = false
+
+[node name="Roller252" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 6.0251
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller252/Model"]
+visible = false
+
+[node name="Roller253" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.5713
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller253/Model"]
+visible = false
+
+[node name="Roller254" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.6102
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller254/Model"]
+visible = false
+
+[node name="Roller255" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.649
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller255/Model"]
+visible = false
+
+[node name="Roller256" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.6878
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller256/Model"]
+visible = false
+
+[node name="Roller257" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.7266
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller257/Model"]
+visible = false
+
+[node name="Roller258" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.7654
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller258/Model"]
+visible = false
+
+[node name="Roller259" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.0519
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller259/Model"]
+visible = false
+
+[node name="Roller260" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.0908
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller260/Model"]
+visible = false
+
+[node name="Roller261" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.1296
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller261/Model"]
+visible = false
+
+[node name="Roller262" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.1684
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller262/Model"]
+visible = false
+
+[node name="Roller263" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.2072
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller263/Model"]
+visible = false
+
+[node name="Roller264" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -293.14)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.246
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller264/Model"]
+visible = false
 
 [node name="Walker285" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -304.14)
@@ -4795,7 +7587,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover22" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.8501, 0.0, -302.3044)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -1.7345, 0.0, -302.3044)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -4805,7 +7597,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover23" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.7976, 0.0, -297.9599)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 6.3728, 0.0, -297.9599)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -4815,7 +7607,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover24" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.5164, 0.0, -299.8728)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 3.2966, 0.0, -299.8728)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -4823,6 +7615,266 @@ decoration = ExtResource("10_crypt")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence55" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -315.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence56" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -315.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller265" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.4536
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller265/Model"]
+visible = false
+
+[node name="Roller266" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.5084
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller266/Model"]
+visible = false
+
+[node name="Roller267" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.5632
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller267/Model"]
+visible = false
+
+[node name="Roller268" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.6179
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller268/Model"]
+visible = false
+
+[node name="Roller269" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.6727
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller269/Model"]
+visible = false
+
+[node name="Roller270" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.981
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller270/Model"]
+visible = false
+
+[node name="Roller271" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.0358
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller271/Model"]
+visible = false
+
+[node name="Roller272" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.0905
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller272/Model"]
+visible = false
+
+[node name="Roller273" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.1453
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller273/Model"]
+visible = false
+
+[node name="Roller274" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 5.2001
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller274/Model"]
+visible = false
+
+[node name="Roller275" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.7173
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller275/Model"]
+visible = false
+
+[node name="Roller276" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.7721
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller276/Model"]
+visible = false
+
+[node name="Roller277" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.8268
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller277/Model"]
+visible = false
+
+[node name="Roller278" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.8816
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller278/Model"]
+visible = false
+
+[node name="Roller279" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.9364
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller279/Model"]
+visible = false
+
+[node name="Roller280" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 0.1899
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller280/Model"]
+visible = false
+
+[node name="Roller281" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 1.2447
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller281/Model"]
+visible = false
+
+[node name="Roller282" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 2.2995
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller282/Model"]
+visible = false
+
+[node name="Roller283" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 3.3542
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller283/Model"]
+visible = false
+
+[node name="Roller284" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -315.14)
+line_offset = Vector3(0.0, 0.0, 22.0)
+time_offset = 4.409
+line_period = 5.274
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller284/Model"]
+visible = false
 
 [node name="Checkpoint6" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -316.64)
@@ -5120,7 +8172,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover25" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.247, 0.0, -324.1178)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.8565, 0.0, -324.1178)
 script = ExtResource("3_block")
 size = Vector3(0.8, 1.0, 0.5)
 show_box = false
@@ -5130,7 +8182,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover26" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -6.3203, 0.0, -331.2159)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -5.9253, 0.0, -331.2159)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -5138,6 +8190,286 @@ decoration = ExtResource("9_gravestone_cross")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence57" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -318.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence58" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -318.14)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence59" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -338.98)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence60" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -338.98)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller285" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.5595
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller285/Model"]
+visible = false
+
+[node name="Roller286" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.5587
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller286/Model"]
+visible = false
+
+[node name="Roller287" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.5579
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller287/Model"]
+visible = false
+
+[node name="Roller288" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.5571
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller288/Model"]
+visible = false
+
+[node name="Roller289" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.5563
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller289/Model"]
+visible = false
+
+[node name="Roller290" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.06
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller290/Model"]
+visible = false
+
+[node name="Roller291" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.0591
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller291/Model"]
+visible = false
+
+[node name="Roller292" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.0583
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller292/Model"]
+visible = false
+
+[node name="Roller293" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.0575
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller293/Model"]
+visible = false
+
+[node name="Roller294" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.0567
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller294/Model"]
+visible = false
+
+[node name="Roller295" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.8093
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller295/Model"]
+visible = false
+
+[node name="Roller296" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.8085
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller296/Model"]
+visible = false
+
+[node name="Roller297" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.8077
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller297/Model"]
+visible = false
+
+[node name="Roller298" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.8069
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller298/Model"]
+visible = false
+
+[node name="Roller299" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.806
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller299/Model"]
+visible = false
+
+[node name="Roller300" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 0.3097
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller300/Model"]
+visible = false
+
+[node name="Roller301" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 1.3089
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller301/Model"]
+visible = false
+
+[node name="Roller302" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 2.3081
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller302/Model"]
+visible = false
+
+[node name="Roller303" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 3.3073
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller303/Model"]
+visible = false
+
+[node name="Roller304" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -338.98)
+line_offset = Vector3(0.0, 0.0, 20.84)
+time_offset = 4.3065
+line_period = 4.9959
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller304/Model"]
+visible = false
 
 [node name="Walker346" parent="Hazards" instance=ExtResource("5_enemy")]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -351.98)
@@ -5692,7 +9024,7 @@ model_scene = ExtResource("8_character_ghost")
 model_scale = 1.3
 
 [node name="Cover27" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.1903, 0.0, -358.0833)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 1.9326, 0.0, -358.0833)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -5702,7 +9034,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover28" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -8.1116, 0.0, -358.8856)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -7.1573, 0.0, -358.8856)
 script = ExtResource("3_block")
 size = Vector3(1.2, 1.2, 1.8)
 show_box = false
@@ -5712,7 +9044,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover29" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.7356, 0.0, -355.179)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 2.4138, 0.0, -355.179)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -5722,7 +9054,7 @@ decoration_spacing = 10.0
 random_turn = true
 
 [node name="Cover30" type="StaticBody3D" parent="Terrain"]
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.8476, 0.0, -351.1198)
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.7479, 0.0, -351.1198)
 script = ExtResource("3_block")
 size = Vector3(0.7, 1.4, 0.5)
 show_box = false
@@ -5730,6 +9062,314 @@ decoration = ExtResource("9_gravestone_cross")
 decoration_scale = 1.6
 decoration_spacing = 10.0
 random_turn = true
+
+[node name="Fence61" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.8, 0.0, -364.98)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Fence62" type="StaticBody3D" parent="Terrain"]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.8, 0.0, -364.98)
+script = ExtResource("3_block")
+size = Vector3(2.4, 1.4, 0.6)
+show_box = false
+decoration = ExtResource("2_iron_fence")
+decoration_scale = 2.0
+decoration_spacing = 2.0
+random_turn = false
+
+[node name="Roller305" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.7168
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller305/Model"]
+visible = false
+
+[node name="Roller306" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.7556
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller306/Model"]
+visible = false
+
+[node name="Roller307" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.7944
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller307/Model"]
+visible = false
+
+[node name="Roller308" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.8332
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller308/Model"]
+visible = false
+
+[node name="Roller309" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.872
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller309/Model"]
+visible = false
+
+[node name="Roller310" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.9108
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller310/Model"]
+visible = false
+
+[node name="Roller311" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.1974
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller311/Model"]
+visible = false
+
+[node name="Roller312" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.2362
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller312/Model"]
+visible = false
+
+[node name="Roller313" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.275
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller313/Model"]
+visible = false
+
+[node name="Roller314" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.3138
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller314/Model"]
+visible = false
+
+[node name="Roller315" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.3526
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller315/Model"]
+visible = false
+
+[node name="Roller316" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.3914
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller316/Model"]
+visible = false
+
+[node name="Roller317" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.9765
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller317/Model"]
+visible = false
+
+[node name="Roller318" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.0153
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller318/Model"]
+visible = false
+
+[node name="Roller319" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.0541
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller319/Model"]
+visible = false
+
+[node name="Roller320" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.0929
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller320/Model"]
+visible = false
+
+[node name="Roller321" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.1317
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller321/Model"]
+visible = false
+
+[node name="Roller322" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 9.3, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 6.1705
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller322/Model"]
+visible = false
+
+[node name="Roller323" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 0.4571
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller323/Model"]
+visible = false
+
+[node name="Roller324" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 1.4959
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller324/Model"]
+visible = false
+
+[node name="Roller325" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 2.5347
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller325/Model"]
+visible = false
+
+[node name="Roller326" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 3.5735
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller326/Model"]
+visible = false
+
+[node name="Roller327" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 4.6123
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller327/Model"]
+visible = false
+
+[node name="Roller328" parent="Hazards" instance=ExtResource("7_boulder")]
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 10.4, 0.0, -364.98)
+line_offset = Vector3(0.0, 0.0, 26.0)
+time_offset = 5.6511
+line_period = 6.2329
+one_way = true
+model_scene = ExtResource("6_pumpkin_carved")
+model_scale = 1.9
+
+[node name="Rock" parent="Hazards/Roller328/Model"]
+visible = false
 
 [node name="Finish" type="Area3D" parent="Zones"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 0.0, 0.0, -366.98)
@@ -5776,7 +9416,7 @@ script = ExtResource("3_block")
 size = Vector3(24.0, 3.0, 1.0)
 show_box = false
 
-[node name="Fence11" type="StaticBody3D" parent="Terrain"]
+[node name="Fence63" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, -11.4, 0.0, -182.24)
 script = ExtResource("3_block")
 size = Vector3(0.4, 0.1, 378.48)
@@ -5809,7 +9449,7 @@ decoration_spacing = 4.5
 random_turn = true
 solid = false
 
-[node name="Fence12" type="StaticBody3D" parent="Terrain"]
+[node name="Fence64" type="StaticBody3D" parent="Terrain"]
 transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, 0.0, 1.0, 11.4, 0.0, -182.24)
 script = ExtResource("3_block")
 size = Vector3(0.4, 0.1, 378.48)
