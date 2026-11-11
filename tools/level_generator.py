@@ -472,8 +472,13 @@ class Level:
         rows = round(2 + 1.5 * i)
         for r in range(rows):
             z = z_top - 5.2 - 5.2 * r
-            self.spinner(-5.5, z, 2 + r % 2, 6, self.uniform(3.0, 4.2), clockwise=r % 2 == 0, offset=0.6 * r)
-            self.spinner(5.5, z - 1.2, 3 - r % 2, 6, self.uniform(3.0, 4.2), clockwise=r % 2 == 1, offset=0.3 + 0.5 * r)
+            # Side spinners sit close enough to the middle that their arms sweep
+            # across it, so there's no straight lane down the center.
+            self.spinner(-4.4, z, 2 + r % 2, 6, self.uniform(3.0, 4.2), clockwise=r % 2 == 0, offset=0.6 * r)
+            self.spinner(4.4, z - 1.2, 3 - r % 2, 6, self.uniform(3.0, 4.2), clockwise=r % 2 == 1, offset=0.3 + 0.5 * r)
+            if r < rows - 1:
+                # A small spinner in the middle between rows.
+                self.spinner(0.0, z - 3.2, 2, 3, 2.6 + 0.3 * r, clockwise=r % 2 == 1, offset=0.9 * r)
         return z_top - 5.2 - 5.2 * (rows - 1) - 1.2 - 5.2
 
     def pendulums(self, z_top):
@@ -489,6 +494,10 @@ class Level:
         else:
             for _ in range(2 + round(i)):
                 self.wanderer(self.uniform(-1.0, 1.0), self.uniform(last + 1, first - 1), 2.5, first - last - 2)
+            # The pendulums' tips stop 2 m short of the middle, so small spinners
+            # guard the center lane too.
+            for n in range(round((first - last) / 5.2) + 1):
+                self.spinner(0.0, first - 1.3 - 5.2 * n, 2, 2, 2.4 + 0.2 * n, clockwise=n % 2 == 0, offset=0.7 * n)
         return last - 7.4
 
     def spikes(self, z_top):
@@ -521,8 +530,9 @@ class Level:
         rows = round(2 + i)
         for r in range(rows):
             z = z_top - 5.0 - 4.4 * r
-            self.spinner(-5.0, z, 2 + r % 2, 6, self.uniform(2.9, 3.8), clockwise=r % 2 == 0, offset=0.5 * r)
-            self.spinner(5.0, z - 0.6, 3 - r % 2, 6, self.uniform(2.9, 3.8), clockwise=r % 2 == 1, offset=0.2 + 0.6 * r)
+            # Close enough to the middle that their arms sweep across it.
+            self.spinner(-4.2, z, 2 + r % 2, 6, self.uniform(2.9, 3.8), clockwise=r % 2 == 0, offset=0.5 * r)
+            self.spinner(4.2, z - 0.6, 3 - r % 2, 6, self.uniform(2.9, 3.8), clockwise=r % 2 == 1, offset=0.2 + 0.6 * r)
         last = z_top - 5.0 - 4.4 * (rows - 1) - 0.6
         middle = (z_top + last - 5.0) / 2
         self.pendulum(True, middle + 1.4, 3, 2.6, swing=45, first_ball=3.5, spacing=3.25, radius=0.6)
