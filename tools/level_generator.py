@@ -32,16 +32,11 @@ if os.path.exists(DIALS_FILE):
 # Play area is x from -11 to 11. North is -z.
 HALF_WIDTH = 11.0
 
-# Edge gullies: along both side walls of most sections, hazards roll south in
-# two lanes, so players can't just hug a wall to the finish. The lanes
-# (rollers 0.36 m wide on each side of these x values) leave no gap a player
-# (0.21 m radius) fits in from 8.94 m out to the wall.
-GULLY_LANES = [9.3, 10.4]
-# Solid outcrops at both ends of every section, from this x out to the wall.
-# They hide where gully hazards appear and vanish, and push wall-huggers out.
-GATE_FROM = 8.6
-# Sections whose own layout already stops wall-hugging (or would clash with gullies).
-NO_GULLY = {"zigzag"}
+# Players can't go further out than this, so they can't hug a side wall to the
+# finish. Invisible barriers fill the rest of the way to the walls, with a low
+# curb on the ground showing where they start. Hazards still cross the whole
+# width, so the edge of the lane is as busy as the rest of it.
+PLAY_HALF_WIDTH = 8.6
 
 
 def num(value):
@@ -201,9 +196,9 @@ class Level:
 
     # --- hazards ---
 
-    def roller(self, x, z, dx, period, offset=0.0, pattern=None, move=None, pause=None, one_way=False, dz=0.0):
+    def roller(self, x, z, dx, period, offset=0.0, pattern=None, move=None, pause=None, one_way=False):
         skin = self.world.roller
-        props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, dz), time_offset=self.t(offset))
+        props = dict(transform=transform(x, 0, z), line_offset=vec(dx, 0, 0), time_offset=self.t(offset))
         if pattern == "stop":
             props.update(pattern=3, move_time=self.t(move), pause_time=self.t(pause))
         else:
@@ -283,7 +278,7 @@ class Level:
 
     def pendulum(self, from_west, z, balls, period, swing=55.0, offset=0.0, first_ball=0.8, spacing=None,
                  radius=None):
-        # The post sits in the side wall (out of the edge gully). The first ball
+        # The post sits in the side wall. The first ball
         # is moved out by the same amount, so the balls are where they were.
         tuck = 0.6
         props = dict(mode=1, period=self.t(period), swing_angle=swing, balls=balls, first_ball=first_ball + tuck,
@@ -331,29 +326,16 @@ class Level:
         model, scale, size = self.rng.choice(self.world.obstacles)
         self.decorated("Cover", x, z, size, model, scale, 10.0, random_turn=True)
 
-    def gully(self, z_south, z_north):
-        """Hazards rolling south down both edges, from the outcrop at z_north to the
-        one at z_south, then starting again. Two lanes per side, staggered, so a
-        player hugging a wall keeps meeting them head-on."""
-        i = self.intensity
-        length = z_south - z_north
-        speed = 3.4 + 1.2 * (i - 0.85) / 0.56  # 3.4 m/s in 1-1, up to 4.6 m/s in 7-5.
-        spacing = 5.0 - 1.0 * (i - 0.85) / 0.56  # 5 m apart in 1-1, down to 4 m in 7-5.
-        count = max(2, round(length / spacing))
-        period = length / speed
+    def side_barriers(self, z_from, z_to):
+        """Invisible walls from PLAY_HALF_WIDTH out to both side walls, the whole
+        length of the level, with a low curb along their inner edge."""
+        center, length = (z_from + z_to) / 2, z_from - z_to
+        width = HALF_WIDTH + 0.5 - PLAY_HALF_WIDTH
         for side in (-1, 1):
-            for lane, x in enumerate(GULLY_LANES):
-                # Each lane and side gets its own phase, so the gaps never line up.
-                phase = (0.5 * lane + 0.25 * (side > 0) + 0.13 * len(self.walls)) % 1.0
-                for c in range(count):
-                    self.roller(side * x, z_north, 0, period, period * ((c + phase) / count) % period,
-                                one_way=True, dz=length)
-
-    def gate(self, z):
-        """Solid outcrops sticking out from both side walls at z."""
-        width = HALF_WIDTH - GATE_FROM
-        for side in (-1, 1):
-            self.world.wall(self, side * (GATE_FROM + width / 2), z, width)
+            self.block("Barrier", side * (PLAY_HALF_WIDTH + width / 2), 0, center, (width, 3, length),
+                       show_box=False)
+            self.block("Curb", side * (PLAY_HALF_WIDTH + 0.15), 0, center, (0.3, 0.12, length),
+                       color=color(0.85, 0.82, 0.75))
 
     # --- sections: each fills the stretch going north from z_top and returns where it ends ---
 
@@ -547,13 +529,6 @@ class Level:
         for n, section_name in enumerate(self.recipe):
             self.section(n)
             z_bottom = getattr(self, section_name)(z)
-            # Outcrops 1 m beyond each end of the section (in the 2 m gap between
-            # sections, or either side of a checkpoint), and edge gullies between them.
-            if n % 2 == 0:
-                self.gate(z + 1.0)
-            self.gate(z_bottom - 1.0)
-            if section_name not in NO_GULLY:
-                self.gully(z + 1.0, z_bottom - 1.0)
             self.walls.append((z, z_bottom, section_name))
             if n == len(self.recipe) - 1:
                 self.finish(z_bottom - 3.0)
@@ -564,6 +539,7 @@ class Level:
                 z = z_bottom - 5.0
             else:
                 z = z_bottom - 2.0
+        self.side_barriers(7.0, self.finish_z - 4.5)
         self.world.dress(self, 7.0, self.finish_z - 4.5)
 
     def write(self):
