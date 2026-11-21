@@ -44,6 +44,7 @@ Players and enemies are small (about 60% of the original size) so more hazards f
 ## Players
 - Solo or online co-op, up to 8 players. Each player controls one character.
 - Online play is peer-to-peer: one player hosts and the others join. No separate server.
+- Players pass through each other like ghosts: they can't bump, block or push a teammate. They still collide with the level, barriers and hazards as usual.
 
 ## Death, checkpoints and winning
 - **Solo** (one player in the round, including hosting alone): dying sends you back to the last checkpoint you reached.
