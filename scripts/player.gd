@@ -50,6 +50,10 @@ var _has_remote_target := false
 
 func _ready() -> void:
 	is_local = is_multiplayer_authority()
+	# Players are ghosts to each other: they never block or push one another.
+	# They still stand on and bump into the world (layer 1), including the side
+	# barriers, and the Hurtbox still gets hit by enemies (layer 3).
+	set_collision_mask_value(2, false)
 	var look: Node3D = character.instantiate()
 	look.scale = Vector3.ONE * character_scale
 	# The models face +Z. Turning them around makes -Z (north) the player's forward.
